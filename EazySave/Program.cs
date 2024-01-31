@@ -1,11 +1,21 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using EazySave.Languages;
+using System.Resources;
+using System.ComponentModel;
+using System.Reflection;
 
-//Programme affichant la chaîne de caractères "Hello, World!"
-//Program which displays the "Hello, World!" sentence
-Console.WriteLine("Hello, world!");
 
-Console.WriteLine("c'est un test de Oussama !");
+class LangTest
+{
 
-Console.WriteLine("test 2eme commit !");
+    public static void Main(string[] args)
+    {
 
-Console.WriteLine("test 3eme commit !");
+        var lang = "fr";
+
+        ResourceManager RM = new ResourceManager("EazySave.Languages."+lang, Assembly.GetExecutingAssembly());
+
+        Console.WriteLine(RM.GetString("PremierNom"));
+
+
+    }
+}
