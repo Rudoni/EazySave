@@ -9,6 +9,15 @@ namespace EazySave_Master
     /// </summary>
     public partial class App : Application
     {
+
+        public static void Main()
+        {
+            
+            Console.WriteLine("Mode console !");
+            Console.ReadLine();
+
+        }
+
     }
 
 }
