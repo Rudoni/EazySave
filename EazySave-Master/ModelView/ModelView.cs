@@ -14,7 +14,13 @@ namespace EazySave_Master.ModelView
 
 
         public ModelView() { 
-            
-        }  
+            save = new SaveTotal(1, "name", "C:\\Users\\test", "C:\\Users");
+        }
+
+        public void SaveTotalll()
+        {
+            save.ExecuteSave();
+       
+        }
     }
 }

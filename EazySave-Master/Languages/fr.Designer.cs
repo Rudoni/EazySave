@@ -70,6 +70,15 @@ namespace EazySave_Master.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nom.
+        /// </summary>
+        internal static string CheckSave {
+            get {
+                return ResourceManager.GetString("CheckSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Voulez-vous créer une sauvegarde ou lancer une/des sauvegardes ?.
         /// </summary>
         internal static string Choices {

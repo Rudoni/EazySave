@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "EazySave-Master": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\rudoniantonin\\source\\repos\\Rudoni\\EazySave-Master\\obj\\Debug\\net7.0-windows"
+    },
+    "Profil 1": {
+      "commandName": "Executable"
+    }
+  }
+}

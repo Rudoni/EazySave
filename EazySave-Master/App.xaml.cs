@@ -4,8 +4,7 @@ using System.Windows;
 using System.Globalization;
 using System.Resources;
 using System.Reflection;
-
-namespace EazySave_Master
+namespace EazySave_Master.ModelView
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -14,6 +13,8 @@ namespace EazySave_Master
     {
         public static void Main()
         {
+
+            ModelView mv = new ModelView();
 
             CultureInfo culture = CultureInfo.CurrentCulture;
             string lang = "en"; // Langue par défaut
@@ -45,18 +46,24 @@ namespace EazySave_Master
             switch (type)
             {
                 case "1":
-                    Console.WriteLine(resourceManager.GetString("EnterName"));
-                    String name = Console.ReadLine();
-                    Console.WriteLine(resourceManager.GetString("SourcePath"));
-                    String sourcePath = Console.ReadLine();
-                    Console.WriteLine(resourceManager.GetString("DestPath"));
-                    String DestPath = Console.ReadLine();
-                    Console.WriteLine(resourceManager.GetString("SaveType"));
-                    Console.WriteLine(resourceManager.GetString("Complete"));
-                    Console.WriteLine(resourceManager.GetString("Differential"));
-                    String typeSave = Console.ReadLine();
-                    // Appeler la fonction Sauv Tot ou dif avec les paramètres entrées par le user 
+                    //Console.WriteLine(resourceManager.GetString("EnterName"));
+                    //String name = Console.ReadLine();
+                    //Console.WriteLine(resourceManager.GetString("SourcePath"));
+                    //String sourcePath = Console.ReadLine();
+                    //Console.WriteLine(resourceManager.GetString("DestPath"));
+                    //String destPath = Console.ReadLine();
+                    //Console.WriteLine($"Nom: {name}");
+                    //Console.WriteLine($"Chemin source: {sourcePath}");
+                    //Console.WriteLine($"Chemin de destination: {destPath}");
+                    mv.SaveTotalll();
 
+                    //Console.WriteLine(resourceManager.GetString("SaveType"));
+                    //Console.WriteLine(resourceManager.GetString("Complete"));
+                    //Console.WriteLine(resourceManager.GetString("Differential"));
+                    //String typeSave = Console.ReadLine();
+                    
+                    // Appeler la fonction Sauv Tot ou dif avec les paramètres entrées par le user 
+                    // save.ExecuteSave(name, sourcePath, destPath, typeSave) 
                     break;
                 case "2":
                     // Afficher liste des sauvegarde 

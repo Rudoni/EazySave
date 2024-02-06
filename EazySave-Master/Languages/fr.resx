@@ -120,6 +120,9 @@
   <data name="Check" xml:space="preserve">
     <value>Entrer un nombre valide </value>
   </data>
+  <data name="CheckSave" xml:space="preserve">
+    <value>Nom</value>
+  </data>
   <data name="Choices" xml:space="preserve">
     <value>Voulez-vous créer une sauvegarde ou lancer une/des sauvegardes ?</value>
   </data>
