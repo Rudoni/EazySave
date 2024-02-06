@@ -55,13 +55,17 @@ namespace EazySave_Master
                     Console.WriteLine(resourceManager.GetString("Complete"));
                     Console.WriteLine(resourceManager.GetString("Differential"));
                     String typeSave = Console.ReadLine();
-
+                    // Appeler la fonction Sauv Tot ou dif avec les paramètres entrées par le user 
 
                     break;
                 case "2":
+                    // Afficher liste des sauvegarde 
 
                     break;
-                case "3":
+                case "3": // Parameter (change language) 
+                    
+                    break;
+                case "4": // Leave
                     Environment.Exit(0);
                     break;
 
