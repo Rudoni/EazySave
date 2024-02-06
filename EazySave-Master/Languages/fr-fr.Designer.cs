@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EazySave_Master.language {
+namespace EazySave_Master.Languages {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace EazySave_Master.language {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EazySave_Master.language.fr-fr", typeof(fr_fr).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EazySave_Master.Languages.fr-fr", typeof(fr_fr).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
