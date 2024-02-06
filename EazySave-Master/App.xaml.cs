@@ -2,6 +2,8 @@
 using System.Data;
 using System.Windows;
 using System.Globalization;
+using System.Resources;
+using System.Reflection;
 
 namespace EazySave_Master
 {
@@ -10,33 +12,62 @@ namespace EazySave_Master
     /// </summary>
     public partial class App : Application
     {
-
-        //Point d'entrée de l'application
-
         public static void Main()
         {
-            
-            Console.WriteLine("Mode console !");
-
-
-
-            //Code de récupération des infos linguistiques de l'OS
 
             CultureInfo culture = CultureInfo.CurrentCulture;
+            string lang = "en"; // Langue par défaut
 
-            // Affiche la langue par défaut de l'OS
-            Console.WriteLine("Langue par défaut : " + culture.DisplayName);
+            switch (culture.Name.ToLower())
+            {
+                case "fr-fr":
+                    lang = "fr";
+                    break;
+                
+                default:
+                    break;
+            }
 
-            // Afficher le code de la langue (par exemple, "en-US" pour l'anglais aux États-Unis)
-            Console.WriteLine("Code de la langue : " + culture.Name);
+            ResourceManager resourceManager = new ResourceManager("EazySave_Master.Languages." + lang, Assembly.GetExecutingAssembly());
 
-            // Afficher la direction de l'écriture (LTR pour Left To Right, RTL pour Right To Left)
-            Console.WriteLine("Direction de l'écriture : " + (culture.TextInfo.IsRightToLeft ? "RTL" : "LTR"));
+            Console.WriteLine(resourceManager.GetString("Welcome") + "EazySave !");
+            //Console.WriteLine(resourceManager.GetString("DefaultLanguage") + culture.DisplayName);
+            //Console.WriteLine(resourceManager.GetString("CodeLanguage") + culture.Name);
+
+            Console.WriteLine(resourceManager.GetString("Choices"));
+            Console.WriteLine(resourceManager.GetString("CreateSave"));
+            Console.WriteLine(resourceManager.GetString("GoSave"));
+            Console.WriteLine(resourceManager.GetString("Leave"));
 
 
 
+            var type = Console.ReadLine();
+            switch (type)
+            {
+                case "1":
+                    Console.WriteLine(resourceManager.GetString("EnterName"));
+                    String name = Console.ReadLine();
+                    Console.WriteLine(resourceManager.GetString("SourcePath"));
+                    String sourcePath = Console.ReadLine();
+                    Console.WriteLine(resourceManager.GetString("DestPath"));
+                    String DestPath = Console.ReadLine();
+                    Console.WriteLine(resourceManager.GetString("SaveType"));
+                    Console.WriteLine(resourceManager.GetString("Complete"));
+                    Console.WriteLine(resourceManager.GetString("Differential"));
+                    String typeSave = Console.ReadLine();
 
-            Console.ReadLine();
+
+                    break;
+                case "2":
+
+                    break;
+                case "3":
+                    Environment.Exit(0);
+                    break;
+
+                default:
+                    break;
+            }
 
         }
 
