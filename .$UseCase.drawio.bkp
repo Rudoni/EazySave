@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" modified="2024-02-05T16:32:10.540Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="SWW52SuH0kmw2ipa7AQi" version="23.0.2" type="device">
+  <diagram name="Page-1" id="1xhFib9381w1jTfG53vT">
+    <mxGraphModel dx="1967" dy="739" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ZKMgbv5vHVrt_nnK9V5G-1" value="User&lt;br&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="-20" y="260" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ZKMgbv5vHVrt_nnK9V5G-5" value="Choisir la langue" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="250" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZKMgbv5vHVrt_nnK9V5G-7" value="Choisir son type de sauvegarde" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="250" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZKMgbv5vHVrt_nnK9V5G-8" value="Choisir Nom" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="250" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZKMgbv5vHVrt_nnK9V5G-9" value="Choisir Source" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="250" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZKMgbv5vHVrt_nnK9V5G-10" value="Choisir Destination" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="250" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZKMgbv5vHVrt_nnK9V5G-14" value="User&lt;br&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="-20" y="500" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ZKMgbv5vHVrt_nnK9V5G-15" value="Choisir la langue" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="293.5" y="500" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZKMgbv5vHVrt_nnK9V5G-16" value="écrire nom source destination typeDeSauvegarde" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="500" width="330" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZKMgbv5vHVrt_nnK9V5G-17" value="Lancer le programme" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="500" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZKMgbv5vHVrt_nnK9V5G-18" value="Lancer le programme" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="250" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZKMgbv5vHVrt_nnK9V5G-19" value="Use Case UML" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="80" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ZKMgbv5vHVrt_nnK9V5G-20" value="En option (Revenir à l&#39;étape d&#39;avant)" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="380" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZKMgbv5vHVrt_nnK9V5G-21" value="Confirmer recap" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="990" y="250" width="120" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
