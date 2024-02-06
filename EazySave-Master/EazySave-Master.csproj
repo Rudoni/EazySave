@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="language\fr-fr.Designer.cs">
+    <Compile Update="Languages\fr-fr.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>fr-fr.resx</DependentUpon>
@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="language\fr-fr.resx">
+    <EmbeddedResource Update="Languages\fr-fr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>fr-fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
