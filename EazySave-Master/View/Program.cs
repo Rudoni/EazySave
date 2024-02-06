@@ -11,7 +11,6 @@ namespace EazySave_Master.View
     {
         static void Main(string[] args)
         {
-
         }
     }
 }

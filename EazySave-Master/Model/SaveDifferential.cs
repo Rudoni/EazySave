@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace EazySave_Master.Model
 {
-    class SaveDifferential : SaveType
+    class SaveDifferential : Save
     {
+        public SaveDifferential(string name, string targetPath) : base(name, targetPath)
+        {
+        }
+
         public string name => throw new NotImplementedException();
     }
 }

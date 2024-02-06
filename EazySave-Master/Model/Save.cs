@@ -11,7 +11,6 @@ namespace EazySave_Master.Model
         public int number { get; set; }
         public string name { get; set; }
         public string targetPath { get; set; }
-        public SaveType saveType { get; set; }
         public Folder sourceRepo { get; set; }
 
         public Save(string name, string targetPath)
