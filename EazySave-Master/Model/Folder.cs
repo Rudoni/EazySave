@@ -2,8 +2,14 @@
 {
     public class Folder
     {
-        public string name { get; set; }
+        public string path { get; set; }
         public List<Folder> folders { get; set; }
-        public List<File> files { get; set; }
+        public List<UserFile> files { get; set; }
+
+        public Folder(string path) {
+            this.path = path;
+            folders = new List<Folder>();
+            files = new List<UserFile>();
+        }
     }
 }

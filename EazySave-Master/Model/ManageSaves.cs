@@ -16,12 +16,10 @@ namespace EazySave_Master.Model
         public void RunSaves(string numbers)
         {
             //lancer les saves des numbers
-            /*
             foreach (var save in saves)
             {
                 save.ExecuteSave();
             }
-            */
         }
     }
 }
