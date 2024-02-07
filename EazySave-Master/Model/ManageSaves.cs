@@ -29,10 +29,11 @@ namespace EazySave_Master.Model
          */
         public void RunSaves(string numbers)
         {
-            //lancer les saves des numbers
+            List<int> listN=GetNumbersToExecute(numbers);
             foreach (var save in saves)
             {
-                save.ExecuteSave();
+                if(listN.Contains(save.number))
+                    save.ExecuteSave();
             }
         }
 
