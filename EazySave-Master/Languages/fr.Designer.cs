@@ -169,6 +169,15 @@ namespace EazySave_Master.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sauvegarde réalisé avec succés .
+        /// </summary>
+        internal static string Done {
+            get {
+                return ResourceManager.GetString("Done", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Entrer un nom de sauvegarde.
         /// </summary>
         internal static string EnterName {
@@ -228,6 +237,15 @@ namespace EazySave_Master.Languages {
         internal static string SourcePath {
             get {
                 return ResourceManager.GetString("SourcePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Lancer une ou des sauvegardes (1-3 = 1 à 3) (1;3 = 1 et 3).
+        /// </summary>
+        internal static string Test {
+            get {
+                return ResourceManager.GetString("Test", resourceCulture);
             }
         }
         

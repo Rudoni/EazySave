@@ -87,10 +87,14 @@ namespace EazySave_Master
                         {
                             Console.WriteLine(s.ToString());
                         }
+                        Console.WriteLine(resourceManager.GetString("Test"));
+                        String numberUser = Console.ReadLine();
+                        mv.runSave(numberUser);
+                        Console.WriteLine(resourceManager.GetString("Done"));
                         Console.WriteLine(resourceManager.GetString("MainMenu"));
                         Console.ReadLine();
                         break;
-  case "3": // Parameter (change language) 
+                    case "3": // Parameter (change language) 
 
                         Console.Clear();
                         Console.WriteLine(resourceManager.GetString("ChangeLanguage"));

@@ -40,7 +40,7 @@ namespace EazySave_Master.Model
         public void ExecuteSave()
         {
             string sourcePath = sourceRepo.path;
-           
+
 
             if (!Directory.Exists(sourcePath))
             {
@@ -73,7 +73,7 @@ namespace EazySave_Master.Model
                 {
                     Directory.CreateDirectory(targetPath);
                     System.IO.File.Copy(filePath, targetFilePath, true);
-                    Console.WriteLine($"Copie de fichier : {fileName}");
+                    
                 }
             }
 
