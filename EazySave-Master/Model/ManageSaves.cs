@@ -14,6 +14,8 @@ namespace EazySave_Master.Model
 
         public void addSave(Save save)
         {
+            int n = IncrementNumberMaxSave();
+            save.setNumber(n);
             saves.Add(save);
         }
 
@@ -25,6 +27,19 @@ namespace EazySave_Master.Model
             {
                 save.ExecuteSave();
             }
+        }
+
+        private int IncrementNumberMaxSave()
+        {
+            int res = 1;
+            int nSave = 0;
+            foreach (Save save in saves)
+            {
+                nSave = save.number;
+                if(nSave > res)
+                    res = nSave;
+            }
+            return res++;
         }
     }
 }

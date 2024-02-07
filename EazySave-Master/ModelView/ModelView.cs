@@ -17,15 +17,15 @@ namespace EazySave_Master.ModelView
             saves = new ManageSaves();
         }
 
-        public void createSave(int number, string name, string targetPath, string sourceRepo,string typeSave)
+        public void createSave(string name, string targetPath, string sourceRepo,string typeSave)
         {
             switch (typeSave)
             {
                 case "1":
-                    saves.addSave(new SaveTotal(number,name,targetPath,sourceRepo));
+                    saves.addSave(new SaveTotal(name,targetPath,sourceRepo));
                     break;
                 case "2":
-                    saves.addSave(new SaveDifferential(number, name, targetPath, sourceRepo));
+                    saves.addSave(new SaveDifferential(name, targetPath, sourceRepo));
                     break;
             }
         }

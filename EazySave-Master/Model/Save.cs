@@ -15,9 +15,9 @@ namespace EazySave_Master.Model
         public string targetPath { get; set; }
         public Folder sourceRepo { get; set; }
 
-        public Save(int number, string name, string targetPath, string sourceRepo)
+        public Save(string name, string targetPath, string sourceRepo)
         {
-            this.number = number;
+            this.number = 0;
             this.name = name;
             this.targetPath = targetPath;
             this.sourceRepo = new Folder(sourceRepo);
@@ -26,6 +26,11 @@ namespace EazySave_Master.Model
         public Save()
         {
             
+        }
+
+        public void setNumber(int n)
+        {
+            this.number = n;
         }
 
         //TODO a completer
