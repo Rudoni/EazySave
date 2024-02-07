@@ -4,7 +4,7 @@ using System.Windows;
 using System.Globalization;
 using System.Resources;
 using System.Reflection;
-
+using EazySave_Master.Model;
 
 namespace EazySave_Master
 {
@@ -48,21 +48,27 @@ namespace EazySave_Master
 
 
 
-                var type = Console.ReadLine();
+            var type = Console.ReadLine();
+            switch (type)
+            {
+                case "1":
+                    Console.WriteLine(resourceManager.GetString("EnterName"));
+                    String name = Console.ReadLine();
+                    Console.WriteLine(resourceManager.GetString("SourcePath"));
+                    String sourcePath = Console.ReadLine();
+                    Console.WriteLine(resourceManager.GetString("DestPath"));
+                    String destPath = Console.ReadLine();
+                    String typeSave = Console.ReadLine();
+                   
+                    mv.createSave(name, sourcePath, destPath, typeSave);
+                    
 
-                switch (type)
-                {
-                    case "1":
-                        Console.WriteLine(resourceManager.GetString("EnterName"));
-                        String name = Console.ReadLine();
-                        Console.WriteLine(resourceManager.GetString("SourcePath"));
-                        String sourcePath = Console.ReadLine();
-                        Console.WriteLine(resourceManager.GetString("DestPath"));
-                        String destPath = Console.ReadLine();
-                        Console.WriteLine($"Nom: {name}");
-                        Console.WriteLine($"Chemin source: {sourcePath}");
-                        Console.WriteLine($"Chemin de destination: {destPath}");
-                        mv.SaveTotalll();
+                    // Afficher le contenu de la liste avec une boucle foreach
+                    foreach (Save s in mv.saves.saves)
+                    {
+                        Console.WriteLine(s.ToString());
+                    }
+
 
                         Console.WriteLine(resourceManager.GetString("SaveType"));
                         Console.WriteLine(resourceManager.GetString("Complete"));
@@ -79,17 +85,17 @@ namespace EazySave_Master
                     case "2":
                         //Afficher liste des sauvegarde
 
-                        break;
-                    case "3": // Parameter (change language) 
+                    break;
+                case "3": // Parameter (change language) 
+                    
+                    break;
+                case "4": // Leave
+                    Environment.Exit(0);
+                    break;
 
-                        break;
-                    case "4": // Leave
-                        Environment.Exit(0);
-                        break;
-
-                    default:
-                        break;
-                }
+                default:
+                    break;
+            }
 
             }
         }
