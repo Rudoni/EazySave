@@ -90,7 +90,7 @@ namespace EazySave_Master.Model
 
         public override string ToString()
         {
-            return $"Number: {number}\nNom: {name}\nChemin source: {sourceRepo.path}\nChemin de destination: {targetPath}\nType de sauvegarde: {this.GetTypeName()}";
+            return $"Nb: {number}\n - {name}\n - Source: {sourceRepo.path}\n -> {targetPath}\n - Type: {this.GetTypeName()}";
         }
         protected abstract bool canFileBeCopied(string sourceFile, string destinationFile);
 

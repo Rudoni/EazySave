@@ -81,7 +81,7 @@ namespace EazySave_Master
                         Console.ReadLine();
 
                         break;
-                    case "2":
+                case "2":
                         //Afficher liste des sauvegarde
                         foreach (Save s in mv.saves.saves)
                         {
