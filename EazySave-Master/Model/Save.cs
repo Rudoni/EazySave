@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 
 namespace EazySave_Master.Model
 {
@@ -26,6 +27,8 @@ namespace EazySave_Master.Model
         public void ExecuteSave()
         {
             string sourcePath = sourceRepo.path;
+           
+
             if (!Directory.Exists(sourcePath))
             {
                 Console.WriteLine("Le chemin source n'existe pas.");
@@ -38,18 +41,39 @@ namespace EazySave_Master.Model
                 return;
             }
 
-            string[] filesSource = Directory.GetFiles(sourcePath, "*", SearchOption.AllDirectories);
+            CopyDirectory(sourcePath, targetPath);
+        }
 
-            foreach (string file in filesSource)
+        private void CopyDirectory(string sourcePath, string targetPath)
+        {
+            Directory.CreateDirectory(targetPath);
+
+            string[] filesSource = Directory.GetFiles(sourcePath);
+
+            foreach (string filePath in filesSource)
             {
-                if (CompareForDifferential(file, targetPath))
+                string fileName = Path.GetFileName(filePath);
+                string targetFilePath = Path.Combine(targetPath, fileName);
+
+               
+                if (CompareForDifferential(filePath, targetFilePath))
                 {
-                    Directory.CreateDirectory(Path.GetDirectoryName(targetPath));
-                    File.Copy(file, targetPath, true);
-                    Console.WriteLine($"Copie de fichier");
+                    Directory.CreateDirectory(targetPath);
+                    System.IO.File.Copy(filePath, targetFilePath, true);
+                    Console.WriteLine($"Copie de fichier : {fileName}");
                 }
+            }
+
+            string[] subDirectories = Directory.GetDirectories(sourcePath);
+
+            foreach (string subDirectoryPath in subDirectories)
+            {
+                string subDirectoryName = Path.GetFileName(subDirectoryPath);
+                string targetSubDirectoryPath = Path.Combine(targetPath, subDirectoryName);
+                CopyDirectory(subDirectoryPath, targetSubDirectoryPath);
             }
         }
 
         protected abstract bool CompareForDifferential(string sourceFile, string destinationFile);
+    }
 }

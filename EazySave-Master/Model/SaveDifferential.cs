@@ -19,6 +19,6 @@ namespace EazySave_Master.Model
         {
             return (!File.Exists(destinationFile) && File.GetLastWriteTimeUtc(sourceFile) <= File.GetLastWriteTimeUtc(destinationFile));
         }
-
+        
     }
 }

@@ -4,7 +4,9 @@ using System.Windows;
 using System.Globalization;
 using System.Resources;
 using System.Reflection;
-namespace EazySave_Master.ModelView
+
+
+namespace EazySave_Master
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -13,10 +15,10 @@ namespace EazySave_Master.ModelView
     {
         public static void Main()
         {
+ 
+    ModelView.ModelView mv = new ModelView.ModelView();
 
-            ModelView mv = new ModelView();
-
-            CultureInfo culture = CultureInfo.CurrentCulture;
+    CultureInfo culture = CultureInfo.CurrentCulture;
             string lang = "en"; // Langue par défaut
 
             switch (culture.Name.ToLower())

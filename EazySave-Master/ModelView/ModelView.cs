@@ -14,7 +14,7 @@ namespace EazySave_Master.ModelView
 
 
         public ModelView() { 
-            save = new SaveTotal(1, "name", "C:\\Users\\test", "C:\\Users");
+            save = new SaveDifferential(1, "name", @"C:\test5", @"C:\test");
         }
 
         public void SaveTotalll()
