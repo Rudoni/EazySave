@@ -17,12 +17,13 @@ namespace EazySave_Master.Model
         public string targetPath { get; set; }
         public Folder sourceRepo { get; set; }
 
-        public Save(string name, string targetPath, string sourceRepo)
+        public Save(string name, string sourceRepo, string targetPath)
         {
             this.number = 0;
             this.name = name;
-            this.targetPath = targetPath;
             this.sourceRepo = new Folder(sourceRepo);
+            this.targetPath = targetPath;
+            
         }
 
         public Save()

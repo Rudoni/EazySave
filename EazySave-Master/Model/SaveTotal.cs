@@ -8,7 +8,7 @@ namespace EazySave_Master.Model
 {
     class SaveTotal : Save
     {
-        public SaveTotal(string name, string targetPath, string sourceRepo) : base(name, targetPath, sourceRepo)
+        public SaveTotal(string name, string sourceRepo, string targetPath) : base(name, sourceRepo, targetPath)
         {
         }
         public SaveTotal() { }  

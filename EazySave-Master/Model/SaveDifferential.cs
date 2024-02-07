@@ -9,7 +9,7 @@ namespace EazySave_Master.Model
 {
     class SaveDifferential : Save
     {
-        public SaveDifferential(string name, string targetPath, string sourceRepo) : base(name, targetPath, sourceRepo)
+        public SaveDifferential(string name, string sourceRepo, string targetPath) : base(name, sourceRepo, targetPath)
         {
         }
 
