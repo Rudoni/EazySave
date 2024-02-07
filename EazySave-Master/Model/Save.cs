@@ -44,17 +44,18 @@ namespace EazySave_Master.Model
 
             if (!Directory.Exists(sourcePath))
             {
-                Console.WriteLine("Le chemin source n'existe pas.");
+                Console.WriteLine($"Save n°{number}: Source path don't exist.");
                 return;
             }
 
             if (!Directory.Exists(targetPath))
             {
-                Console.WriteLine("Le chemin de destination n'existe pas.");
+                Console.WriteLine($"Save n°{number}: Target path don't exist.");
                 return;
             }
 
             CopyDirectory(sourcePath, targetPath);
+            Console.WriteLine($"Save n°{number}: Done.");
         }
 
         private void CopyDirectory(string sourcePath, string targetPath)
