@@ -56,7 +56,7 @@ namespace EazySave_Master.Model
                 string targetFilePath = Path.Combine(targetPath, fileName);
 
                
-                if (CompareForDifferential(filePath, targetFilePath))
+                if (canFileBeCopied(filePath, targetFilePath))
                 {
                     Directory.CreateDirectory(targetPath);
                     System.IO.File.Copy(filePath, targetFilePath, true);
@@ -74,6 +74,6 @@ namespace EazySave_Master.Model
             }
         }
 
-        protected abstract bool CompareForDifferential(string sourceFile, string destinationFile);
+        protected abstract bool canFileBeCopied(string sourceFile, string destinationFile);
     }
 }
