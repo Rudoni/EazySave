@@ -20,7 +20,7 @@ namespace EazySave_Master.Model
             this.number = number;
             this.name = name;
             this.targetPath = targetPath;
-            this.sourceRepo=new Folder(sourceRepo);
+            this.sourceRepo = new Folder(sourceRepo);
         }
 
         //TODO a completer
