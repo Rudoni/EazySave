@@ -48,16 +48,16 @@ namespace EazySave_Master
             switch (type)
             {
                 case "1":
-                    //Console.WriteLine(resourceManager.GetString("EnterName"));
-                    //String name = Console.ReadLine();
-                    //Console.WriteLine(resourceManager.GetString("SourcePath"));
-                    //String sourcePath = Console.ReadLine();
-                    //Console.WriteLine(resourceManager.GetString("DestPath"));
-                    //String destPath = Console.ReadLine();
-                    //Console.WriteLine($"Nom: {name}");
-                    //Console.WriteLine($"Chemin source: {sourcePath}");
-                    //Console.WriteLine($"Chemin de destination: {destPath}");
-                    mv.SaveTotalll();
+                    Console.WriteLine(resourceManager.GetString("EnterName"));
+                    String name = Console.ReadLine();
+                    Console.WriteLine(resourceManager.GetString("SourcePath"));
+                    String sourcePath = Console.ReadLine();
+                    Console.WriteLine(resourceManager.GetString("DestPath"));
+                    String destPath = Console.ReadLine();
+                    Console.WriteLine($"Nom: {name}");
+                    Console.WriteLine($"Chemin source: {sourcePath}");
+                    Console.WriteLine($"Chemin de destination: {destPath}");
+                    mv.createSave(number, name, sourcePath, destPath, typeSave);
 
                     //Console.WriteLine(resourceManager.GetString("SaveType"));
                     //Console.WriteLine(resourceManager.GetString("Complete"));

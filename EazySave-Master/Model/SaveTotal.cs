@@ -11,6 +11,7 @@ namespace EazySave_Master.Model
         public SaveTotal(int number, string name, string targetPath, string sourceRepo) : base(number, name, targetPath, sourceRepo)
         {
         }
+        public SaveTotal() { }  
 
         public string name => throw new NotImplementedException();
 

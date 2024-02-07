@@ -23,6 +23,11 @@ namespace EazySave_Master.Model
             this.sourceRepo = new Folder(sourceRepo);
         }
 
+        public Save()
+        {
+            
+        }
+
         //TODO a completer
         public void ExecuteSave()
         {
