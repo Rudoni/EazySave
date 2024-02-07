@@ -41,7 +41,7 @@ namespace EazySave_Master.Model
          */
         private int IncrementNumberMaxSave()
         {
-            int res = 1;
+            int res = 0;
             int nSave = 0;
             foreach (Save save in saves)
             {
@@ -49,7 +49,7 @@ namespace EazySave_Master.Model
                 if(nSave > res)
                     res = nSave;
             }
-            return res;
+            return res = res + 1;
         }
 
         /**
