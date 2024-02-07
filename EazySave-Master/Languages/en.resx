@@ -175,6 +175,6 @@
     <value>Enter the save source path</value>
   </data>
   <data name="Welcome" xml:space="preserve">
-    <value>Welcome to</value>
+    <value>Welcome to </value>
   </data>
 </root>
