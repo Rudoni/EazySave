@@ -4,7 +4,7 @@ using System.Windows;
 using System.Globalization;
 using System.Resources;
 using System.Reflection;
-
+using EazySave_Master.Model;
 
 namespace EazySave_Master
 {
@@ -54,16 +54,23 @@ namespace EazySave_Master
                     String sourcePath = Console.ReadLine();
                     Console.WriteLine(resourceManager.GetString("DestPath"));
                     String destPath = Console.ReadLine();
-                    Console.WriteLine($"Nom: {name}");
-                    Console.WriteLine($"Chemin source: {sourcePath}");
-                    Console.WriteLine($"Chemin de destination: {destPath}");
-                    mv.createSave(number, name, sourcePath, destPath, typeSave);
+                    String typeSave = Console.ReadLine();
+                   
+                    mv.createSave(name, sourcePath, destPath, typeSave);
+                    
+
+                    // Afficher le contenu de la liste avec une boucle foreach
+                    foreach (Save s in mv.saves.saves)
+                    {
+                        Console.WriteLine(s.ToString());
+                    }
+
 
                     //Console.WriteLine(resourceManager.GetString("SaveType"));
                     //Console.WriteLine(resourceManager.GetString("Complete"));
                     //Console.WriteLine(resourceManager.GetString("Differential"));
                     //String typeSave = Console.ReadLine();
-                    
+
                     // Appeler la fonction Sauv Tot ou dif avec les paramètres entrées par le user 
                     // save.ExecuteSave(name, sourcePath, destPath, typeSave) 
                     break;

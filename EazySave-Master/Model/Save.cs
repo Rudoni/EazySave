@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Xml.Linq;
 using static System.Net.WebRequestMethods;
 
 namespace EazySave_Master.Model
@@ -84,6 +86,13 @@ namespace EazySave_Master.Model
             }
         }
 
+
+        public override string ToString()
+        {
+            return $"Number: {number} Nom: {name}\nChemin source: {sourceRepo.path}\nChemin de destination: {targetPath}\nType de sauvegarde: {this.GetTypeName()}";
+        }
         protected abstract bool canFileBeCopied(string sourceFile, string destinationFile);
+
+        protected abstract string GetTypeName();
     }
 }

@@ -24,6 +24,10 @@ namespace EazySave_Master.Model
             bool modified = File.GetLastWriteTimeUtc(sourceFile) != File.GetLastWriteTimeUtc(destinationFile);
             return (dontExist || modified);
         }
-        
+
+        protected override string GetTypeName()
+        {
+            return "Differential";
+        }
     }
 }

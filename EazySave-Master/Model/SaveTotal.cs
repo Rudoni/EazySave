@@ -19,5 +19,10 @@ namespace EazySave_Master.Model
         {
             return true;
         }
+
+        protected override string GetTypeName()
+        {
+            return "Total";
+        }
     }
 }
