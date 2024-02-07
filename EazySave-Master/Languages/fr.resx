@@ -175,6 +175,6 @@
     <value>Entrer le chemin de la source de la sauvegarde :</value>
   </data>
   <data name="Welcome" xml:space="preserve">
-    <value>Bienvenue dans </value>
+    <value>Bienvenue sur </value>
   </data>
 </root>

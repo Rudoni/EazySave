@@ -232,7 +232,7 @@ namespace EazySave_Master.Languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Bienvenue dans .
+        ///   Recherche une chaîne localisée semblable à Bienvenue sur .
         /// </summary>
         internal static string Welcome {
             get {
