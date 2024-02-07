@@ -81,7 +81,7 @@ namespace EazySave_Master
                         Console.ReadLine();
 
                         break;
-                    case "2":
+                case "2":
                         //Afficher liste des sauvegarde
                         foreach (Save s in mv.saves.saves)
                         {
@@ -90,7 +90,7 @@ namespace EazySave_Master
                         Console.WriteLine(resourceManager.GetString("MainMenu"));
                         Console.ReadLine();
                         break;
-  case "3": // Parameter (change language) 
+                case "3": // Parameter (change language) 
 
                         Console.Clear();
                         Console.WriteLine(resourceManager.GetString("ChangeLanguage"));
