@@ -31,10 +31,11 @@ namespace EazySave_Master
                     break;
            }
 
-           ResourceManager resourceManager = new ResourceManager("EazySave_Master.Languages." + lang, Assembly.GetExecutingAssembly());
-
             while (true)
             {
+
+                ResourceManager resourceManager = new ResourceManager("EazySave_Master.Languages." + lang, Assembly.GetExecutingAssembly());
+
                 Console.Clear();
 
                 Console.WriteLine(resourceManager.GetString("Welcome") + "EazySave !");
@@ -44,6 +45,7 @@ namespace EazySave_Master
                 Console.WriteLine(resourceManager.GetString("Choices"));
                 Console.WriteLine(resourceManager.GetString("CreateSave"));
                 Console.WriteLine(resourceManager.GetString("GoSave"));
+                Console.WriteLine(resourceManager.GetString("Settings"));
                 Console.WriteLine(resourceManager.GetString("Leave"));
 
 
@@ -85,9 +87,56 @@ namespace EazySave_Master
                         //Afficher liste des sauvegarde
 
                     break;
+
                 case "3": // Parameter (change language) 
-                    
-                    break;
+
+                        Console.Clear();
+                        Console.WriteLine(resourceManager.GetString("ChangeLanguage"));
+                        Console.WriteLine(resourceManager.GetString("BackTwo"));
+                        var typeParam = Console.ReadLine();
+
+                        //Choix de l'utilisateur entre les paramètres
+                        switch (typeParam)
+                        {
+                            case "1":
+
+                                //Choix de la langue par l'utilisateur
+                                Console.Clear();
+                                Console.WriteLine(resourceManager.GetString("ChooseLanguage"));
+                                Console.WriteLine("1. Français");
+                                Console.WriteLine("2. English");
+                                var typeLang = Console.ReadLine();
+
+                                switch (typeLang)
+                                {
+                                    case "1":
+
+                                        lang = "fr";
+                                        break;
+
+                                    case "2":
+
+                                        lang = "en";
+                                        break;
+
+                                    default:
+                                        break;
+
+
+                                }
+                                break;
+
+
+                            case "2":
+                                break;
+
+                            default:
+                                break;
+
+                        }
+
+                        break;
+
                 case "4": // Leave
                     Environment.Exit(0);
                     break;

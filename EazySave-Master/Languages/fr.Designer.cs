@@ -61,6 +61,24 @@ namespace EazySave_Master.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à 2. Retour.
+        /// </summary>
+        internal static string BackTwo {
+            get {
+                return ResourceManager.GetString("BackTwo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à 1. Changer la langue.
+        /// </summary>
+        internal static string ChangeLanguage {
+            get {
+                return ResourceManager.GetString("ChangeLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Entrer un nombre valide .
         /// </summary>
         internal static string Check {
@@ -84,6 +102,15 @@ namespace EazySave_Master.Languages {
         internal static string Choices {
             get {
                 return ResourceManager.GetString("Choices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Choisir la langue :.
+        /// </summary>
+        internal static string ChooseLanguage {
+            get {
+                return ResourceManager.GetString("ChooseLanguage", resourceCulture);
             }
         }
         
@@ -160,7 +187,7 @@ namespace EazySave_Master.Languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à 3. Quitter .
+        ///   Recherche une chaîne localisée semblable à 4. Quitter .
         /// </summary>
         internal static string Leave {
             get {
@@ -183,6 +210,15 @@ namespace EazySave_Master.Languages {
         internal static string SaveType {
             get {
                 return ResourceManager.GetString("SaveType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à 3. Paramètres.
+        /// </summary>
+        internal static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
         

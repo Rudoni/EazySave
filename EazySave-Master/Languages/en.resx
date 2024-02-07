@@ -117,11 +117,62 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BackTwo" xml:space="preserve">
+    <value>2. Back</value>
+  </data>
+  <data name="ChangeLanguage" xml:space="preserve">
+    <value>1. Change language</value>
+  </data>
+  <data name="Check" xml:space="preserve">
+    <value>Enter a valid number</value>
+  </data>
+  <data name="CheckSave" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Choices" xml:space="preserve">
+    <value>Do you want to create a new save or start an existing one?</value>
+  </data>
+  <data name="ChooseLanguage" xml:space="preserve">
+    <value>Choose language :</value>
+  </data>
   <data name="CodeLanguage" xml:space="preserve">
     <value>Code Language : </value>
   </data>
+  <data name="Complete" xml:space="preserve">
+    <value>1. Complete Save</value>
+  </data>
+  <data name="CreateSave" xml:space="preserve">
+    <value>1. Create new save</value>
+  </data>
   <data name="DefaultLanguage" xml:space="preserve">
     <value>Default Language :  </value>
+  </data>
+  <data name="DestPath" xml:space="preserve">
+    <value>Enter the save destination path</value>
+  </data>
+  <data name="Differential" xml:space="preserve">
+    <value>2. Sauvegarde Differentielle</value>
+  </data>
+  <data name="EnterName" xml:space="preserve">
+    <value>Enter the save name</value>
+  </data>
+  <data name="GoSave" xml:space="preserve">
+    <value>2. Start an existing save</value>
+  </data>
+  <data name="Leave" xml:space="preserve">
+    <value>4. Quit</value>
+  </data>
+  <data name="MainMenu" xml:space="preserve">
+    <value>Press enter to go back to the main menu</value>
+  </data>
+  <data name="SaveType" xml:space="preserve">
+    <value>Save type :</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>3. Settings</value>
+  </data>
+  <data name="SourcePath" xml:space="preserve">
+    <value>Enter the save source path</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Welcome in </value>
