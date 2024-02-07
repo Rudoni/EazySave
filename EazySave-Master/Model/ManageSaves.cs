@@ -12,6 +12,11 @@ namespace EazySave_Master.Model
 
         public ManageSaves() { this.saves = new List<Save>(); }
 
+        public void addSave(Save save)
+        {
+            saves.Add(save);
+        }
+
         //TODO a completer
         public void RunSaves(string numbers)
         {
