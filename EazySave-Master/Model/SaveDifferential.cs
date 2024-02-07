@@ -15,9 +15,14 @@ namespace EazySave_Master.Model
 
         public string name => throw new NotImplementedException();
 
-        protected override bool CompareForDifferential(string sourceFile, string destinationFile)
+        /**
+         * 
+         */
+        protected override bool canFileBeCopied(string sourceFile, string destinationFile)
         {
-            return (!File.Exists(destinationFile) && File.GetLastWriteTimeUtc(sourceFile) <= File.GetLastWriteTimeUtc(destinationFile));
+            bool dontExist = !File.Exists(destinationFile);
+            bool modified = File.GetLastWriteTimeUtc(sourceFile) != File.GetLastWriteTimeUtc(destinationFile);
+            return (dontExist || modified);
         }
         
     }
