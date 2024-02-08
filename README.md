@@ -9,6 +9,8 @@ EazySave est une application permettant de créer la sauvegarde d'éléments de man
 Téléchargement de l'application :
 https://github.com/Rudoni/EazySave
 
+Documentation UML : EazySave-Master > Doc > Diagrammes > UML.drawio
+
 ----------------------------------------------------------------
 
 Guide d'utilisation :
@@ -25,9 +27,6 @@ Charger une sauvegarde -> Entrer le numéro d'une ou plusieurs sauvegardes ->  La
 
 Paramètres -> Choix de la langue -> Choix entre les langues disponibles
 
-
-
-Documentation UML : EazySave-Master > Doc > Diagrammes > UML.drawio
 
 ----------------------------------------------------------------
 
