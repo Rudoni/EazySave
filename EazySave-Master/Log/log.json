@@ -1,0 +1,18 @@
+[
+  {
+    "TimeStamp": "2024-02-07T22:36:37.1912725+01:00",
+    "BackupName": "test",
+    "SourcePath": "C:/test",
+    "DestPath": "C:/test6",
+    "FileSize": 379,
+    "TransferTime": 3.4516
+  },
+  {
+    "TimeStamp": "2024-02-07T22:37:12.4459354+01:00",
+    "BackupName": "test",
+    "SourcePath": "C:/test",
+    "DestPath": "C:/test6",
+    "FileSize": 379,
+    "TransferTime": 6.8703
+  }
+]
