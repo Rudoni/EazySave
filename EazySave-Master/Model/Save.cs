@@ -31,9 +31,9 @@ namespace EazySave_Master.Model
         /// </summary>
         public List<DailyLog> logs { get; set; }
         /// <summary>
-        /// List of real time logs
+        /// Real time logs
         /// </summary>
-        public List<DailyLog> rtLogs { get; set; }
+        public RealTimeLog rtLog { get; set; }
 
         /// <summary>
         /// Default constructor, completed by user inputs
@@ -49,8 +49,38 @@ namespace EazySave_Master.Model
             this.sourceRepo = new Folder(sourceRepo);
             this.targetPath = targetPath;
             this.logs = new List<DailyLog>();
+            this.rtLog=new RealTimeLog(this.name,this.calculTotalFile(new DirectoryInfo(this.sourceRepo.path)),this.calculTotalSize(new DirectoryInfo(this.sourceRepo.path)));
             
 
+        }
+
+        private Int128 calculTotalSize(DirectoryInfo dirInfo)
+        {
+            Int128 res = 0;
+            foreach (FileInfo f in dirInfo.GetFiles())
+            {
+                res += (Int128)f.Length;
+            }
+
+            foreach (DirectoryInfo subDir in dirInfo.GetDirectories())
+            {
+                res += calculTotalSize(subDir);
+            }
+
+            return res;
+        }
+
+        private int calculTotalFile(DirectoryInfo dirInfo)
+        {
+            int res = 0;
+            res += dirInfo.GetFiles().Length;
+
+            foreach (DirectoryInfo subDir in dirInfo.GetDirectories())
+            {
+                res += calculTotalFile(subDir);
+            }
+
+            return res;
         }
 
         /// <summary>
@@ -95,12 +125,17 @@ namespace EazySave_Master.Model
                 return;
             }
 
+            rtLog.setSaveState(true);
+
             CopyDirectory(sourcePath, targetPath);
             Console.WriteLine($"Save n°{number}: Done.");
+
+            rtLog.setSaveState(false);
 
             // Add Log for each Save
             AddLog();
             SaveLogsToJson();
+            SaveRealTimeLogsToJson();
         }
 
         /// <summary>
@@ -230,22 +265,7 @@ namespace EazySave_Master.Model
             System.IO.File.WriteAllText(logFilePath, jsonLogs);
         }
 
-    //*********** Part Real Time Log
-        private void AddRealTimeLog()
-        {
-            RealTimeLog rlLog = new RealTimeLog();
-
-            rlLog.TimeStamp = DateTime.Now;
-            rlLog.BackupName = this.name;
-
-            rlLog.sourcePath = sourceRepo.path;
-            rlLog.destPath = targetPath;
-            rlLog.FileSize = GetTotalFileSize(sourceRepo.path);
-            rlLog.TransferTime = CalculateTransferTime(sourceRepo.path, targetPath);
-
-            logs.Add(log);
-        }
-
+//*********** Part Real Time Log
         private void SaveRealTimeLogsToJson()
         {
             string logDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EazySaveLogs");
@@ -256,7 +276,7 @@ namespace EazySave_Master.Model
                 Directory.CreateDirectory(logDirectory);
             }
 
-            string jsonLogs = JsonConvert.SerializeObject(rtLogs, Formatting.Indented);
+            string jsonLogs = JsonConvert.SerializeObject(rtLog, Formatting.Indented);
 
             System.IO.File.WriteAllText(logFilePath, jsonLogs);
         }

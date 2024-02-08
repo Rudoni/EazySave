@@ -4,9 +4,6 @@ using System.IO;
 
 public class RealTimeLog
 {
-    //Date of the backup
-    public DateTime TimeStamp { get; set; }
-
     //Name of the current backup
     public string BackupName { get; set; }
 
@@ -26,21 +23,33 @@ public class RealTimeLog
     public int filesLeft { get; set; }
 
     //Total size of remaining files to back up
-    public int sizeLeft { get; set; }
-
-    //Source path of the current file
-    public string sourcePath { get; set; }
-
-    //Destination path of the current file
-    public string destPath { get; set; }
+    public Int128 sizeLeft { get; set; }
 
 
-
-    public RealTimeLog()
+    public RealTimeLog(string name, int totalFile, Int128 totalSize)
     {
-
+        this.BackupName = name;
+        setSaveState(false);
+        this.totalFile = totalFile;
+        this.totalSize = totalSize;
+        this.progress = 0;
+        this.filesLeft = totalFile;
+        this.sizeLeft = totalSize;
     }
 
+    public void refreshState(int filesLeft,  Int128 sizeLeft)
+    {
+        this.filesLeft = filesLeft;
+        this.sizeLeft = sizeLeft;
+    }
+
+    public void setSaveState(bool active)
+    {
+        if (active)
+            saveState = "ACTIVE";
+        else
+            saveState = "END";
+    }
     
 
 
