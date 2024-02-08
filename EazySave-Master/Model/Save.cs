@@ -20,13 +20,16 @@ namespace EazySave_Master.Model
         public List<DailyLog> logs { get; set; } 
 
 
+
+
         public Save(string name, string sourceRepo, string targetPath)
         {
             this.number = 0;
             this.name = name;
             this.sourceRepo = new Folder(sourceRepo);
             this.targetPath = targetPath;
-            this.logs = new List<DailyLog>(); 
+            this.logs = new List<DailyLog>();
+            
 
         }
 
@@ -153,8 +156,15 @@ namespace EazySave_Master.Model
         
         private void SaveLogsToJson()
         {
+            string checkEnv = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EazySaveLogs");
+
+            if (!Directory.Exists(checkEnv))
+            {
+                Directory.CreateDirectory(checkEnv);
+            }
+            string logFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EazySaveLogs", "log.json");
             string jsonLogs = JsonConvert.SerializeObject(logs, Formatting.Indented);
-            string logFilePath = "../../../Log/log.json"; //   ./Log/log.json      -> When build for .exe
+            //   ./Log/log.json      -> When build for .exe
 
             System.IO.File.WriteAllText(logFilePath, jsonLogs);
         }
