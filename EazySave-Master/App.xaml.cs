@@ -90,7 +90,6 @@ namespace EazySave_Master
                         Console.WriteLine(resourceManager.GetString("Test"));
                         String numberUser = Console.ReadLine();
                         mv.runSave(numberUser);
-                        Console.WriteLine(resourceManager.GetString("Done"));
                         Console.WriteLine(resourceManager.GetString("MainMenu"));
                         Console.ReadLine();
                         break;
