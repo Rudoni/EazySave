@@ -37,10 +37,10 @@ public class RealTimeLog
         this.sizeLeft = totalSize;
     }
 
-    public void refreshState(int filesLeft,  Int128 sizeLeft)
+    public void refreshState(int filesFinished,  Int128 sizeFinished)
     {
-        this.filesLeft = filesLeft;
-        this.sizeLeft = sizeLeft;
+        this.filesLeft = totalFile-filesFinished;
+        this.sizeLeft = totalSize-sizeFinished;
     }
 
     public void setSaveState(bool active)
