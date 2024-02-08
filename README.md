@@ -26,11 +26,10 @@ Charger une sauvegarde -> Entrer le numéro d'une ou plusieurs sauvegardes ->  La
 Paramètres -> Choix de la langue -> Choix entre les langues disponibles
 
 
-----------------------------------------------------------------
-
 
 Documentation UML : EazySave-Master > Doc > Diagrammes > UML.drawio
 
+----------------------------------------------------------------
 
 Mentions légales 
 
