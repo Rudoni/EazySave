@@ -1,4 +1,6 @@
+using Newtonsoft.Json;
 using System;
+using System.IO;
 
 public class RealTimeLog
 {
@@ -9,28 +11,28 @@ public class RealTimeLog
     public string BackupName { get; set; }
 
     //State of the save (Active or Inactive)
-    public string SaveState { get; set; }
+    public string saveState { get; set; }
 
     //Total number of files in the backup
-    public int TotalFile { get; set; }
+    public int totalFile { get; set; }
 
     //Total size of the files in the backup
-    public Int128 TotalSize { get; set; }
+    public Int128 totalSize { get; set; }
 
     //Current progress of the save (percentage)
     public double progress { get; set; }
 
     //Number of remaining files to back up
-    public int FilesLeft { get; set; }
+    public int filesLeft { get; set; }
 
     //Total size of remaining files to back up
-    public int SizeLeft { get; set; }
+    public int sizeLeft { get; set; }
 
     //Source path of the current file
     public string sourcePath { get; set; }
 
     //Destination path of the current file
-    public string destinationPath { get; set; }
+    public string destPath { get; set; }
 
 
 
@@ -38,4 +40,8 @@ public class RealTimeLog
     {
 
     }
+
+    
+
+
 }

@@ -30,6 +30,10 @@ namespace EazySave_Master.Model
         /// List of daily logs
         /// </summary>
         public List<DailyLog> logs { get; set; }
+        /// <summary>
+        /// List of real time logs
+        /// </summary>
+        public List<DailyLog> rtLogs { get; set; }
 
         /// <summary>
         /// Default constructor, completed by user inputs
@@ -218,9 +222,41 @@ namespace EazySave_Master.Model
             {
                 Directory.CreateDirectory(checkEnv);
             }
-            string logFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EazySaveLogs", "log.json");
+            // Name + date 
+            string logFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EazySaveLogs", "log.json"); 
             string jsonLogs = JsonConvert.SerializeObject(logs, Formatting.Indented);
             //   ./Log/log.json      -> When build for .exe
+
+            System.IO.File.WriteAllText(logFilePath, jsonLogs);
+        }
+
+    //*********** Part Real Time Log
+        private void AddRealTimeLog()
+        {
+            RealTimeLog rlLog = new RealTimeLog();
+
+            rlLog.TimeStamp = DateTime.Now;
+            rlLog.BackupName = this.name;
+
+            rlLog.sourcePath = sourceRepo.path;
+            rlLog.destPath = targetPath;
+            rlLog.FileSize = GetTotalFileSize(sourceRepo.path);
+            rlLog.TransferTime = CalculateTransferTime(sourceRepo.path, targetPath);
+
+            logs.Add(log);
+        }
+
+        private void SaveRealTimeLogsToJson()
+        {
+            string logDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EazySaveLogs");
+            string logFilePath = Path.Combine(logDirectory, "realTimeLog.json");
+
+            if (!Directory.Exists(logDirectory))
+            {
+                Directory.CreateDirectory(logDirectory);
+            }
+
+            string jsonLogs = JsonConvert.SerializeObject(rtLogs, Formatting.Indented);
 
             System.IO.File.WriteAllText(logFilePath, jsonLogs);
         }

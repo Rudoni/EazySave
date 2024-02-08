@@ -68,21 +68,18 @@ namespace EazySave_Master
                    
                     mv.createSave(name, sourcePath, destPath, typeSave);
 
-                    // Afficher le contenu de la liste avec une boucle foreach
+                    // List Save
                     foreach (Save s in mv.saves.saves)
                     {
                         Console.WriteLine(s.ToString());
                     }
-
-                        //Appeler la fonction Sauv Tot ou dif avec les paramètres entrées par le user
-                        //save.ExecuteSave(name, sourcePath, destPath, typeSave)
 
                         Console.WriteLine(resourceManager.GetString("MainMenu"));
                         Console.ReadLine();
 
                         break;
                 case "2":
-                        //Afficher liste des sauvegarde
+                        //List Save
                         foreach (Save s in mv.saves.saves)
                         {
                             Console.WriteLine(s.ToString());
@@ -100,7 +97,7 @@ namespace EazySave_Master
                         Console.WriteLine(resourceManager.GetString("BackTwo"));
                         var typeParam = Console.ReadLine();
 
-                        //Choix de l'utilisateur entre les paramètres
+                        //Choice language
                         switch (typeParam)
                         {
                             case "1":
