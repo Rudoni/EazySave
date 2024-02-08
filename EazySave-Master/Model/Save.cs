@@ -231,20 +231,20 @@ namespace EazySave_Master.Model
         }
 
     //*********** Part Real Time Log
-        private void AddRealTimeLog()
-        {
-            RealTimeLog rlLog = new RealTimeLog();
+        //private void AddRealTimeLog()
+        //{
+        //    RealTimeLog rlLog = new RealTimeLog();
 
-            rlLog.TimeStamp = DateTime.Now;
-            rlLog.BackupName = this.name;
+        //    rlLog.TimeStamp = DateTime.Now;
+        //    rlLog.BackupName = this.name;
 
-            rlLog.sourcePath = sourceRepo.path;
-            rlLog.destPath = targetPath;
-            rlLog.FileSize = GetTotalFileSize(sourceRepo.path);
-            rlLog.TransferTime = CalculateTransferTime(sourceRepo.path, targetPath);
+        //    rlLog.sourcePath = sourceRepo.path;
+        //    rlLog.destPath = targetPath;
+        //    rlLog.FileSize = GetTotalFileSize(sourceRepo.path);
+        //    rlLog.TransferTime = CalculateTransferTime(sourceRepo.path, targetPath);
 
-            logs.Add(log);
-        }
+        //    logs.Add(log);
+        //}
 
         private void SaveRealTimeLogsToJson()
         {
