@@ -1,25 +1,42 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
-using System.Xml.Linq;
 using static System.Net.WebRequestMethods;
 
 namespace EazySave_Master.Model
 {
+    /// <summary>
+    /// Representative Class of a save
+    /// </summary>
     abstract class Save
     {
+        /// <summary>
+        /// number of the save (auto-incremented in ManageSaves)
+        /// </summary>
         public int number { get; set; }
+        /// <summary>
+        /// name of the save
+        /// </summary>
         public string name { get; set; }
+        /// <summary>
+        /// Path of the target repository
+        /// </summary>
         public string targetPath { get; set; }
+        /// <summary>
+        /// Source repository, path contained in Folder.path
+        /// </summary>
         public Folder sourceRepo { get; set; }
-        public List<DailyLog> logs { get; set; } 
+        /// <summary>
+        /// List of daily logs
+        /// </summary>
+        public List<DailyLog> logs { get; set; }
 
-
+        /// <summary>
+        /// Default constructor, completed by user inputs
+        /// number is assigned automatically in addSave of ManageSaves
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="sourceRepo"></param>
+        /// <param name="targetPath"></param>
         public Save(string name, string sourceRepo, string targetPath)
         {
             this.number = 0;
@@ -30,17 +47,30 @@ namespace EazySave_Master.Model
 
         }
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public Save()
         {
+            this.number = 0;
+            this.name = "";
+            this.sourceRepo = new Folder("");
+            this.targetPath = "";
             this.logs = new List<DailyLog>(); 
         }
 
+        /// <summary>
+        /// setter for Number
+        /// </summary>
+        /// <param name="n">Number</param>
         public void setNumber(int n)
         {
             this.number = n;
         }
 
-        //TODO a completer
+        /// <summary>
+        /// Launch the actual save after some verifications
+        /// </summary>
         public void ExecuteSave()
         {
 
@@ -67,6 +97,11 @@ namespace EazySave_Master.Model
             SaveLogsToJson();
         }
 
+        /// <summary>
+        /// Copy the directory and all the subdirectory from sourcePath to targetPath recursively
+        /// </summary>
+        /// <param name="sourcePath"></param>
+        /// <param name="targetPath"></param>
         private void CopyDirectory(string sourcePath, string targetPath)
         {
             Directory.CreateDirectory(targetPath);
@@ -96,21 +131,36 @@ namespace EazySave_Master.Model
                 CopyDirectory(subDirectoryPath, targetSubDirectoryPath);
             }
         }
-
-
-
-
+        
         public override string ToString()
         {
             return $" - Number: {number}\n - Name: {name}\n - Source: {sourceRepo.path}\n - Destination: {targetPath}\n - Type: {this.GetTypeName()}";
         }
+
+        /// <summary>
+        /// abstract method used in CopyDirectory, it add a verification so if true is returned, the copy is launched
+        /// (to implement in sub class)
+        /// </summary>
+        /// <param name="sourceFile"></param>
+        /// <param name="destinationFile"></param>
+        /// <returns>bool true if copy will be launched</returns>
         protected abstract bool canFileBeCopied(string sourceFile, string destinationFile);
 
+        /// <summary>
+        /// abstract method to get the name of the SaveType
+        /// </summary>
+        /// <returns>string name TypeSave</returns>
         protected abstract string GetTypeName();
 
 
-        // Part Log
+//*********** Part Log
 
+        /// <summary>
+        /// calcul of the transferTime of a directory
+        /// </summary>
+        /// <param name="sourcePath"></param>
+        /// <param name="targetPath"></param>
+        /// <returns>time in double</returns>
         private double CalculateTransferTime(string sourcePath, string targetPath)
         {
             DateTime startTime = DateTime.Now;
@@ -122,6 +172,11 @@ namespace EazySave_Master.Model
             return transferTimeMilliseconds;
         }
 
+        /// <summary>
+        /// calcul the total file size from a directory
+        /// </summary>
+        /// <param name="sourcePath"></param>
+        /// <returns>total file size in long</returns>
         private long GetTotalFileSize(string sourcePath)
         {
             string[] files = Directory.GetFiles(sourcePath, "*", SearchOption.AllDirectories);
@@ -136,7 +191,9 @@ namespace EazySave_Master.Model
             return totalFileSize;
         }
 
-
+        /// <summary>
+        /// add a daily log to the list of logs
+        /// </summary>
         private void AddLog()
         {
             DailyLog log = new DailyLog();
@@ -153,6 +210,7 @@ namespace EazySave_Master.Model
         
         private void SaveLogsToJson()
         {
+
             string jsonLogs = JsonConvert.SerializeObject(logs, Formatting.Indented);
             string logFilePath = "../../../Log/log.json"; //   ./Log/log.json      -> When build for .exe
 
