@@ -27,6 +27,7 @@ Charger une sauvegarde -> Entrer le numéro d'une ou plusieurs sauvegardes ->  La
 
 Paramètres -> Choix de la langue -> Choix entre les langues disponibles
 
+Note: La sauvegarde fonctionnera seulement si les chemins renseignés existent bien et si l'utilisateur renseigne les choix correspondants, au caractère près.
 
 ----------------------------------------------------------------
 
