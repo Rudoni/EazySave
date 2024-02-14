@@ -4,17 +4,27 @@ using System.Text;
 
 class Program
 {
-    static void Main() //passage en parametre 
+    static void Main(string[] args) //passage en parametre 
     {
-        // Path of the file to encrypt
-        Console.Write("Enter the path of the file to encrypt: ");
-        string filePath = Console.ReadLine();
+        string filePath, encryptedFolderPath;
+
+        // Check if there are enough arguments.
+        if (args.Length >= 2)
+        {
+            filePath = args[0];
+            encryptedFolderPath = args[1];
+        }
+        else
+        {
+            Console.WriteLine("Usage: CryptoSoft <chemin_d'entrée> <chemin_de_sortie>");
+            return;
+        }
 
         // Check if the file exists
         if (!File.Exists(filePath))
         {
             Console.WriteLine("The specified file doesn't exist.");
-            return; //-1
+            return;
         }
 
         // Read the contents of the file
@@ -55,10 +65,6 @@ class Program
         {
             encryptedBytes[i / 8] = Convert.ToByte(encryptedBinary.ToString().Substring(i, 8), 2);
         }
-
-        //  Path to the directory where to save the encrypted file
-        Console.Write("Enter the path to the directory where to save the encrypted file: ");
-        string encryptedFolderPath = Console.ReadLine();
 
         // Create the directory if it doesn't exist
         if (!Directory.Exists(encryptedFolderPath))
