@@ -15,7 +15,7 @@ namespace EazySave_Master.View
 
         public void update(string lang)
         {
-            ResourceManager resourceManager = new ResourceManager("EazySave_Master.Languages." + lang, Assembly.GetExecutingAssembly());
+            ResourceManager resourceManager = new ResourceManager("EazySave_1._0.Languages." + lang, Assembly.GetExecutingAssembly());
             Console.WriteLine(resourceManager.GetString("Welcome") + "EazySave !");
             Console.WriteLine(resourceManager.GetString("CreateSave"));
             Console.WriteLine(resourceManager.GetString("GoSave"));

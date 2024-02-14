@@ -1,56 +1,46 @@
-using Newtonsoft.Json;
 using System;
-using System.IO;
+using System.Numerics;
 
 public class RealTimeLog
 {
+    //Date of the backup
+    public DateTime TimeStamp { get; set; }
+
     //Name of the current backup
     public string BackupName { get; set; }
 
     //State of the save (Active or Inactive)
-    public string saveState { get; set; }
+    public string SaveState { get; set; }
 
     //Total number of files in the backup
-    public int totalFile { get; set; }
+    public int TotalFile { get; set; }
 
-    //Total size of the files in the backup
-    public Int128 totalSize { get; set; }
+    //Total size of the files in the backup (in kilobytes)
+    public long TotalSize { get; set; }
 
     //Current progress of the save (percentage)
     public double progress { get; set; }
 
     //Number of remaining files to back up
-    public int filesLeft { get; set; }
+    public int FilesLeft { get; set; }
 
-    //Total size of remaining files to back up
-    public Int128 sizeLeft { get; set; }
+    //Total size of remaining files to back up (in kilobytes)
+    public long SizeLeft { get; set; }
 
+    //Source path of the current file
+    public string sourcePath { get; set; }
 
-    public RealTimeLog(string name, int totalFile, Int128 totalSize)
+    //Destination path of the current file
+    public string destinationPath { get; set; }
+
+    public RealTimeLog()
     {
-        this.BackupName = name;
-        setSaveState(false);
-        this.totalFile = totalFile;
-        this.totalSize = totalSize;
-        this.progress = 0;
-        this.filesLeft = totalFile;
-        this.sizeLeft = totalSize;
+
     }
 
-    public void refreshState(int filesFinished,  Int128 sizeFinished)
+    static double calculateProgress(long totalSize, long sizeLeft)
     {
-        this.filesLeft = totalFile-filesFinished;
-        this.sizeLeft = totalSize-sizeFinished;
+        return Math.Max(0.0, Math.Min(1.0, (double)(totalSize - sizeLeft) / Math.Max(1, totalSize)));
     }
-
-    public void setSaveState(bool active)
-    {
-        if (active)
-            saveState = "ACTIVE";
-        else
-            saveState = "END";
-    }
-    
-
 
 }
