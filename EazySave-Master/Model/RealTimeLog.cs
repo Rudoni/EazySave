@@ -1,46 +1,60 @@
+using Newtonsoft.Json;
 using System;
-using System.Numerics;
+using System.IO;
 
 public class RealTimeLog
 {
-    //Date of the backup
-    public DateTime TimeStamp { get; set; }
-
     //Name of the current backup
     public string BackupName { get; set; }
 
     //State of the save (Active or Inactive)
-    public string SaveState { get; set; }
+    public string saveState { get; set; }
 
     //Total number of files in the backup
-    public int TotalFile { get; set; }
+    public int totalFile { get; set; }
 
-    //Total size of the files in the backup (in kilobytes)
-    public long TotalSize { get; set; }
+    //Total size of the files in the backup
+    public Int128 totalSize { get; set; }
 
     //Current progress of the save (percentage)
     public double progress { get; set; }
 
     //Number of remaining files to back up
-    public int FilesLeft { get; set; }
+    public int filesLeft { get; set; }
 
-    //Total size of remaining files to back up (in kilobytes)
-    public long SizeLeft { get; set; }
+    //Total size of remaining files to back up
+    public Int128 sizeLeft { get; set; }
 
-    //Source path of the current file
-    public string sourcePath { get; set; }
 
-    //Destination path of the current file
-    public string destinationPath { get; set; }
-
-    public RealTimeLog()
+    public RealTimeLog(string name, int totalFile, Int128 totalSize)
     {
+        this.BackupName = name;
+        setSaveState(false);
+        this.totalFile = totalFile;
+        this.totalSize = totalSize;
+        this.progress = 0;
+        this.filesLeft = totalFile;
+        this.sizeLeft = totalSize;
+    }
 
+    public void refreshState(int filesFinished, Int128 sizeFinished)
+    {
+        this.filesLeft = totalFile - filesFinished;
+        this.sizeLeft = totalSize - sizeFinished;
+    }
+
+    public void setSaveState(bool active)
+    {
+        if (active)
+            saveState = "ACTIVE";
+        else
+            saveState = "END";
     }
 
     static double calculateProgress(long totalSize, long sizeLeft)
     {
         return Math.Max(0.0, Math.Min(1.0, (double)(totalSize - sizeLeft) / Math.Max(1, totalSize)));
+
     }
 
 }

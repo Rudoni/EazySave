@@ -30,6 +30,10 @@ namespace EazySave_Master.Model
         /// List of daily logs
         /// </summary>
         public List<DailyLog> logs { get; set; }
+        /// <summary>
+        /// Real time logs
+        /// </summary>
+        public RealTimeLog rtLog { get; set; }
 
         /// <summary>
         /// Default constructor, completed by user inputs
@@ -45,8 +49,38 @@ namespace EazySave_Master.Model
             this.sourceRepo = new Folder(sourceRepo);
             this.targetPath = targetPath;
             this.logs = new List<DailyLog>();
+            this.rtLog=new RealTimeLog(this.name,this.calculTotalFile(new DirectoryInfo(this.sourceRepo.path)),this.calculTotalSize(new DirectoryInfo(this.sourceRepo.path)));
             
 
+        }
+
+        private Int128 calculTotalSize(DirectoryInfo dirInfo)
+        {
+            Int128 res = 0;
+            foreach (FileInfo f in dirInfo.GetFiles())
+            {
+                res += (Int128)f.Length;
+            }
+
+            foreach (DirectoryInfo subDir in dirInfo.GetDirectories())
+            {
+                res += calculTotalSize(subDir);
+            }
+
+            return res;
+        }
+
+        private int calculTotalFile(DirectoryInfo dirInfo)
+        {
+            int res = 0;
+            res += dirInfo.GetFiles().Length;
+
+            foreach (DirectoryInfo subDir in dirInfo.GetDirectories())
+            {
+                res += calculTotalFile(subDir);
+            }
+
+            return res;
         }
 
         /// <summary>
@@ -91,12 +125,17 @@ namespace EazySave_Master.Model
                 return;
             }
 
+            rtLog.setSaveState(true);
+
             CopyDirectory(sourcePath, targetPath);
             Console.WriteLine($"Save n°{number}: Done.");
+
+            rtLog.setSaveState(false);
 
             // Add Log for each Save
             AddLog();
             SaveLogsToJson();
+            SaveRealTimeLogsToJson();
         }
 
         /// <summary>
@@ -218,9 +257,26 @@ namespace EazySave_Master.Model
             {
                 Directory.CreateDirectory(checkEnv);
             }
-            string logFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EazySaveLogs", "log.json");
+            // Name + date 
+            string logFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EazySaveLogs", "log.json"); 
             string jsonLogs = JsonConvert.SerializeObject(logs, Formatting.Indented);
             //   ./Log/log.json      -> When build for .exe
+
+            System.IO.File.WriteAllText(logFilePath, jsonLogs);
+        }
+
+//*********** Part Real Time Log
+        private void SaveRealTimeLogsToJson()
+        {
+            string logDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EazySaveLogs");
+            string logFilePath = Path.Combine(logDirectory, "realTimeLog.json");
+
+            if (!Directory.Exists(logDirectory))
+            {
+                Directory.CreateDirectory(logDirectory);
+            }
+
+            string jsonLogs = JsonConvert.SerializeObject(rtLog, Formatting.Indented);
 
             System.IO.File.WriteAllText(logFilePath, jsonLogs);
         }

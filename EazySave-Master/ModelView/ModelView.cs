@@ -1,4 +1,5 @@
 ﻿using EazySave_Master.Model;
+using System.Diagnostics;
 
 namespace EazySave_Master.ModelView
 {
@@ -44,6 +45,12 @@ namespace EazySave_Master.ModelView
         {
             saves.RunSaves(numbersUser);
        
+        }
+
+        static bool IsProcessRunning()
+        {
+            return Process.GetProcessesByName("devenv").Length > 0;
+
         }
     }
 }
