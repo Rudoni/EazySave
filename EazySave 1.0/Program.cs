@@ -8,6 +8,7 @@ using EazySave_Master.Model;
 using EazySave_Master.View;
 using System.Runtime.CompilerServices;
 using static System.Net.Mime.MediaTypeNames;
+using System.Diagnostics;
 
 namespace EazySave_Master
 {
@@ -36,7 +37,7 @@ namespace EazySave_Master
             French = 1,
             English = 2
         }
-        public static void Main()
+        public static void Main(string[] args)
         {
 
             ModelView.ModelView mv = new ModelView.ModelView();
@@ -45,6 +46,14 @@ namespace EazySave_Master
 
             CultureInfo culture = CultureInfo.CurrentCulture;
             string lang = "en"; // Default Language
+
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = cryptoSoftPath;
+            startInfo.Arguments = arguments;
+            startInfo.RedirectStandardOutput = true;
+            startInfo.UseShellExecute = false;
+
+            StartCryptoSoft(inputFile, outputFolder, encryptionKey);
 
             switch (culture.Name.ToLower())
             {
