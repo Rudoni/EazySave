@@ -7,13 +7,13 @@ class Program
     static void Main() //passage en parametre 
     {
         // Path of the file to encrypt
-        Console.Write("Entrez le chemin du fichier à crypter : ");
+        Console.Write("Enter the path of the file to encrypt: ");
         string filePath = Console.ReadLine();
 
         // Check if the file exists
         if (!File.Exists(filePath))
         {
-            Console.WriteLine("Le fichier spécifié n'existe pas.");
+            Console.WriteLine("The specified file doesn't exist.");
             return; //-1
         }
 
@@ -28,7 +28,7 @@ class Program
         }
 
         // Ask the user for the encryption key
-        Console.Write("Entrez la clé de chiffrement : ");
+        Console.Write("Enter the encryption key: ");
         string encryptionKey = Console.ReadLine();
 
         // Convert the key to binary
@@ -56,21 +56,23 @@ class Program
             encryptedBytes[i / 8] = Convert.ToByte(encryptedBinary.ToString().Substring(i, 8), 2);
         }
 
-        // Save the encrypted file
-        Console.Write("Entrez le chemin complet où enregistrer le fichier crypté : ");
-        string encryptedFilePath = Console.ReadLine();
+        //  Path to the directory where to save the encrypted file
+        Console.Write("Enter the path to the directory where to save the encrypted file: ");
+        string encryptedFolderPath = Console.ReadLine();
 
-        // Ensure that the directory exists
-        string directoryPath = Path.GetDirectoryName(encryptedFilePath);
-        if (!Directory.Exists(directoryPath))
+        // Create the directory if it doesn't exist
+        if (!Directory.Exists(encryptedFolderPath))
         {
-            Directory.CreateDirectory(directoryPath);
+            Directory.CreateDirectory(encryptedFolderPath);
         }
+
+        // Full path where to save the encrypted file.
+        string encryptedFilePath = Path.Combine(encryptedFolderPath, Path.GetFileNameWithoutExtension(filePath) + "_encrypted" + Path.GetExtension(filePath));
 
         // Save the encrypted file
         File.WriteAllBytes(encryptedFilePath, encryptedBytes);
 
-        Console.WriteLine("Le fichier a été crypté avec succès.");
-        Console.WriteLine($"Fichier crypté enregistré sous : {encryptedFilePath}");
+        Console.WriteLine("The file has been successfully encrypted.");
+        Console.WriteLine($"Encrypted file saved as: {encryptedFilePath}");
     }
 }
