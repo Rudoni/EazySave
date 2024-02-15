@@ -23,15 +23,17 @@ namespace EazySave_Master.ModelView
         /// <param name="sourceRepo"></param>
         /// <param name="targetPath"></param>
         /// <param name="typeSave"></param>
-        public void createSave(string name, string sourceRepo, string targetPath,string typeSave)
+        /// <param name="encryptList"></param>
+        /// <param name="encryptKey"></param>
+        public void createSave(string name, string sourceRepo, string targetPath,string typeSave, List<String> encryptList, string encryptKey)
         {
             switch (typeSave)
             {
                 case "1":
-                    saves.addSave(new SaveTotal(name, sourceRepo, targetPath));
+                    saves.addSave(new SaveTotal(name, sourceRepo, targetPath, encryptList, encryptKey));
                     break;
                 case "2":
-                    saves.addSave(new SaveDifferential(name, sourceRepo, targetPath));
+                    saves.addSave(new SaveDifferential(name, sourceRepo, targetPath, encryptList, encryptKey));
                     break;
             }
         }

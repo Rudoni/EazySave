@@ -17,7 +17,7 @@ namespace EazySave_Master
     /// </summary>
     public partial class EazySave
     {
-       
+
         // Enum Main
         enum MainMenuOption
         {
@@ -48,15 +48,7 @@ namespace EazySave_Master
             CultureInfo culture = CultureInfo.CurrentCulture;
             string lang = "en"; // Default Language
 
-            int ProcessCryptoSoft(string source, string dest, string cle)
-            {
-                Process cryptoSoft = new Process();
-                cryptoSoft.StartInfo.FileName = "C:\\Program Files (x86)\\CryptoSoft\\CryptoSoft.exe";
-                cryptoSoft.StartInfo.Arguments = $"{source} {dest} {cle}";
-                cryptoSoft.Start();
-
-                return cryptoSoft.ExitCode;
-            }
+            
             
             switch (culture.Name.ToLower())
             {
@@ -94,7 +86,17 @@ namespace EazySave_Master
                             Console.WriteLine(resourceManager.GetString("Differential"));
                             String typeSave = Console.ReadLine();
 
-                            mv.createSave(name, sourcePath, destPath, typeSave);
+                            /// <summary>
+                            /// encryption list composed of encrypted files extensions, hardcoded for testing purposes
+                            /// </summary>
+                            List<string> encryptList = new List<string> { ".bat", ".dll", ".jar" };
+
+                            /// <summary>
+                            /// encryption key used by the CryptoSoft software, hardcoded for testing purposes
+                            /// </summary>
+                            string encryptKey = "This is a CryptoSoft test";
+
+                            mv.createSave(name, sourcePath, destPath, typeSave, encryptList, encryptKey);
 
                             // List Save
                             foreach (Save s in mv.saves.saves)

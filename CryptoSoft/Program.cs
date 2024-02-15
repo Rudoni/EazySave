@@ -68,12 +68,6 @@ class Program
                 encryptedBytes[i / 8] = Convert.ToByte(encryptedBinary.ToString().Substring(i, 8), 2);
             }
 
-            // Create the directory if it doesn't exist
-            if (!Directory.Exists(encryptedFolderPath))
-            {
-                Directory.CreateDirectory(encryptedFolderPath);
-            }
-
             // Full path where to save the encrypted file.
             string encryptedFilePath = Path.Combine(encryptedFolderPath, Path.GetFileNameWithoutExtension(filePath) + "_encrypted" + Path.GetExtension(filePath));
 

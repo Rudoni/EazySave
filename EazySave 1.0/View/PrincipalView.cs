@@ -10,6 +10,7 @@ namespace EazySave_Master.View
 {
     internal class PrincipalView
     {
+
         public string lang { get; set; }
         public PrincipalView() { }
 
