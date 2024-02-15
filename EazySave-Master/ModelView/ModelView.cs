@@ -1,5 +1,7 @@
 ﻿using EazySave_Master.Model;
+=========
 using System.Diagnostics;
+>>>>>>>>> Temporary merge branch 2
 
 namespace EazySave_Master.ModelView
 {
