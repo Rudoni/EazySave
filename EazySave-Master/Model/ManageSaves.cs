@@ -98,11 +98,6 @@ namespace EazySave_Master.Model
                     }
                 }
             }
-            if (list.Count > 5)
-            {
-                Console.WriteLine("5 saves max.");
-                return new List<int>();
-            }
             if (list.Count < 1)
             {
                 Console.WriteLine("Aucun nombre correct");
