@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -6,17 +7,18 @@ class Program
 {
     static void Main(string[] args) //passage en parametre 
     {
-        string filePath, encryptedFolderPath;
+        string filePath, encryptedFolderPath, encryptionKey;
 
         // Check if there are enough arguments.
-        if (args.Length >= 2)
+        if (args.Length >= 3)
         {
             filePath = args[0];
             encryptedFolderPath = args[1];
+            encryptionKey = args[2];
         }
         else
         {
-            Console.WriteLine("Usage: CryptoSoft <chemin_d'entrée> <chemin_de_sortie>");
+            Console.WriteLine("Usage: CryptoSoft.exe <input_path> <output_path> <encryptionKey>");
             return;
         }
 
@@ -27,6 +29,10 @@ class Program
             return;
         }
 
+        //Run Timer
+        Stopwatch stopWatch = new Stopwatch();
+        stopWatch.Start();
+
         // Read the contents of the file
         byte[] fileBytes = File.ReadAllBytes(filePath);
 
@@ -36,10 +42,6 @@ class Program
         {
             fileBinary.Append(Convert.ToString(b, 2).PadLeft(8, '0'));
         }
-
-        // Ask the user for the encryption key
-        Console.Write("Enter the encryption key: ");
-        string encryptionKey = Console.ReadLine();
 
         // Convert the key to binary
         byte[] keyBytes = Encoding.UTF8.GetBytes(encryptionKey);
@@ -80,5 +82,17 @@ class Program
 
         Console.WriteLine("The file has been successfully encrypted.");
         Console.WriteLine($"Encrypted file saved as: {encryptedFilePath}");
+
+        // stop timer
+        stopWatch.Stop();
+
+        // Get the elapsed time as a TimeSpan value.
+        TimeSpan ts = stopWatch.Elapsed;
+
+        // Format and display the TimeSpan value.
+        string elapsedTime = String.Format("{0:00}H:{1:00}M:{2:00}S.{3:00}MS",
+            ts.Hours, ts.Minutes, ts.Seconds,
+            ts.Milliseconds );
+        Console.WriteLine("RunTime " + elapsedTime);
     }
 }
