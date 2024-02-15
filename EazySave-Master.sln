@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EazySave-Master", "EazySave-Master\EazySave-Master.csproj", "{3E381C6D-278E-412D-BF60-A24A261F6227}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EazySave-Master", "EazySave-Master\EazySave-Master.csproj", "{3E381C6D-278E-412D-BF60-A24A261F6227}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EazySave 1.0", "EazySave 1.0\EazySave 1.0.csproj", "{5BB3DEF5-EF8A-488F-83D3-1BE0AC008889}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoSoft", "CryptoSoft\CryptoSoft.csproj", "{D071B606-8C9A-48DE-AF3E-146D5754E9D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{3E381C6D-278E-412D-BF60-A24A261F6227}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E381C6D-278E-412D-BF60-A24A261F6227}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E381C6D-278E-412D-BF60-A24A261F6227}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BB3DEF5-EF8A-488F-83D3-1BE0AC008889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BB3DEF5-EF8A-488F-83D3-1BE0AC008889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BB3DEF5-EF8A-488F-83D3-1BE0AC008889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BB3DEF5-EF8A-488F-83D3-1BE0AC008889}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D071B606-8C9A-48DE-AF3E-146D5754E9D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D071B606-8C9A-48DE-AF3E-146D5754E9D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D071B606-8C9A-48DE-AF3E-146D5754E9D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D071B606-8C9A-48DE-AF3E-146D5754E9D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

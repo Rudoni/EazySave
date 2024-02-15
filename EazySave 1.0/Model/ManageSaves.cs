@@ -1,23 +1,26 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Documents;
-using System.Diagnostics;
 
 namespace EazySave_Master.Model
 {
+    /// <summary>
+    /// Class used to manage the list of saves
+    /// </summary>
     class ManageSaves
     {
+        /// <summary>
+        /// list of saves
+        /// </summary>
         public List<Save> saves { get; set; }
 
+        /// <summary>
+        /// default constructor
+        /// </summary>
         public ManageSaves() { this.saves = new List<Save>(); }
 
-        /**
-         * add a save to the list of saves with his good number completed
-         */
+        /// <summary>
+        /// add a save to the list of saves with his good number completed
+        /// </summary>
+        /// <param name="save"></param>
         public void addSave(Save save)
         {
             int n = IncrementNumberMaxSave();
@@ -25,22 +28,24 @@ namespace EazySave_Master.Model
             saves.Add(save);
         }
 
-        /**
-         * launch all the saves from the list by his numbers (if string numbers OK)
-         */
+        /// <summary>
+        /// launch all the saves from the list by his numbers (if string numbers OK)
+        /// </summary>
+        /// <param name="numbers"></param>
         public void RunSaves(string numbers)
         {
             List<int> listN=GetNumbersToExecute(numbers);
             foreach (var save in saves)
             {
-                if(listN.Contains(save.number) && !IsSpecSoftwareRunning("devenv.exe"))
+                if(listN.Contains(save.number))
                     save.ExecuteSave();
             }
         }
 
-        /**
-         * return the next number from the biggest number of the saves
-         */
+        /// <summary>
+        /// return the next number from the biggest number of the saves
+        /// </summary>
+        /// <returns>number in int</returns>
         private int IncrementNumberMaxSave()
         {
             int res = 0;
@@ -54,9 +59,11 @@ namespace EazySave_Master.Model
             return res = res + 1;
         }
 
-        /**
-         * return the list of saves (from numbers) to execute from the string input
-         */
+        /// <summary>
+        /// return the list of saves (from numbers) to execute from the string input
+        /// </summary>
+        /// <param name="numbers"></param>
+        /// <returns>list of numbers in list(int)</returns>
         private List<int> GetNumbersToExecute(string numbers)
         {
             List<int> list = new List<int>();
@@ -99,6 +106,11 @@ namespace EazySave_Master.Model
                     }
                 }
             }
+            if (list.Count > 5)
+            {
+                Console.WriteLine("5 saves max.");
+                return new List<int>();
+            }
             if (list.Count < 1)
             {
                 Console.WriteLine("Aucun nombre correct");
@@ -107,11 +119,6 @@ namespace EazySave_Master.Model
             return list;
         }
 
-        //returns true if the process entered as a param is active
-        static bool IsSpecSoftwareRunning(string process)
-        {
-            return Process.GetProcessesByName(process).Length > 0;
 
-        }
     }
 }
