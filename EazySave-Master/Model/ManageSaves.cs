@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
+using System.Diagnostics;
 
 namespace EazySave_Master.Model
 {
@@ -32,7 +33,7 @@ namespace EazySave_Master.Model
             List<int> listN=GetNumbersToExecute(numbers);
             foreach (var save in saves)
             {
-                if(listN.Contains(save.number))
+                if(listN.Contains(save.number) && !IsSpecSoftwareRunning("devenv.exe"))
                     save.ExecuteSave();
             }
         }
@@ -106,6 +107,15 @@ namespace EazySave_Master.Model
             return list;
         }
 
+        /// <summary>
+        /// chekcs if the specified process is active
+        /// </summary>
+        /// <param name="process">specific process name</param>
+        /// <returns>true if the process entered as a param is active</returns>
+        static bool IsSpecSoftwareRunning(string process)
+        {
+            return Process.GetProcessesByName(process).Length > 0;
 
+        }
     }
 }
