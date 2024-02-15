@@ -17,6 +17,7 @@ namespace EazySave_Master
     /// </summary>
     public partial class EazySave
     {
+       
         // Enum Main
         enum MainMenuOption
         {
@@ -47,14 +48,16 @@ namespace EazySave_Master
             CultureInfo culture = CultureInfo.CurrentCulture;
             string lang = "en"; // Default Language
 
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = cryptoSoftPath;
-            startInfo.Arguments = arguments;
-            startInfo.RedirectStandardOutput = true;
-            startInfo.UseShellExecute = false;
+            int ProcessCryptoSoft(string source, string dest, string cle)
+            {
+                Process cryptoSoft = new Process();
+                cryptoSoft.StartInfo.FileName = "C:\\Program Files (x86)\\CryptoSoft\\CryptoSoft.exe";
+                cryptoSoft.StartInfo.Arguments = $"{source} {dest} {cle}";
+                cryptoSoft.Start();
 
-            StartCryptoSoft(inputFile, outputFolder, encryptionKey);
-
+                return cryptoSoft.ExitCode;
+            }
+            
             switch (culture.Name.ToLower())
             {
                 case "fr-fr":
