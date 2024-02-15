@@ -7,7 +7,7 @@ class Program
 {
     static int Main(string[] args) //passage en parametre 
     {
-        string filePath = "", encryptedFolderPath = "", encryptionKey = "";
+        string filePath, encryptedFolderPath, encryptionKey;
 
         // Check if there are enough arguments.
         if (args.Length >= 3)
