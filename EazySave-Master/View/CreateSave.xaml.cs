@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using Ookii.Dialogs.Wpf;
+//using System.Windows.Forms;
 
 namespace EazySave_Master.View
 {
@@ -21,10 +23,14 @@ namespace EazySave_Master.View
     /// </summary>
     public partial class CreateSave : Page
     {
-        public CreateSave()
+
+        MainWindow m;
+        public CreateSave(MainWindow m)
         {
             InitializeComponent();
             ValidateInputs();
+            this.m = m;
+
         }
         // We can only create save if all fields filled
         private void ValidateInputs()
@@ -61,9 +67,39 @@ namespace EazySave_Master.View
             ValidateInputs();
         }
 
+        private void OpenFolderSource()
+        {
+            var dialog = new VistaFolderBrowserDialog();
+            if (dialog.ShowDialog() == true)
+            {
+                string selectedPath = dialog.SelectedPath;
+                SourcePath.Text = selectedPath;
+            }
+        }
+        private void path_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFolderSource();
+        }
+
+
         private void Destination_TextChanged(object sender, TextChangedEventArgs e)
         {
             ValidateInputs();
+        }
+
+        private void OpenFolderDest()
+        {
+            var dialog = new VistaFolderBrowserDialog();
+            if (dialog.ShowDialog() == true)
+            {
+                string selectedPath = dialog.SelectedPath;
+                DestinationPath.Text = selectedPath;
+            }
+        }
+
+        private void path2_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFolderDest();
         }
 
         private void Crypting_Checked(object sender, RoutedEventArgs e)
@@ -103,11 +139,18 @@ namespace EazySave_Master.View
             string destinationPath = DestinationPath.Text;
             string type;
             if(Total.IsChecked == true) { type = "1"; }
-            if (Differential.IsChecked == true) { type = "2"; }
+            else { type = "2"; }
 
 
-            ModelView.ModelView.Instance.createSave(name, sourcePath, destinationPath, "1");
+            ModelView.ModelView.Instance.createSave(name, sourcePath, destinationPath, type);
 
+            m.view("menu");
+
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            m.view("menu");
         }
     }
 }

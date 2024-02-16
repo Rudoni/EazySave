@@ -16,6 +16,7 @@ using System.Reflection;
 using EazySave_Master.Model;
 using System;
 using EazySave_Master.View;
+using Newtonsoft.Json.Bson;
 
 namespace EazySave_Master.View
 {
@@ -24,26 +25,32 @@ namespace EazySave_Master.View
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        CreateSave createSave;
+        ModelView.ModelView mv = ModelView.ModelView.Instance;
+        ViewMainWindow viewMainWindow;
         public MainWindow()
         {
             InitializeComponent();
-
+            createSave = new CreateSave(this);
+            viewMainWindow = new ViewMainWindow(this);
+            this.Content = viewMainWindow;
         
         }
 
-        private void Button_Click_CreateSave(object sender, RoutedEventArgs e)
+        public void view(string page)
         {
-             MainFrame.Navigate(new CreateSave());
-
-            // Hidden Main Frame
-            (sender as Button).Visibility = Visibility.Collapsed;
-            RunSave.Visibility = Visibility.Collapsed;
-
+            switch (page)
+            {
+                case "menu":
+                    this.Content = viewMainWindow;
+                    break;
+                case "create":
+                    this.Content = createSave;
+                    break;
+            }
         }
 
-        private void Button_Click_RunSave(object sender, RoutedEventArgs e)
-        {
-            
-        }
+
     }
 }
