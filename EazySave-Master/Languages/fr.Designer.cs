@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EazySave_Master.Languages {
+namespace EazySave_1._1.Languages {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace EazySave_Master.Languages {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EazySave_Master.Languages.fr", typeof(fr).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EazySave_1._1.Languages.fr", typeof(fr).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace EazySave_Master.Languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à 2. Retour.
+        ///   Recherche une chaîne localisée semblable à 3. Retour.
         /// </summary>
         internal static string BackTwo {
             get {
@@ -75,6 +75,15 @@ namespace EazySave_Master.Languages {
         internal static string ChangeLanguage {
             get {
                 return ResourceManager.GetString("ChangeLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à 2. Changer l&apos;extension des logs.
+        /// </summary>
+        internal static string ChangeLogExtension {
+            get {
+                return ResourceManager.GetString("ChangeLogExtension", resourceCulture);
             }
         }
         

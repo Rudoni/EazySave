@@ -20,6 +20,11 @@ namespace EazySave_Master.Model.Logs
         public abstract void AddLog(Log log);
 
         /// <summary>
+        /// empty the list
+        /// </summary>
+        public abstract void EmptyLogs();
+
+        /// <summary>
         /// return true if list is empty
         /// </summary>
         /// <returns>bool</returns>

@@ -1,5 +1,5 @@
-﻿using System.Xml.Serialization;
-using System.IO;
+﻿using System.IO;
+using System.Xml.Serialization;
 
 namespace EazySave_Master.Model.Logs
 {
@@ -14,7 +14,7 @@ namespace EazySave_Master.Model.Logs
         /// </summary>
         /// <param name="logs">FileLog</param>
         /// <returns>full path</returns>
-        public string GetLogFilePath(Logs logs)
+        public string GetLogFilePath(FileLogs logs)
         {
             //check existing directory in appdata
             string checkEnv = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EazySaveLogs");
@@ -33,7 +33,7 @@ namespace EazySave_Master.Model.Logs
         /// run the generating method of logs
         /// </summary>
         /// <param name="logs">FileLog</param>
-        public abstract void RunLogs(Logs logs);
+        public abstract void RunLogs(FileLogs logs);
         
         /// <summary>
         /// return the extension of the type of log

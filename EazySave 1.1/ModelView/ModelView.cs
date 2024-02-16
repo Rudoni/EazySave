@@ -40,7 +40,7 @@ namespace EazySave_Master.ModelView
         /// launch save(s) from the numbers input user
         /// </summary>
         /// <param name="numbersUser">string numbers entered by user</param>
-        public void runSave(string numbersUser)
+        public void runSavesFromNumbers(string numbersUser)
         {
             saves.RunSaves(numbersUser);
        

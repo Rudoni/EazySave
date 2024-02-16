@@ -23,7 +23,7 @@ namespace EazySave_Master.Model.Logs
         /// Specific method to generate a log file in XML format from a log class
         /// </summary>
         /// <param name="logs">Instance of the log class</param>
-        public override void RunLogs(Logs logs)
+        public override void RunLogs(FileLogs logs)
         {
             string logFilePath = this.GetLogFilePath(logs);
 

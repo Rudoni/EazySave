@@ -8,7 +8,7 @@ namespace EazySave_Master.Model
     /// <summary>
     /// Representative Class of a save
     /// </summary>
-    abstract class Save
+    public abstract class Save
     {
         /// <summary>
         /// number of the save (auto-incremented in ManageSaves)
@@ -27,14 +27,6 @@ namespace EazySave_Master.Model
         /// </summary>
         public Folder sourceRepo { get; set; }
 
-        /// <summary>
-        /// List of daily logs
-        /// </summary>
-        public List<DailyLog> logs { get; set; }
-        /// <summary>
-        /// Real time logs
-        /// </summary>
-        public RealTimeLog rtLog { get; set; }
 
         /// <summary>
         /// Default constructor, completed by user inputs
@@ -49,39 +41,7 @@ namespace EazySave_Master.Model
             this.name = name;
             this.sourceRepo = new Folder(sourceRepo);
             this.targetPath = targetPath;
-            this.logs = new List<DailyLog>();
-            this.rtLog=new RealTimeLog(this.name,this.calculTotalFile(new DirectoryInfo(this.sourceRepo.path)),this.calculTotalSize(new DirectoryInfo(this.sourceRepo.path)));
-            
 
-        }
-
-        private long calculTotalSize(DirectoryInfo dirInfo)
-        {
-            long res = 0;
-            foreach (FileInfo f in dirInfo.GetFiles())
-            {
-                res += (long)f.Length;
-            }
-
-            foreach (DirectoryInfo subDir in dirInfo.GetDirectories())
-            {
-                res += calculTotalSize(subDir);
-            }
-
-            return res;
-        }
-
-        private int calculTotalFile(DirectoryInfo dirInfo)
-        {
-            int res = 0;
-            res += dirInfo.GetFiles().Length;
-
-            foreach (DirectoryInfo subDir in dirInfo.GetDirectories())
-            {
-                res += calculTotalFile(subDir);
-            }
-
-            return res;
         }
 
         /// <summary>
@@ -93,7 +53,6 @@ namespace EazySave_Master.Model
             this.name = "";
             this.sourceRepo = new Folder("");
             this.targetPath = "";
-            this.logs = new List<DailyLog>(); 
         }
 
         /// <summary>
@@ -108,7 +67,7 @@ namespace EazySave_Master.Model
         /// <summary>
         /// Launch the actual save after some verifications
         /// </summary>
-        public void ExecuteSave()
+        public bool ExecuteSave()
         {
 
             string sourcePath = sourceRepo.path;
@@ -117,26 +76,21 @@ namespace EazySave_Master.Model
             if (!Directory.Exists(sourcePath))
             {
                 Console.WriteLine($"Save n°{number}: Source path don't exist.");
-                return;
+                return false;
             }
 
             if (!Directory.Exists(targetPath))
             {
                 Console.WriteLine($"Save n°{number}: Target path don't exist.");
-                return;
+                return false;
             }
-
-            rtLog.setSaveState(true);
 
             CopyDirectory(sourcePath, targetPath);
             Console.WriteLine($"Save n°{number}: Done.");
 
-            rtLog.setSaveState(false);
-
             // Add Log for each Save
-            AddLog();
-            SaveLogsToJson();
-            SaveRealTimeLogsToJson();
+
+            return true;
         }
 
         /// <summary>
@@ -155,12 +109,12 @@ namespace EazySave_Master.Model
                 string fileName = Path.GetFileName(filePath);
                 string targetFilePath = Path.Combine(targetPath, fileName);
 
-               
+
                 if (canFileBeCopied(filePath, targetFilePath))
                 {
                     Directory.CreateDirectory(targetPath);
                     System.IO.File.Copy(filePath, targetFilePath, true);
-                    
+
                 }
             }
 
@@ -173,7 +127,7 @@ namespace EazySave_Master.Model
                 CopyDirectory(subDirectoryPath, targetSubDirectoryPath);
             }
         }
-        
+
         public override string ToString()
         {
             return $" - Number: {number}\n - Name: {name}\n - Source: {sourceRepo.path}\n - Destination: {targetPath}\n - Type: {this.GetTypeName()}";
@@ -195,7 +149,7 @@ namespace EazySave_Master.Model
         protected abstract string GetTypeName();
 
 
-//*********** Part Log
+        //*********** Part Log
 
         /// <summary>
         /// calcul of the transferTime of a directory
@@ -214,73 +168,6 @@ namespace EazySave_Master.Model
             return transferTimeMilliseconds;
         }
 
-        /// <summary>
-        /// calcul the total file size from a directory
-        /// </summary>
-        /// <param name="sourcePath"></param>
-        /// <returns>total file size in long</returns>
-        private long GetTotalFileSize(string sourcePath)
-        {
-            string[] files = Directory.GetFiles(sourcePath, "*", SearchOption.AllDirectories);
-            long totalFileSize = 0;
-
-            foreach (string filePath in files)
-            {
-                FileInfo fileInfo = new FileInfo(filePath);
-                totalFileSize += fileInfo.Length;
-            }
-
-            return totalFileSize;
-        }
-
-        /// <summary>
-        /// add a daily log to the list of logs
-        /// </summary>
-        private void AddLog()
-        {
-            DailyLog log = new DailyLog();
-
-            log.TimeStamp = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            log.BackupName = this.name; 
-            log.SourcePath = sourceRepo.path;
-            log.DestPath = targetPath;
-            log.FileSize = GetTotalFileSize(sourceRepo.path); 
-            log.TransferTime = CalculateTransferTime(sourceRepo.path, targetPath); 
-
-            logs.Add(log);
-        }
-        
-        private void SaveLogsToJson()
-        {
-            string checkEnv = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EazySaveLogs");
-
-            if (!Directory.Exists(checkEnv))
-            {
-                Directory.CreateDirectory(checkEnv);
-            }
-            // Name + date 
-            string logFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EazySaveLogs", "log.json"); 
-            string jsonLogs = JsonConvert.SerializeObject(logs, Formatting.Indented);
-            //   ./Log/log.json      -> When build for .exe
-
-            System.IO.File.WriteAllText(logFilePath, jsonLogs);
-        }
-
-//*********** Part Real Time Log
-        private void SaveRealTimeLogsToJson()
-        {
-            string logDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EazySaveLogs");
-            string logFilePath = Path.Combine(logDirectory, "realTimeLog.json");
-
-            if (!Directory.Exists(logDirectory))
-            {
-                Directory.CreateDirectory(logDirectory);
-            }
-
-            string jsonLogs = JsonConvert.SerializeObject(rtLog, Formatting.Indented);
-
-            System.IO.File.WriteAllText(logFilePath, jsonLogs);
-        }
 
     }
 }

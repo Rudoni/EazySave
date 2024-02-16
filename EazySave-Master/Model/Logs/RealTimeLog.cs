@@ -4,34 +4,48 @@ using System.IO;
 using System.Xml.Linq;
 
 namespace EazySave_Master.Model.Logs {
-    public class RealTimeLog
+    public class RealTimeLog:Log
     {
-        //Name of the current backup
+        /// <summary>
+        /// name of save
+        /// </summary>
         public string BackupName { get; set; }
 
-        //State of the save (Active or Inactive)
+        /// <summary>
+        /// State of the save (Active or Inactive)
+        /// </summary>
         public string saveState { get; set; }
 
-        //Total number of files in the backup
+        /// <summary>
+        /// Total number of files
+        /// </summary>
         public int totalFile { get; set; }
 
-        //Total size of the files in the backup
+        /// <summary>
+        /// Total size of the files
+        /// </summary>
         public long totalSize { get; set; }
 
-        //Current progress of the save (percentage)
+        /// <summary>
+        /// Current progress of the save (percentage)
+        /// </summary>
         public double progress { get; set; }
 
-        //Number of remaining files to back up
+        /// <summary>
+        /// Number of remaining files to back up
+        /// </summary>
         public int filesLeft { get; set; }
 
-        //Total size of remaining files to back up
+        /// <summary>
+        /// Total size of remaining files to back up
+        /// </summary>
         public long sizeLeft { get; set; }
 
 
         public RealTimeLog(string name, int totalFile, long totalSize)
         {
             this.BackupName = name;
-            setSaveState(false);
+            this.setSaveState(false);
             this.totalFile = totalFile;
             this.totalSize = totalSize;
             this.progress = 0;
@@ -42,12 +56,23 @@ namespace EazySave_Master.Model.Logs {
         public RealTimeLog()
         {
             this.BackupName = "";
-            setSaveState(false);
+            this.setSaveState(false);
             this.totalFile = 0;
             this.totalSize = 0;
             this.progress = 0;
             this.filesLeft = 0;
             this.sizeLeft = 0;
+        }
+
+        public void MaJFromSave(Save save)
+        {
+            this.BackupName = save.name;
+            this.setSaveState(true);
+            this.totalFile = Folder.GetTotalFileNumber(save.sourceRepo.path);
+            this.totalSize = Folder.GetTotalFileSize(save.sourceRepo.path);
+            this.progress = 0;
+            this.filesLeft = Folder.GetTotalFileNumber(save.sourceRepo.path);
+            this.sizeLeft = Folder.GetTotalFileSize(save.sourceRepo.path);
         }
 
         public void refreshState(int filesFinished, long sizeFinished)
@@ -59,11 +84,16 @@ namespace EazySave_Master.Model.Logs {
         public void setSaveState(bool active)
         {
             if (active)
-                saveState = "ACTIVE";
+                this.saveState = "ACTIVE";
             else
-                saveState = "END";
+                this.saveState = "END";
         }
 
-
+        public void saveFinished()
+        {
+            this.filesLeft = 0;
+            this.sizeLeft = 0;
+            this.setSaveState(false);
+        }
     }
 }

@@ -3,7 +3,7 @@
     /// <summary>
     /// representative class of the RealTime FileLog
     /// </summary>
-    public class FileRTLogs : Logs
+    public class FileRTLogs : FileLogs
     {
         /// <summary>
         /// list of RealTimeLog
@@ -19,9 +19,24 @@
         /// method to get the name of the file generated
         /// </summary>
         /// <returns>state</returns>
-        string Logs.GetFileName()
+        string FileLogs.GetFileName()
         {
             return "state";
+        }
+
+        public void AddLog(Log log)
+        {
+            this.lRealTimeLogs.Add((RealTimeLog)log);
+        }
+
+        public bool IsEmpty()
+        {
+            return !this.lRealTimeLogs.Any();
+        }
+
+        public void EmptyLogs()
+        {
+            this.lRealTimeLogs.Clear();
         }
     }
 }
