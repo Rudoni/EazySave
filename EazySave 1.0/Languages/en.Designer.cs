@@ -61,7 +61,7 @@ namespace EazySave_1._0.Languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à 2. Back.
+        ///   Recherche une chaîne localisée semblable à 3. Back.
         /// </summary>
         internal static string BackTwo {
             get {
@@ -75,6 +75,15 @@ namespace EazySave_1._0.Languages {
         internal static string ChangeLanguage {
             get {
                 return ResourceManager.GetString("ChangeLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à 2. Change log extension files.
+        /// </summary>
+        internal static string ChangeLogExtension {
+            get {
+                return ResourceManager.GetString("ChangeLogExtension", resourceCulture);
             }
         }
         

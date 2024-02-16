@@ -1,21 +1,45 @@
-﻿using System;
+﻿
+using EazySave_Master.Model.Logs;
+using System.Diagnostics;
 
 namespace EazySave_Master.Model
 {
-    /// <summary>
-    /// Class used to manage the list of saves
-    /// </summary>
     class ManageSaves
     {
+
+        // Enum extension logs
+        enum LogExtensions
+        {
+            JSON = 1
+        }
+
         /// <summary>
-        /// list of saves
+        /// List of saves
         /// </summary>
         public List<Save> saves { get; set; }
+        /// <summary>
+        /// Daily logs
+        /// </summary>
+        public FileDailyLogs dailyLogs { get; set; }
+        /// <summary>
+        /// Real time logs
+        /// </summary>
+        public FileRTLogs rtLogs { get; set; }
+        /// <summary>
+        /// extension used for the logs
+        /// </summary>
+        public int logExtension { get; set; }
 
         /// <summary>
         /// default constructor
         /// </summary>
-        public ManageSaves() { this.saves = new List<Save>(); }
+        public ManageSaves() 
+        { 
+            this.saves = new List<Save>(); 
+            this.dailyLogs = new FileDailyLogs();
+            this.rtLogs = new FileRTLogs();
+            this.logExtension = 1;
+        }
 
         /// <summary>
         /// add a save to the list of saves with his good number completed
@@ -37,15 +61,61 @@ namespace EazySave_Master.Model
             List<int> listN=GetNumbersToExecute(numbers);
             foreach (var save in saves)
             {
-                if(listN.Contains(save.number))
-                    save.ExecuteSave();
+                if (listN.Contains(save.number) && !IsSpecSoftwareRunning("devenv.exe"))
+                {
+                    RealTimeLog realTimeLog=new RealTimeLog();
+                    bool res=save.ExecuteSave();
+                    //create log from save data
+                    if(res)
+                    {
+                        realTimeLog.MaJFromSave(save);
+                        dailyLogs.AddLog(new DailyLog(save));
+                        rtLogs.AddLog(realTimeLog);
+
+                        realTimeLog.saveFinished();
+                    }
+                }
             }
+            this.RunLogs();
+        }
+
+        /// <summary>
+        /// run the logs from the type (ex:XML,JSON)
+        /// </summary>
+        private void RunLogs()
+        {
+            TypeFileLogs type;
+            switch (logExtension)
+            {
+                case 1:
+                    {
+                        type=new JSONLogs();
+                        break;
+                    }
+                default:
+                    {
+                        type = new JSONLogs();
+                        break;
+                    }
+            }
+            if(!dailyLogs.IsEmpty())
+            {
+                type.RunLogs(dailyLogs);
+                dailyLogs.EmptyLogs();
+
+            }
+            if (!rtLogs.IsEmpty())
+            {
+                type.RunLogs(rtLogs);
+                rtLogs.EmptyLogs();
+            }
+
         }
 
         /// <summary>
         /// return the next number from the biggest number of the saves
         /// </summary>
-        /// <returns>number in int</returns>
+        /// <returns></returns>
         private int IncrementNumberMaxSave()
         {
             int res = 0;
@@ -63,7 +133,7 @@ namespace EazySave_Master.Model
         /// return the list of saves (from numbers) to execute from the string input
         /// </summary>
         /// <param name="numbers"></param>
-        /// <returns>list of numbers in list(int)</returns>
+        /// <returns></returns>
         private List<int> GetNumbersToExecute(string numbers)
         {
             List<int> list = new List<int>();
@@ -106,11 +176,6 @@ namespace EazySave_Master.Model
                     }
                 }
             }
-            if (list.Count > 5)
-            {
-                Console.WriteLine("5 saves max.");
-                return new List<int>();
-            }
             if (list.Count < 1)
             {
                 Console.WriteLine("Aucun nombre correct");
@@ -119,6 +184,15 @@ namespace EazySave_Master.Model
             return list;
         }
 
+        /// <summary>
+        /// returns true if the process entered as a param is active
+        /// </summary>
+        /// <param name="process"></param>
+        /// <returns></returns>
+        static bool IsSpecSoftwareRunning(string process)
+        {
+            return Process.GetProcessesByName(process).Length > 0;
 
+        }
     }
 }

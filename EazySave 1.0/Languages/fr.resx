@@ -118,10 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BackTwo" xml:space="preserve">
-    <value>2. Retour</value>
+    <value>3. Retour</value>
   </data>
   <data name="ChangeLanguage" xml:space="preserve">
     <value>1. Changer la langue</value>
+  </data>
+  <data name="ChangeLogExtension" xml:space="preserve">
+    <value>2. Changer l'extension des logs</value>
   </data>
   <data name="Check" xml:space="preserve">
     <value>Entrer un nombre valide </value>

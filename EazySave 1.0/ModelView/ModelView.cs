@@ -45,5 +45,14 @@ namespace EazySave_Master.ModelView
             saves.RunSaves(numbersUser);
        
         }
+
+        /// <summary>
+        /// update de extension used for the logs
+        /// </summary>
+        /// <param name="i"></param>
+        public void UpdateExtensionLog(int i)
+        {
+            this.saves.logExtension=i;
+        }
     }
 }

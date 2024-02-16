@@ -1,7 +1,4 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Resources;
 using System.Reflection;
 using EazySave_Master.Model;
@@ -21,13 +18,13 @@ namespace EazySave_Master
         {
             CreateSave = 1,
             RunSave = 2,
-            ChangeLanguage = 3
+            ChangeParameters = 3
         }
         // Enum Parameter
         enum Parameters
         {
             ChangeLanguage = 1,
-            Return = 2
+            Return = 3
         }
 
         // Enum Languages
@@ -35,6 +32,12 @@ namespace EazySave_Master
         {
             French = 1,
             English = 2
+        }
+
+        // Enum extension logs
+        enum LogExtensions
+        {
+            JSON = 1
         }
         public static void Main()
         {
@@ -108,7 +111,7 @@ namespace EazySave_Master
                             break;
 
                         // Parameters
-                        case MainMenuOption.ChangeLanguage:
+                        case MainMenuOption.ChangeParameters:
                             Console.Clear();
                             Console.WriteLine(resourceManager.GetString("ChangeLanguage"));
                             Console.WriteLine(resourceManager.GetString("BackTwo"));
@@ -140,6 +143,8 @@ namespace EazySave_Master
                                             }
                                         }
                                         break;
+
+
                                     case Parameters.Return:
 
                                         break;
