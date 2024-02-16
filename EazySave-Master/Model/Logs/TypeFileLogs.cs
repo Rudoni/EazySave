@@ -1,4 +1,5 @@
 ﻿using System.Xml.Serialization;
+using System.IO;
 
 namespace EazySave_Master.Model.Logs
 {

@@ -26,10 +26,10 @@ namespace EazySave_Master.Model.Logs
             string logFilePath = this.GetLogFilePath(logs);
 
             // Check if the file exists
-            if (File.Exists(logFilePath))
+            if (System.IO.File.Exists(logFilePath))
             {
                 // Read existing content from the file
-                string existingContent = File.ReadAllText(logFilePath);
+                string existingContent = System.IO.File.ReadAllText(logFilePath);
                 JArray existingArray = JArray.Parse(existingContent);
                 string jsonLogs = JsonConvert.SerializeObject(logs, Formatting.Indented);
                 JObject newLog = JObject.Parse(jsonLogs);
