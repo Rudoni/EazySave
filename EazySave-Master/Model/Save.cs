@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using EazySave_Master.Model.Logs;
+using Newtonsoft.Json;
 using System.IO;
 using static System.Net.WebRequestMethods;
 
@@ -54,12 +55,12 @@ namespace EazySave_Master.Model
 
         }
 
-        private Int128 calculTotalSize(DirectoryInfo dirInfo)
+        private long calculTotalSize(DirectoryInfo dirInfo)
         {
-            Int128 res = 0;
+            long res = 0;
             foreach (FileInfo f in dirInfo.GetFiles())
             {
-                res += (Int128)f.Length;
+                res += (long)f.Length;
             }
 
             foreach (DirectoryInfo subDir in dirInfo.GetDirectories())
@@ -239,7 +240,7 @@ namespace EazySave_Master.Model
         {
             DailyLog log = new DailyLog();
 
-            log.TimeStamp = DateTime.Now;
+            log.TimeStamp = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             log.BackupName = this.name; 
             log.SourcePath = sourceRepo.path;
             log.DestPath = targetPath;
