@@ -10,10 +10,26 @@ namespace EazySave_Master.ModelView
     {
         public ManageSaves saves;
 
+  
+        private static ModelView _instance;
+
+       
+        public static ModelView Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new ModelView();
+                }
+                return _instance;
+            }
+        }
+
         /// <summary>
         /// default constructor
         /// </summary>
-        public ModelView() {
+        private ModelView() {
             saves = new ManageSaves();
         }
 
