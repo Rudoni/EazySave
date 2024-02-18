@@ -9,6 +9,17 @@
       Title="RunSave">
 
     <Grid>
+        <ListBox x:Name="listBoxSauvegardes" HorizontalAlignment="Left" VerticalAlignment="Top" Height="450" Width="800">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding IsSelected}" Content="{Binding NomSauvegarde}" Margin="5"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button x:Name="RunSaveButton" Content="Run Save" Margin="342,364,342,46" Click="Button_Click_Run"/>
         
+        <Button x:Name="Back" Content="Back" Click="Back_Click" Margin="39,16,717,415" RenderTransformOrigin="0.525,0.505" />
     </Grid>
 </Page>

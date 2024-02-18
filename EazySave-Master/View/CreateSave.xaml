@@ -50,7 +50,7 @@
 
         <Button x:Name="CreateSaveButton" Content="Create Save"  Click="CreateSave_Click" Margin="342,364,342,46" />
 
-        <Button x:Name="Back" Content="Back"  Click="Back_Click" Margin="10,10,746,421" />
+        <Button x:Name="Back" Content="Back"  Click="Back_Click" Margin="39,16,717,415" RenderTransformOrigin="0.525,0.505" />
 
 
     </Grid>

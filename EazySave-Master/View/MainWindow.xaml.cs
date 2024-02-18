@@ -48,8 +48,14 @@ namespace EazySave_Master.View
                 case "create":
                     this.Content = createSave;
                     break;
+
+                // A vérifier 
+                case "runSave":
+                    RunSave runSavePage = new RunSave();
+                    this.Content = runSavePage;
+                    break;
+                    }
             }
-        }
 
 
     }
