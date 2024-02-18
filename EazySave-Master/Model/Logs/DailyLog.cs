@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Xml.Serialization;
 
 namespace EazySave_Master.Model.Logs

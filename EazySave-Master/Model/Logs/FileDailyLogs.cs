@@ -25,7 +25,7 @@ namespace EazySave_Master.Model.Logs
         /// method to get the name of the file generated
         /// </summary>
         /// <returns>current date in format "yyyy-MM-dd"</returns>
-        string FileLogs.GetFileName()
+        public string GetFileName()
         {
             DateTime currentDate = DateTime.Now;
             return currentDate.ToString("yyyy-MM-dd");

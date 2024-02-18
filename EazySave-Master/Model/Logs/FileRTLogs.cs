@@ -19,7 +19,7 @@
         /// method to get the name of the file generated
         /// </summary>
         /// <returns>state</returns>
-        string FileLogs.GetFileName()
+        public string GetFileName()
         {
             return "state";
         }

@@ -38,7 +38,7 @@ namespace EazySave_Master.Model.Logs
         /// <summary>
         /// return the extension of the type of log
         /// </summary>
-        /// <returns>e</returns>
+        /// <returns>extension de fichier</returns>
         public abstract string GetExtensionFile();
 
     }
