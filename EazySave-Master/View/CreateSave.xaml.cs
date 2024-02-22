@@ -157,13 +157,13 @@ namespace EazySave_Master.View
 
             ModelView.ModelView.Instance.createSave(name, sourcePath, destinationPath, type, encryptList, encryptKey);
 
-            m.view("menu");
+            m.view(EnumEasySaves.ViewNames.Menu);
 
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            m.view("menu");
+            m.view(EnumEasySaves.ViewNames.Menu);
         }
     }
 }

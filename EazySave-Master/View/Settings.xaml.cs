@@ -29,7 +29,7 @@ namespace EazySave_Master.View
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            m.view("menu");
+            m.view(EnumEasySaves.ViewNames.Menu);
         }
 
 

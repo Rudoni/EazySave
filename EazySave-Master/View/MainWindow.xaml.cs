@@ -42,20 +42,20 @@ namespace EazySave_Master.View
         
         }
 
-        public void view(string page)
+        public void view(EnumEasySaves.ViewNames page)
         {
             switch (page)
             {
-                case "menu":
+                case EnumEasySaves.ViewNames.Menu:
                     this.Content = viewMainWindow;
                     break;
-                case "create":
+                case EnumEasySaves.ViewNames.CreateSaves:
                     this.Content = createSave;
                     break;
-                case "settings":
+                case EnumEasySaves.ViewNames.Settings:
                     this.Content = settings;
                     break;
-                case "runsaves":
+                case EnumEasySaves.ViewNames.RunSaves:
                     this.Content = runsaves;
                     break;
             }
