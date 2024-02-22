@@ -10,6 +10,13 @@
 
     <Grid Background="White">
         <Button x:Name="Back" Content="Back"  Click="Back_Click" Margin="10,10,746,421" />
-        
+        <ListView x:Name="ListOfSaves" Margin="64,88,64,111" SelectionChanged="ListView_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
 </Page>

@@ -31,11 +31,17 @@ namespace EazySave_Master.View
         {
             InitializeComponent();
             this.m = mainWindow;
+            //ListOfSaves.Items.Add();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             m.view(EnumEasySaves.ViewNames.Menu);
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
