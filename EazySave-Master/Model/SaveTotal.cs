@@ -13,7 +13,9 @@ namespace EazySave_Master.Model
         /// <param name="name"></param>
         /// <param name="sourceRepo"></param>
         /// <param name="targetPath"></param>
-        public SaveTotal(string name, string sourceRepo, string targetPath) : base(name, sourceRepo, targetPath)
+        /// <param name="encryptList"></param>
+        /// <param name="encryptKey"></param>
+        public SaveTotal(string name, string sourceRepo, string targetPath, List<string> encryptList, string encryptKey) : base(name, sourceRepo, targetPath, encryptList, encryptKey)
         {
         }
 
