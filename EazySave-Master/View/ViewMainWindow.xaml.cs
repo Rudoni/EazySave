@@ -36,7 +36,7 @@ namespace EazySave_Master.View
 
         private void Button_Click_RunSave(object sender, RoutedEventArgs e)
         {
-
+            m.view("runsaves");
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)

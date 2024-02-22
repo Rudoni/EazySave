@@ -20,9 +20,22 @@ namespace EazySave_Master.View
     /// </summary>
     public partial class RunSave : Page
     {
+        private MainWindow m;
+
         public RunSave()
         {
             InitializeComponent();
+        }
+
+        public RunSave(MainWindow mainWindow)
+        {
+            InitializeComponent();
+            this.m = mainWindow;
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            m.view("menu");
         }
     }
 }
