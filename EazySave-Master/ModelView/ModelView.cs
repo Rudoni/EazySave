@@ -1,5 +1,7 @@
 ﻿using EazySave_Master.Model;
 using System.Diagnostics;
+using System.Reflection;
+using System.Resources;
 
 namespace EazySave_Master.ModelView
 {
@@ -10,10 +12,10 @@ namespace EazySave_Master.ModelView
     {
         public ManageSaves saves;
 
-  
         private static ModelView _instance;
 
-       
+        private ResourceManager rm;
+
         public static ModelView Instance
         {
             get
@@ -31,6 +33,7 @@ namespace EazySave_Master.ModelView
         /// </summary>
         private ModelView() {
             saves = new ManageSaves();
+            this.rm = new ResourceManager("EazySave_Master.Languages.fr", Assembly.GetExecutingAssembly());
         }
 
         /// <summary>
