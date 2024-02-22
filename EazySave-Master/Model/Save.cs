@@ -1,5 +1,6 @@
 ﻿using EazySave_Master.Model.Logs;
 using Newtonsoft.Json;
+using System.Diagnostics;
 using System.IO;
 using static System.Net.WebRequestMethods;
 
@@ -27,6 +28,15 @@ namespace EazySave_Master.Model
         /// </summary>
         public Folder sourceRepo { get; set; }
 
+        /// <summary>
+        /// List of encrypted files extensions
+        /// </summary>
+        public List<string> encryptList { get; set; }
+
+        /// <summary>
+        /// XOR Encryption key chosen by the user
+        /// </summary>
+        public string encryptKey { get; set; }
 
         /// <summary>
         /// Default constructor, completed by user inputs
@@ -35,10 +45,12 @@ namespace EazySave_Master.Model
         /// <param name="name"></param>
         /// <param name="sourceRepo"></param>
         /// <param name="targetPath"></param>
-        public Save(string name, string sourceRepo, string targetPath)
+        public Save(string name, string sourceRepo, string targetPath, List<string> encryptList, string encryptKey)
         {
             this.number = 0;
             this.name = name;
+            this.encryptList = encryptList;
+            this.encryptKey = encryptKey;  
             this.sourceRepo = new Folder(sourceRepo);
             this.targetPath = targetPath;
 
@@ -85,7 +97,7 @@ namespace EazySave_Master.Model
                 return false;
             }
 
-            CopyDirectory(sourcePath, targetPath);
+            CopyDirectory(sourcePath, targetPath, encryptList, encryptKey);
             Console.WriteLine($"Save n°{number}: Done.");
 
             // Add Log for each Save
@@ -98,7 +110,7 @@ namespace EazySave_Master.Model
         /// </summary>
         /// <param name="sourcePath"></param>
         /// <param name="targetPath"></param>
-        private void CopyDirectory(string sourcePath, string targetPath)
+        private void CopyDirectory(string sourcePath, string targetPath, List<string> encryptionList, string encryptKey)
         {
             Directory.CreateDirectory(targetPath);
 
@@ -113,7 +125,15 @@ namespace EazySave_Master.Model
                 if (canFileBeCopied(filePath, targetFilePath))
                 {
                     Directory.CreateDirectory(targetPath);
-                    System.IO.File.Copy(filePath, targetFilePath, true);
+                    if (encryptionList.Contains(Path.GetExtension(filePath), StringComparer.OrdinalIgnoreCase))
+                    {
+                        ProcessCryptoSoft(filePath, targetPath, encryptKey);
+
+                    }
+                    else
+                    {
+                        System.IO.File.Copy(filePath, targetFilePath, true);
+                    }
 
                 }
             }
@@ -124,7 +144,7 @@ namespace EazySave_Master.Model
             {
                 string subDirectoryName = Path.GetFileName(subDirectoryPath);
                 string targetSubDirectoryPath = Path.Combine(targetPath, subDirectoryName);
-                CopyDirectory(subDirectoryPath, targetSubDirectoryPath);
+                CopyDirectory(subDirectoryPath, targetSubDirectoryPath, encryptList, encryptKey );
             }
         }
 
@@ -157,15 +177,33 @@ namespace EazySave_Master.Model
         /// <param name="sourcePath"></param>
         /// <param name="targetPath"></param>
         /// <returns>time in double</returns>
-        private double CalculateTransferTime(string sourcePath, string targetPath)
+        private double CalculateTransferTime(string sourcePath, string targetPath, List<string> encryptList, string encryptKey)
         {
             DateTime startTime = DateTime.Now;
-            CopyDirectory(sourcePath, targetPath);
+            CopyDirectory(sourcePath, targetPath, encryptList, encryptKey);
             DateTime endTime = DateTime.Now;
             TimeSpan transferDuration = endTime - startTime;
             double transferTimeMilliseconds = transferDuration.TotalMilliseconds;
 
             return transferTimeMilliseconds;
+        }
+
+        /// <summary>
+        /// call CryptoSoft program to crypt a file and returns the encryption duration
+        /// </summary>
+        /// <param name="source">source path of the encrypted file</param>
+        /// <param name="dest">destination path of the encrypted file</param>
+        /// <param name="cle">XOR key used to encrypt the file</param>
+        /// <returns>encryption duration in ms, or negative number if failed</returns>
+        int ProcessCryptoSoft(string source, string dest, string cle)
+        {
+            Process cryptoSoft = new Process();
+            cryptoSoft.StartInfo.FileName = "C:\\Program Files (x86)\\CryptoSoft\\CryptoSoft.exe";
+            cryptoSoft.StartInfo.Arguments = $"{source} {dest} {cle}";
+            cryptoSoft.Start();
+            cryptoSoft.WaitForExit();
+
+            return cryptoSoft.ExitCode;
         }
 
 

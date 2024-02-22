@@ -137,12 +137,14 @@ namespace EazySave_Master.View
             string name = Name.Text;
             string sourcePath = SourcePath.Text;
             string destinationPath = DestinationPath.Text;
+            List<string> encryptList = new List<string>();
+            string encryptKey = "XOR";
             string type;
             if(Total.IsChecked == true) { type = "1"; }
             else { type = "2"; }
 
 
-            ModelView.ModelView.Instance.createSave(name, sourcePath, destinationPath, type);
+            ModelView.ModelView.Instance.createSave(name, sourcePath, destinationPath, type, encryptList, encryptKey);
 
             m.view("menu");
 
