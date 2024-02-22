@@ -16,32 +16,22 @@ using System.Windows.Shapes;
 namespace EazySave_Master.View
 {
     /// <summary>
-    /// Logique d'interaction pour ViewMainWindow.xaml
+    /// Logique d'interaction pour Settings.xaml
     /// </summary>
-    public partial class ViewMainWindow : Page
+    public partial class Settings : Page
     {
-
         MainWindow m;
-        public ViewMainWindow(MainWindow m)
+        public Settings(MainWindow m)
         {
             InitializeComponent();
             this.m = m;
         }
 
-        private void Button_Click_CreateSave(object sender, RoutedEventArgs e)
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
-            m.view("create");
-
+            m.view("menu");
         }
 
-        private void Button_Click_RunSave(object sender, RoutedEventArgs e)
-        {
 
-        }
-
-        private void Settings_Click(object sender, RoutedEventArgs e)
-        {
-            m.view("settings");
-        }
     }
 }

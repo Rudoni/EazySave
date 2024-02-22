@@ -27,12 +27,14 @@ namespace EazySave_Master.View
     {
 
         CreateSave createSave;
+        Settings settings;
         ModelView.ModelView mv = ModelView.ModelView.Instance;
         ViewMainWindow viewMainWindow;
         public MainWindow()
         {
             InitializeComponent();
             createSave = new CreateSave(this);
+            settings = new Settings(this);  
             viewMainWindow = new ViewMainWindow(this);
             this.Content = viewMainWindow;
         
@@ -47,6 +49,9 @@ namespace EazySave_Master.View
                     break;
                 case "create":
                     this.Content = createSave;
+                    break;
+                case "settings":
+                    this.Content = settings;
                     break;
             }
         }

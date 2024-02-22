@@ -128,7 +128,7 @@ namespace EazySave_Master.View
             {
                 ItemsListBox.Items.Add(InputTextBox.Text);
                 InputTextBox.Clear();
-                InputTextBox.Focus(); // Replace le focus sur le TextBox pour une nouvelle saisie
+                InputTextBox.Focus(); 
             }
         }
 

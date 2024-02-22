@@ -9,9 +9,10 @@
       Title="ViewMainWindow">
 
     <Grid>
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
-        <Button Content="Create Save" HorizontalAlignment="Center" Margin="0,111,0,0" VerticalAlignment="Top" Height="78" Width="336" Click="Button_Click_CreateSave"/>
+
+        <Button Content="Create Save" HorizontalAlignment="Center" Margin="0,123,0,0" VerticalAlignment="Top" Height="78" Width="336" Click="Button_Click_CreateSave"/>
         <Button x:Name="RunSave" Content="Run Save" HorizontalAlignment="Center" Margin="0,240,0,0" VerticalAlignment="Top" Height="78" Width="336" Click="Button_Click_RunSave"/>
+        <Button x:Name="Settings" Content="Settings" HorizontalAlignment="Left" Margin="35,370,0,0" VerticalAlignment="Top" Height="30" Width="69" Click="Settings_Click"/>
 
     </Grid>
 </Page>
