@@ -25,6 +25,7 @@ namespace EazySave_Master.View
     {
 
         MainWindow m;
+        List<string> encryptList = new List<string>();
         public CreateSave(MainWindow m)
         {
             InitializeComponent();
@@ -47,6 +48,11 @@ namespace EazySave_Master.View
         private void Name_TextChanged(object sender, TextChangedEventArgs e)
         {
             ValidateInputs();
+        }
+
+        private void Key_TextChanged(object sender, TextChangedEventArgs e)
+        {
+           
         }
 
         private void Type_Checked(object sender, RoutedEventArgs e)
@@ -111,6 +117,8 @@ namespace EazySave_Master.View
                 InputTextBox.Visibility = Visibility.Visible;
                 Add.Visibility = Visibility.Visible;
                 ItemsListBox.Visibility = Visibility.Visible;
+                EncryptionKeyName.Visibility = Visibility.Visible;
+                EncryptionKey.Visibility = Visibility.Visible;
             }
             else if (sender == No)
             {
@@ -119,14 +127,17 @@ namespace EazySave_Master.View
                 InputTextBox.Visibility = Visibility.Hidden;
                 Add.Visibility = Visibility.Hidden;
                 ItemsListBox.Visibility = Visibility.Hidden;
+                EncryptionKeyName.Visibility = Visibility.Hidden;
+                EncryptionKey.Visibility = Visibility.Hidden;
             }
         }
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
+        private void AddExtentionButton_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(InputTextBox.Text))
             {
-                ItemsListBox.Items.Add(InputTextBox.Text);
+                ItemsListBox.Items.Add("." + InputTextBox.Text);
+                encryptList.Add("." + InputTextBox.Text);
                 InputTextBox.Clear();
                 InputTextBox.Focus(); 
             }
@@ -137,8 +148,8 @@ namespace EazySave_Master.View
             string name = Name.Text;
             string sourcePath = SourcePath.Text;
             string destinationPath = DestinationPath.Text;
-            List<string> encryptList = new List<string>();
-            string encryptKey = "XOR";
+            
+            string encryptKey = EncryptionKey.Text;
             string type;
             if(Total.IsChecked == true) { type = "1"; }
             else { type = "2"; }

@@ -40,10 +40,12 @@
 
         <!-- Extention Crypting -->
         <Label x:Name="FileExtentionName" Content="File Extention" Margin="482,45,174,377" Visibility="Hidden"/>
-            <TextBox x:Name="InputTextBox" Margin="482,73,65,327"  Visibility="Hidden"/>
-            <Button x:Name="Add" Content="Add" Click="AddButton_Click" Margin="482,138,255,279" Visibility="Hidden"/>
-            <ListBox x:Name="ItemsListBox" Margin="482,190,65,91" Visibility="Hidden"/>
-        
+        <TextBox x:Name="InputTextBox" Margin="482,73,65,327"  Visibility="Hidden"/>
+        <Button x:Name="Add" Content="Add" Click="AddExtentionButton_Click" Margin="482,138,255,279" Visibility="Hidden"/>
+        <ListBox x:Name="ItemsListBox" Margin="482,190,65,159" Visibility="Hidden"/>
+        <Label  x:Name="EncryptionKeyName" Content="EncryptionKey" Margin="482,296,174,126" Visibility="Hidden" />
+        <TextBox x:Name="EncryptionKey" TextWrapping="Wrap" Text="" Margin="482,329,65,98" TextChanged="Key_TextChanged" Visibility="Hidden"/>
+
         <!-- Encryption Key -->
 
         <!-- End -->
