@@ -4,14 +4,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:EazySave_Master.View"
-      xmlns:properties="clr-namespace:EazySave_Master.Properties"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ViewMainWindow">
 
     <Grid>
 
-        <Button Content="{x:Static properties:Resources.CreateSave}" HorizontalAlignment="Center" Margin="0,123,0,0" VerticalAlignment="Top" Height="78" Width="336" Click="Button_Click_CreateSave"/>
+        <Button Content="Create Save" HorizontalAlignment="Center" Margin="0,123,0,0" VerticalAlignment="Top" Height="78" Width="336" Click="Button_Click_CreateSave"/>
         <Button x:Name="RunSave" Content="Run Save" HorizontalAlignment="Center" Margin="0,240,0,0" VerticalAlignment="Top" Height="78" Width="336" Click="Button_Click_RunSave"/>
         <Button x:Name="Settings" Content="Settings" HorizontalAlignment="Left" Margin="35,370,0,0" VerticalAlignment="Top" Height="30" Width="69" Click="Settings_Click"/>
 

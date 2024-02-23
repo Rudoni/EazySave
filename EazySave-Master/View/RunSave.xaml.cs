@@ -22,10 +22,15 @@ namespace EazySave_Master.View
     {
         private MainWindow m;
 
-        public RunSave(MainWindow m)
+        public RunSave()
         {
             InitializeComponent();
-            this.m = m;
+        }
+
+        public RunSave(MainWindow mainWindow)
+        {
+            InitializeComponent();
+            this.m = mainWindow;
             //ListOfSaves.Items.Add();
         }
 
