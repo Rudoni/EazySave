@@ -31,15 +31,29 @@ namespace EazySave_Master.View
         RunSave runsaves;
         ModelView.ModelView mv = ModelView.ModelView.Instance;
         ViewMainWindow viewMainWindow;
+
+        private static Mutex mutex = null;
+
         public MainWindow()
         {
+            const string appName = "EazySave_Master";
+            bool createdNew;
+
+            mutex = new Mutex(true, appName, out createdNew);
+
+            if (!createdNew)
+            {
+                MessageBox.Show("App already running");
+                Application.Current.Shutdown();
+                return;
+            }
+
             InitializeComponent();
             createSave = new CreateSave(this);
             settings = new Settings(this);
             runsaves = new RunSave(this);
             viewMainWindow = new ViewMainWindow(this);
             this.Content = viewMainWindow;
-        
         }
 
         public void view(EnumEasySaves.ViewNames page)

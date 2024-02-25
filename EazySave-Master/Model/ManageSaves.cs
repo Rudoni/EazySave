@@ -56,27 +56,15 @@ namespace EazySave_Master.Model
         /// launch all the saves from the list by his numbers (if string numbers OK)
         /// </summary>
         /// <param name="numbers"></param>
-        public void RunSaves(string numbers)
+        public async Task RunSaves(string numbers)
         {
             List<int> listN = GetNumbersToExecute(numbers);
-            foreach (var save in saves)
-            {
-                if (listN.Contains(save.number) && !IsSpecSoftwareRunning("devenv.exe"))
-                {
-                    RealTimeLog realTimeLog = new RealTimeLog();
-                    bool res = save.ExecuteSave();
-                    //create log from save data
-                    if (res)
-                    {
-                        realTimeLog.MaJFromSave(save);
-                        dailyLogs.AddLog(new DailyLog(save));
-                        rtLogs.AddLog(realTimeLog);
+            var tasks = saves.Where(save => listN.Contains(save.number) && !IsSpecSoftwareRunning("devenv.exe"))
+                             .Select(save => save.ExecuteSave());
 
-                        realTimeLog.saveFinished();
-                    }
-                }
-            }
-            this.RunLogs();
+            await Task.WhenAll(tasks);
+
+            RunLogs();
         }
 
         /// <summary>

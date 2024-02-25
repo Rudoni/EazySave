@@ -79,29 +79,17 @@ namespace EazySave_Master.Model
         /// <summary>
         /// Launch the actual save after some verifications
         /// </summary>
-        public bool ExecuteSave()
+        public async Task<bool> ExecuteSave()
         {
-
             string sourcePath = sourceRepo.path;
-
-
-            if (!Directory.Exists(sourcePath))
+            if (!Directory.Exists(sourcePath) || !Directory.Exists(targetPath))
             {
-                Console.WriteLine($"Save n°{number}: Source path don't exist.");
+                Console.WriteLine($"Save n°{number}: Source or Target path don't exist.");
                 return false;
             }
-
-            if (!Directory.Exists(targetPath))
-            {
-                Console.WriteLine($"Save n°{number}: Target path don't exist.");
-                return false;
-            }
-
-            CopyDirectory(sourcePath, targetPath, encryptList, encryptKey);
+            long totalEncryptionTime;
+            await Task.Run(() => CopyDirectory(sourcePath, targetPath, encryptList, encryptKey,out totalEncryptionTime));
             Console.WriteLine($"Save n°{number}: Done.");
-
-            // Add Log for each Save
-
             return true;
         }
 
@@ -110,25 +98,33 @@ namespace EazySave_Master.Model
         /// </summary>
         /// <param name="sourcePath"></param>
         /// <param name="targetPath"></param>
-        private void CopyDirectory(string sourcePath, string targetPath, List<string> encryptionList, string encryptKey)
+        private void CopyDirectory(string sourcePath, string targetPath, List<string> encryptionList, string encryptKey, out long totalEncryptionTime)
         {
             Directory.CreateDirectory(targetPath);
 
             string[] filesSource = Directory.GetFiles(sourcePath);
-
+            totalEncryptionTime = 0;
+            long encryptionDuration;
             foreach (string filePath in filesSource)
             {
                 string fileName = Path.GetFileName(filePath);
                 string targetFilePath = Path.Combine(targetPath, fileName);
-
+                
 
                 if (canFileBeCopied(filePath, targetFilePath))
                 {
                     Directory.CreateDirectory(targetPath);
                     if (encryptionList.Contains(Path.GetExtension(filePath), StringComparer.OrdinalIgnoreCase))
                     {
-                        ProcessCryptoSoft(filePath, targetPath, encryptKey);
-
+                        int exitCode = ProcessCryptoSoft(filePath, targetPath, encryptKey, out encryptionDuration);
+                        if (exitCode >= 0) 
+                        {
+                            totalEncryptionTime += encryptionDuration;
+                        }
+                        else
+                        {
+                            // 
+                        }
                     }
                     else
                     {
@@ -144,7 +140,7 @@ namespace EazySave_Master.Model
             {
                 string subDirectoryName = Path.GetFileName(subDirectoryPath);
                 string targetSubDirectoryPath = Path.Combine(targetPath, subDirectoryName);
-                CopyDirectory(subDirectoryPath, targetSubDirectoryPath, encryptList, encryptKey );
+                CopyDirectory(subDirectoryPath, targetSubDirectoryPath, encryptList, encryptKey,out totalEncryptionTime);
             }
         }
 
@@ -169,6 +165,31 @@ namespace EazySave_Master.Model
         protected abstract string GetTypeName();
 
 
+        /// <summary>
+        /// call CryptoSoft program to crypt a file and returns the encryption duration
+        /// </summary>
+        /// <param name="source">source path of the encrypted file</param>
+        /// <param name="dest">destination path of the encrypted file</param>
+        /// <param name="cle">XOR key used to encrypt the file</param>
+        /// <returns>encryption duration in ms, or negative number if failed</returns>
+        public int ProcessCryptoSoft(string source, string dest, string cle, out long encryptionDuration)
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            Process cryptoSoft = new Process();
+            cryptoSoft.StartInfo.FileName = "C:\\Program Files (x86)\\CryptoSoft\\CryptoSoft.exe";
+            cryptoSoft.StartInfo.Arguments = $"{source} {dest} {cle}";
+            cryptoSoft.Start();
+            cryptoSoft.WaitForExit();
+
+            stopwatch.Stop();
+            encryptionDuration = stopwatch.ElapsedMilliseconds;
+
+            return cryptoSoft.ExitCode;
+        }
+
+
         //*********** Part Log
 
         /// <summary>
@@ -177,35 +198,16 @@ namespace EazySave_Master.Model
         /// <param name="sourcePath"></param>
         /// <param name="targetPath"></param>
         /// <returns>time in double</returns>
-        private double CalculateTransferTime(string sourcePath, string targetPath, List<string> encryptList, string encryptKey)
+        private double CalculateTransferTime(string sourcePath, string targetPath, List<string> encryptList, string encryptKey, out long totalEncryptionTime)
         {
             DateTime startTime = DateTime.Now;
-            CopyDirectory(sourcePath, targetPath, encryptList, encryptKey);
+            CopyDirectory(sourcePath, targetPath, encryptList, encryptKey, out totalEncryptionTime);
             DateTime endTime = DateTime.Now;
             TimeSpan transferDuration = endTime - startTime;
             double transferTimeMilliseconds = transferDuration.TotalMilliseconds;
 
             return transferTimeMilliseconds;
         }
-
-        /// <summary>
-        /// call CryptoSoft program to crypt a file and returns the encryption duration
-        /// </summary>
-        /// <param name="source">source path of the encrypted file</param>
-        /// <param name="dest">destination path of the encrypted file</param>
-        /// <param name="cle">XOR key used to encrypt the file</param>
-        /// <returns>encryption duration in ms, or negative number if failed</returns>
-        int ProcessCryptoSoft(string source, string dest, string cle)
-        {
-            Process cryptoSoft = new Process();
-            cryptoSoft.StartInfo.FileName = "C:\\Program Files (x86)\\CryptoSoft\\CryptoSoft.exe";
-            cryptoSoft.StartInfo.Arguments = $"{source} {dest} {cle}";
-            cryptoSoft.Start();
-            cryptoSoft.WaitForExit();
-
-            return cryptoSoft.ExitCode;
-        }
-
 
     }
 }

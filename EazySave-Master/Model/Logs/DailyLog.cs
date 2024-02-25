@@ -32,6 +32,13 @@ namespace EazySave_Master.Model.Logs
         [XmlElement("time")]
         [JsonProperty("time")]
         public string TimeStamp { get; set; }
+        /// <summary>
+        ///  Encryption Time of log save
+        /// </summary>
+        [XmlElement("FileEncryptionTime")]
+        [JsonProperty("FileEncryptionTime")]
+        public int EncryptionTime { get; set; }
+
 
         /// <summary>
         /// 
@@ -41,17 +48,19 @@ namespace EazySave_Master.Model.Logs
         /// <param name="targetPath"></param>
         /// <param name="fileSize"></param>
         /// <param name="transferTime"></param>
-        public DailyLog(string name,string sourcePath,string targetPath,long fileSize,double transferTime)
+        public DailyLog(string name, string sourcePath, string targetPath, long fileSize, double transferTime, int encryptionTime)
         {
             TimeStamp = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             BackupName = name;
-            this.SourcePath = sourcePath;
-            this.DestPath = targetPath;
-            this.FileSize = fileSize;
-            this.TransferTime = transferTime;
+            SourcePath = sourcePath;
+            DestPath = targetPath;
+            FileSize = fileSize;
+            TransferTime = transferTime;
+            EncryptionTime = encryptionTime; 
         }
 
-        public DailyLog(Save save)
+
+        public DailyLog(Save save, int encryptionTime)
         {
             this.TimeStamp = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             this.BackupName = save.name;
@@ -59,6 +68,7 @@ namespace EazySave_Master.Model.Logs
             this.DestPath = save.targetPath;
             this.FileSize = Folder.GetTotalFileSize(save.sourceRepo.path);
             this.TransferTime = 0; 
+            this.EncryptionTime = encryptionTime; 
         }
 
         public DailyLog()
