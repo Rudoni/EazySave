@@ -75,12 +75,12 @@ namespace EazySave_Master.Model
             TypeFileLogs type;
             switch (logExtension)
             {
-                case 1:
+                case (int)EnumEasySaves.LogFormat.Json:
                     {
                         type = new JSONLogs();
                         break;
                     }
-                case 2:
+                case (int)EnumEasySaves.LogFormat.Xml:
                     {
                         type = new XMLLogs();
                         break;

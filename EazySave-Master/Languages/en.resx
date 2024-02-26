@@ -117,67 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BackTwo" xml:space="preserve">
-    <value>3. Back</value>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
   </data>
-  <data name="ChangeLanguage" xml:space="preserve">
-    <value>1. Change language</value>
-  </data>
-  <data name="ChangeLogExtension" xml:space="preserve">
-    <value>2. Change log extension files</value>
-  </data>
-  <data name="Check" xml:space="preserve">
-    <value>Enter a valid number</value>
-  </data>
-  <data name="CheckSave" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="Choices" xml:space="preserve">
-    <value>Do you want to create a new save or start an existing one?</value>
-  </data>
-  <data name="ChooseLanguage" xml:space="preserve">
-    <value>Choose language :</value>
-  </data>
-  <data name="CodeLanguage" xml:space="preserve">
-    <value>Code Language : </value>
-  </data>
-  <data name="Complete" xml:space="preserve">
-    <value>1. Complete Save</value>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
   </data>
   <data name="CreateSave" xml:space="preserve">
-    <value>1. Create new save</value>
+    <value>Create save</value>
   </data>
-  <data name="DefaultLanguage" xml:space="preserve">
-    <value>Default Language :  </value>
+  <data name="CryptingFile" xml:space="preserve">
+    <value>Crypting file</value>
   </data>
-  <data name="DestPath" xml:space="preserve">
-    <value>Enter the save destination path</value>
+  <data name="DifferentialSave" xml:space="preserve">
+    <value>Differential</value>
   </data>
-  <data name="Differential" xml:space="preserve">
-    <value>2. Sauvegarde Differentielle</value>
+  <data name="EncryptionKey" xml:space="preserve">
+    <value>Encryption Key</value>
   </data>
-  <data name="EnterName" xml:space="preserve">
-    <value>Enter the save name</value>
+  <data name="FileExtension" xml:space="preserve">
+    <value>File Extension</value>
   </data>
-  <data name="GoSave" xml:space="preserve">
-    <value>2. Start an existing save</value>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
   </data>
-  <data name="Leave" xml:space="preserve">
-    <value>4. Quit</value>
+  <data name="LogFormat" xml:space="preserve">
+    <value>Log Format</value>
   </data>
-  <data name="MainMenu" xml:space="preserve">
-    <value>Press enter to go back to the main menu</value>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="RunSave" xml:space="preserve">
+    <value>Run save</value>
   </data>
   <data name="SaveType" xml:space="preserve">
-    <value>Save type :</value>
+    <value>Save Type</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>3. Settings</value>
+    <value>Settings</value>
   </data>
   <data name="SourcePath" xml:space="preserve">
-    <value>Enter the save source path</value>
+    <value>Source Path</value>
   </data>
-  <data name="Welcome" xml:space="preserve">
-    <value>Welcome to </value>
+  <data name="TargetPath" xml:space="preserve">
+    <value>Target Path</value>
+  </data>
+  <data name="TotalSave" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,6 +27,8 @@ namespace EazySave_Master.View
         {
             InitializeComponent();
             this.m = m;
+            updateContent();
+
         }
 
         private void Button_Click_CreateSave(object sender, RoutedEventArgs e)
@@ -43,5 +46,14 @@ namespace EazySave_Master.View
         {
             m.view(EnumEasySaves.ViewNames.Settings);
         }
+
+        public void updateContent()
+        {
+            ResourceManager rm = this.m.mv.resourceManager;
+            createSaveButton.Content = rm.GetString("CreateSave");
+            runSaveButton.Content = rm.GetString("RunSave");
+            settingsButton.Content = rm.GetString("Settings");
+        }
+
     }
 }

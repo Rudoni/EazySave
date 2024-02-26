@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using System.Globalization;
+using System.Reflection;
+using System.Resources;
+using System.Text;
 using System.Windows;
 
 namespace EazySave_Master.View
@@ -19,9 +22,11 @@ namespace EazySave_Master.View
 
         public MainWindow()
         {
+
             const string appName = "EazySave_Master";
             bool createdNew;
 
+            
             mutex = new Mutex(true, appName, out createdNew);
 
             if (!createdNew)
@@ -44,19 +49,26 @@ namespace EazySave_Master.View
             switch (page)
             {
                 case EnumEasySaves.ViewNames.Menu:
+                    viewMainWindow.updateContent();
                     this.Content = viewMainWindow;
+                    
                     break;
                 case EnumEasySaves.ViewNames.CreateSaves:
+                    createSave.updateContent();
                     this.Content = createSave;
                     break;
                 case EnumEasySaves.ViewNames.Settings:
+                    settings.updateContent();
                     this.Content = settings;
                     break;
                 case EnumEasySaves.ViewNames.RunSaves:
+                    runsaves.updateContent();
                     this.Content = runsaves;
                     break;
             }
         }
+
+        
 
 
     }

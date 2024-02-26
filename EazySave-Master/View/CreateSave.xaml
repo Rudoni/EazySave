@@ -11,48 +11,48 @@
         <Frame x:Name="CreatSave" NavigationUIVisibility="Hidden" />
 
         <!-- Name -->
-        <Label  Content="Name" Margin="73,40,583,382" />
+        <Label x:Name="nameLabel" Content="Name" Margin="73,40,583,382" />
           <TextBox x:Name="Name" TextWrapping="Wrap" Text="" Margin="73,73,470,354" TextChanged="Name_TextChanged"/>
 
         <!-- Source Path -->
-        <Label Content="Source Path" Margin="73,101,583,321"/>
-        <Button x:Name="path" Content="path"  Click="path_Click" Margin="330,129,417,298" />
+        <Label x:Name="sourcePathLabel" Content="Source Path" Margin="73,101,583,321"/>
+        <Button x:Name="path" Content="..."  Click="path_Click" Margin="330,129,444,298" />
         <TextBox x:Name="SourcePath" TextWrapping="Wrap" Text="" Margin="73,129,470,298" TextChanged="Source_TextChanged"/>
         
 
         <!-- Destination Path -->
-        <Label Content="Destination Path" Margin="73,157,583,265"/>
-        <Button x:Name="DestPath" Content="path"  Click="path2_Click" Margin="330,190,417,237" />
+        <Label x:Name="targetPathLabel" Content="Target Path" Margin="73,157,583,265"/>
+        <Button x:Name="DestPath" Content="..."  Click="path2_Click" Margin="330,190,444,237" />
         <TextBox x:Name="DestinationPath" TextWrapping="Wrap" Text="" Margin="73,190,470,237" TextChanged="Destination_TextChanged"/>
 
         <!-- Type -->
-        <Label Content="Save Type" Margin="73,223,583,199"/>
-            <RadioButton x:Name="Total" Content="Total" Margin="73,251,470,180" Checked="Type_Checked"/>
-            <RadioButton x:Name="Differential" Content="Differential" Margin="73,270,470,159" Checked="Type_Checked"/>
+        <Label x:Name="saveTypeLabel" Content="Save Type" Margin="73,223,583,199"/>
+            <RadioButton x:Name="totalRB" Content="Total" Margin="73,251,470,180" Checked="Type_Checked"/>
+            <RadioButton x:Name="differentialRB" Content="Differential" Margin="73,270,470,159" Checked="Type_Checked"/>
 
 
         <!-- Crypting (option) -->
         <Grid>
-            <Label Content="Crypting File" Margin="73,291,583,131"/>
-            <RadioButton x:Name="Yes" Content="Yes" Margin="73,319,470,112" Checked="Crypting_Checked"/>
-            <RadioButton x:Name="No" Content="No" Margin="73,338,470,91" Checked="Crypting_Checked"/>
+            <Label x:Name="cryptingFileLabel" Content="Crypting File" Margin="73,291,583,131"/>
+            <RadioButton x:Name="yesRB" Content="Yes" Margin="73,319,470,112" Checked="Crypting_Checked"/>
+            <RadioButton x:Name="noRB" Content="No" Margin="73,338,470,91" Checked="Crypting_Checked"/>
         </Grid>
 
         <!-- Extention Crypting -->
-        <Label x:Name="FileExtentionName" Content="File Extention" Margin="482,45,174,377" Visibility="Hidden"/>
+        <Label x:Name="fileExtensionLabel" Content="File Extention" Margin="482,45,174,377" Visibility="Hidden"/>
         <TextBox x:Name="InputTextBox" Margin="482,73,65,327"  Visibility="Hidden"/>
-        <Button x:Name="Add" Content="Add" Click="AddExtentionButton_Click" Margin="482,138,255,279" Visibility="Hidden"/>
+        <Button x:Name="addButton" Content="Add" Click="AddExtentionButton_Click" Margin="482,138,255,279" Visibility="Hidden"/>
         <ListBox x:Name="ItemsListBox" Margin="482,190,65,159" Visibility="Hidden"/>
-        <Label  x:Name="EncryptionKeyName" Content="EncryptionKey" Margin="482,296,174,126" Visibility="Hidden" />
+        <Label  x:Name="encryptionKeyLabel" Content="EncryptionKey" Margin="482,296,174,126" Visibility="Hidden" />
         <TextBox x:Name="EncryptionKey" TextWrapping="Wrap" Text="" Margin="482,329,65,98" TextChanged="Key_TextChanged" Visibility="Hidden"/>
 
         <!-- Encryption Key -->
 
         <!-- End -->
 
-        <Button x:Name="CreateSaveButton" Content="Create Save"  Click="CreateSave_Click" Margin="342,364,342,46" />
+        <Button x:Name="createSaveButton" Content="Create Save"  Click="CreateSave_Click" Margin="330,366,330,44" />
 
-        <Button x:Name="Back" Content="Back"  Click="Back_Click" Margin="10,10,746,421" />
+        <Button x:Name="backButton" Content="Back"  Click="Back_Click" Margin="10,10,746,421" />
 
 
     </Grid>
