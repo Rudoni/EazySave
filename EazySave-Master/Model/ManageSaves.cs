@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace EazySave_Master.Model
 {
-    class ManageSaves
+    public class ManageSaves
     {
 
         // Enum extension logs

@@ -31,7 +31,7 @@ namespace EazySave_Master.View
         {
             InitializeComponent();
             this.m = mainWindow;
-            //ListOfSaves.Items.Add();
+            DataContext = m.mv.GetListSaves();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

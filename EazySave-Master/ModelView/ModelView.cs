@@ -6,9 +6,9 @@ namespace EazySave_Master.ModelView
     /// <summary>
     /// ViewModel between the view and model ManageSaves
     /// </summary>
-    internal class ModelView
+    public class ModelView
     {
-        public ManageSaves saves;
+        public ManageSaves saves {set; get; }
 
   
         private static ModelView _instance;
@@ -63,6 +63,15 @@ namespace EazySave_Master.ModelView
         {
              saves.RunSaves(numbersUser);
        
+        }
+
+        /// <summary>
+        /// return the list of saves
+        /// </summary>
+        /// <returns></returns>
+        public List<Save> GetListSaves() 
+        {
+            return saves.saves;
         }
 
     }

@@ -1,22 +1,5 @@
 ﻿using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Configuration;
-using System.Data;
-using System.Globalization;
-using System.Resources;
-using System.Reflection;
-using EazySave_Master.Model;
-using System;
-using EazySave_Master.View;
-using Newtonsoft.Json.Bson;
 
 namespace EazySave_Master.View
 {
@@ -29,7 +12,7 @@ namespace EazySave_Master.View
         CreateSave createSave;
         Settings settings;
         RunSave runsaves;
-        ModelView.ModelView mv = ModelView.ModelView.Instance;
+        public ModelView.ModelView mv { set; get; } = ModelView.ModelView.Instance;
         ViewMainWindow viewMainWindow;
 
         private static Mutex mutex = null;
