@@ -59,7 +59,7 @@ namespace EazySave_Master.Model
         public async Task RunSaves(string numbers)
         {
             List<int> listN = GetNumbersToExecute(numbers);
-            var tasks = saves.Where(save => listN.Contains(save.number) && !IsSpecSoftwareRunning("devenv.exe"))
+            var tasks = saves.Where(save => listN.Contains(save.number) && !IsSpecSoftwareRunning("msedge.exe"))
                              .Select(save => save.ExecuteSave());
 
             await Task.WhenAll(tasks);
