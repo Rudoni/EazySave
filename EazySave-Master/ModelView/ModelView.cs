@@ -94,31 +94,64 @@ namespace EazySave_Master.ModelView
         /// write the saves into file
         /// </summary>
         public void WriteSavesToFile()
-        {/*
-            //string json = JsonConvert.SerializeObject(GetListSaves(), Formatting.Indented);
-            //File.WriteAllText(GetCompleteRootPathSaves(), json);
-            string json = System.Text.Json.JsonSerializer.Serialize(saves.saves, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(GetCompleteRootPathSaves(), json);
-        */}
+        {
+            using (StreamWriter writer = new StreamWriter(GetCompleteRootPathSaves()))
+            {
+                foreach (Save save in saves.saves)
+                {
+                    string line = $"{save.number},{save.name},{save.sourceRepo.path},{save.targetPath},{string.Join(";", save.encryptList)},{save.encryptKey},{save.GetType().FullName}";
+                    writer.WriteLine(line);
+                }
+            }
+        }
 
         /// <summary>
         /// load the saves from the file
         /// </summary>
         public void LoadSavesFromFile()
         {
-                /*
-            if (File.Exists(GetCompleteRootPathSaves()))
+            string filePath = GetCompleteRootPathSaves();
+
+            if (File.Exists(filePath))
             {
-                // Lire le contenu du fichier JSON et le désérialiser en une liste d'items
-                string json = File.ReadAllText(GetCompleteRootPathSaves());
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        // tab from line
+                        string[]? saveData = reader.ReadLine()?.Split(',');
 
-                List<Save> concreteSaves = JsonConvert.DeserializeObject<List<Save>>(json);
+                        if (saveData != null && saveData.Length == 7)
+                        {
+                            // create a save from the values
+                            Save save = CreateSaveInstance(saveData);
 
-                // Convertir la liste de ConcreteSave en ObservableCollection<Save>
-                saves.saves = new List<Save>(concreteSaves.Cast<Save>());
+                            saves.addSave(save);
+                        }
+                    }
+                }
             }
-                */
         }
+
+        private Save CreateSaveInstance(string[] saveData)
+        {
+            int number = int.Parse(saveData[0]);
+            string name = saveData[1];
+            string sourceRepoPath = saveData[2];
+            string targetPath = saveData[3];
+            List<string> encryptList = saveData[4].Split(';').ToList();
+            string encryptKey = saveData[5];
+            string saveType = saveData[6];
+
+            // Utilisez le type de la save pour créer une instance concrète
+            Type type = Type.GetType(saveType);
+            Save save = (Save)Activator.CreateInstance(type, name, sourceRepoPath, targetPath, encryptList, encryptKey);
+            save.setNumber(number);
+
+            return save;
+        }
+
+
 
         private string GetCompleteRootPathSaves()
         {
@@ -131,7 +164,7 @@ namespace EazySave_Master.ModelView
                 Directory.CreateDirectory(pathToFile);
             }
             //name of file with extension
-            string completeNameFile = "Saves.json";
+            string completeNameFile = "Saves.csv";
             // concat full path
             return Path.Combine(pathToFile, completeNameFile);
         }
