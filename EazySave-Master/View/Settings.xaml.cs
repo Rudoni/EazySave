@@ -31,7 +31,7 @@ namespace EazySave_Master.View
         /// </summary>
         public Settings(MainWindow m)
         {
-            
+
             InitializeComponent();
             this.m = m;
             this.rm = m.mv.resourceManager;
@@ -60,22 +60,8 @@ namespace EazySave_Master.View
         {
 
             m.mv.updateResourceLang(((ComboBoxItem)e.AddedItems[0]).Content.ToString().Substring(0, 2).ToLower());
-            
+
             updateContent();
-
-        }
-
-        /// <summary>
-        /// Reloads the language resources call and the components of the view
-        /// </summary>
-        public void updateContent()
-        {
-
-            this.rm = m.mv.resourceManager;
-            settingsTitle.Content = rm.GetString("Settings");
-            backButton.Content = rm.GetString("Back");
-            languageLabel.Content = rm.GetString("Language");
-            logFormatLabel.Content = rm.GetString("LogFormat");
 
         }
 
@@ -87,8 +73,45 @@ namespace EazySave_Master.View
 
             ComboBoxItem selectedItem = (ComboBoxItem)logComboBox.SelectedItem;
 
-            m.mv.UpdateExtensionLog(logComboBox.Items.IndexOf(selectedItem)+1);
-            
+            m.mv.UpdateExtensionLog(logComboBox.Items.IndexOf(selectedItem) + 1);
+
         }
+
+        /// <summary>
+        /// Called when the addButton component is pressed
+        /// </summary>
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(PriorityFileTxtBox.Text))
+            {
+                PriorityFileListTxtBox.Items.Add("." + PriorityFileTxtBox.Text);
+                m.priorityList.Add("." + PriorityFileTxtBox.Text);
+                PriorityFileTxtBox.Clear();
+                PriorityFileListTxtBox.Focus();
+            }
+        }
+
+
+        /// <summary>
+        /// Reloads the language resources call and the components of the view
+        /// </summary>
+        public void updateContent()
+        {
+
+            this.rm = m.mv.resourceManager;
+            settingsTitle.Content = rm.GetString("Settings");
+            backButton.Content = rm.GetString("Back");
+            addButton.Content = rm.GetString("Add");
+            languageLabel.Content = rm.GetString("Language");
+            logFormatLabel.Content = rm.GetString("LogFormat");
+            priorityFileExtensionLabel.Content = rm.GetString("PriorityFileExtension");
+            maximumSizeLabel.Content = rm.GetString("MaxSimultaneousSize");
+            KiloBytesLabel.Content = rm.GetString("KiloBytes");
+            
+
+
+        }
+
+
     }
 }
