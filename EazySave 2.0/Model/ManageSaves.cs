@@ -62,21 +62,32 @@ namespace EazySave_Master.Model
         /// launch all the saves from the list by his numbers (if string numbers OK)
         /// </summary>
         /// <param name="numbers"></param>
-        public async Task RunSaves(string numbers)
+        public void RunSaves(string numbers)
         {
             List<int> listN = GetNumbersToExecute(numbers);
-            var tasks = saves.Where(save => listN.Contains(save.number) && !IsSpecSoftwareRunning("msedge.exe"))
-                             .Select(save => save.ExecuteSave());
-
-            await Task.WhenAll(tasks);
-
+            foreach (var save in saves)
+            {
+                if (listN.Contains(save.number) && !IsSpecSoftwareRunning("devenv.exe"))
+                {
+                    RealTimeLog realTimeLog = new RealTimeLog();
+                    long encryptionTime = 0;
+                    bool res = save.ExecuteSave(out encryptionTime);
+                    //create log from save data
+                    if (res)
+                    {
+                        realTimeLog.MaJFromSave(save);
+                        dailyLogs.AddLog(new DailyLog(save, encryptionTime));
+                        rtLogs.AddLog(realTimeLog);
+                        realTimeLog.saveFinished();
+                    }
+                }
+            }
             RunLogs();
         }
-
-        /// <summary>
-        /// run the logs from the type (ex:XML,JSON)
-        /// </summary>
-        private void RunLogs()
+            /// <summary>
+            /// run the logs from the type (ex:XML,JSON)
+            /// </summary>
+            private void RunLogs()
         {
             TypeFileLogs type;
             switch (logExtension)
