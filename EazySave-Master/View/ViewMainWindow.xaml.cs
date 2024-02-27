@@ -23,6 +23,10 @@ namespace EazySave_Master.View
     {
 
         MainWindow m;
+
+        /// <summary>
+        /// default constructor
+        /// </summary>
         public ViewMainWindow(MainWindow m)
         {
             InitializeComponent();
@@ -31,22 +35,34 @@ namespace EazySave_Master.View
 
         }
 
+        /// <summary>
+        /// Called when the CreateSaveButton component is pressed 
+        /// </summary>
         private void Button_Click_CreateSave(object sender, RoutedEventArgs e)
         {
             m.view(EnumEasySaves.ViewNames.CreateSaves);
 
         }
 
+        /// <summary>
+        /// Called when the RunSavebutton component is pressed 
+        /// </summary>
         private void Button_Click_RunSave(object sender, RoutedEventArgs e)
         {
             m.view(EnumEasySaves.ViewNames.RunSaves);
         }
 
+        /// <summary>
+        /// Called when the SettingsButton component is pressed 
+        /// </summary>
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             m.view(EnumEasySaves.ViewNames.Settings);
         }
 
+        /// <summary>
+        /// Reloads the language resources call and the components of the view
+        /// </summary>
         public void updateContent()
         {
             ResourceManager rm = this.m.mv.resourceManager;

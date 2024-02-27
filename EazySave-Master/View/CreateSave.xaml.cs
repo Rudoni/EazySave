@@ -27,6 +27,10 @@ namespace EazySave_Master.View
 
         MainWindow m;
         List<string> encryptList = new List<string>();
+
+        /// <summary>
+        /// default constructor
+        /// </summary>
         public CreateSave(MainWindow m)
         {
             InitializeComponent();
@@ -34,28 +38,40 @@ namespace EazySave_Master.View
             this.m = m;
 
         }
-        // We can only create save if all fields filled
+
+        /// <summary>
+        /// Enable the createSaveButton component when all mandatory fields are filled
+        /// </summary>
         private void ValidateInputs()
         {
-            bool isAllFieldsFilled = !string.IsNullOrWhiteSpace(Name.Text) &&
-                                     !string.IsNullOrWhiteSpace(SourcePath.Text) &&
-                                     !string.IsNullOrWhiteSpace(DestinationPath.Text) &&
+            bool isAllFieldsFilled = !string.IsNullOrWhiteSpace(NameTxtBox.Text) &&
+                                     !string.IsNullOrWhiteSpace(SourcePathTxtBox.Text) &&
+                                     !string.IsNullOrWhiteSpace(DestinationPathTxtBox.Text) &&
                                      (totalRB.IsChecked == true || differentialRB.IsChecked == true);
 
             
             createSaveButton.IsEnabled = isAllFieldsFilled;
         }
 
+        /// <summary>
+        /// Called when the NameTxtBox component content has changed
+        /// </summary>
         private void Name_TextChanged(object sender, TextChangedEventArgs e)
         {
             ValidateInputs();
         }
 
+        /// <summary>
+        /// Called when the KeyTxtBox component content has changed
+        /// </summary>
         private void Key_TextChanged(object sender, TextChangedEventArgs e)
         {
            
         }
 
+        /// <summary>
+        /// Called when totalRB or differentialRB component has been checked
+        /// </summary>
         private void Type_Checked(object sender, RoutedEventArgs e)
         {
             if (sender == totalRB)
@@ -69,26 +85,38 @@ namespace EazySave_Master.View
             ValidateInputs();
         }
 
+        /// <summary>
+        /// Called when the SourcePathTxtBox component content has changed
+        /// </summary>
         private void Source_TextChanged(object sender, TextChangedEventArgs e)
         {
             ValidateInputs();
         }
 
+        /// <summary>
+        /// Called by path_Click methode to open the explorer window
+        /// </summary>
         private void OpenFolderSource()
         {
             var dialog = new VistaFolderBrowserDialog();
             if (dialog.ShowDialog() == true)
             {
                 string selectedPath = dialog.SelectedPath;
-                SourcePath.Text = selectedPath;
+                SourcePathTxtBox.Text = selectedPath;
             }
         }
+
+        /// <summary>
+        /// Called when the sourcePathButton component is pressed 
+        /// </summary>
         private void path_Click(object sender, RoutedEventArgs e)
         {
             OpenFolderSource();
         }
 
-
+        /// <summary>
+        /// Called when the DestinationPathTxtBox component content has changed
+        /// </summary>
         private void Destination_TextChanged(object sender, TextChangedEventArgs e)
         {
             ValidateInputs();
@@ -100,57 +128,69 @@ namespace EazySave_Master.View
             if (dialog.ShowDialog() == true)
             {
                 string selectedPath = dialog.SelectedPath;
-                DestinationPath.Text = selectedPath;
+                DestinationPathTxtBox.Text = selectedPath;
             }
         }
 
+        /// <summary>
+        /// Called when the destinationPathButton component content has changed
+        /// </summary>
         private void path2_Click(object sender, RoutedEventArgs e)
         {
             OpenFolderDest();
         }
 
+        /// <summary>
+        /// Called when yesRB or noRB component has been checked
+        /// </summary>
         private void Crypting_Checked(object sender, RoutedEventArgs e)
         {
             if (sender == yesRB)
             {
                 noRB.IsChecked = false;
                 fileExtensionLabel.Visibility = Visibility.Visible;
-                InputTextBox.Visibility = Visibility.Visible;
+                InputTxtBox.Visibility = Visibility.Visible;
                 addButton.Visibility = Visibility.Visible;
-                ItemsListBox.Visibility = Visibility.Visible;
+                ItemsListTxtBox.Visibility = Visibility.Visible;
                 encryptionKeyLabel.Visibility = Visibility.Visible;
-                EncryptionKey.Visibility = Visibility.Visible;
+                EncryptionKeyTxtBox.Visibility = Visibility.Visible;
             }
             else if (sender == noRB)
             {
                 yesRB.IsChecked = false;
                 fileExtensionLabel.Visibility = Visibility.Hidden;
-                InputTextBox.Visibility = Visibility.Hidden;
+                InputTxtBox.Visibility = Visibility.Hidden;
                 addButton.Visibility = Visibility.Hidden;
-                ItemsListBox.Visibility = Visibility.Hidden;
+                ItemsListTxtBox.Visibility = Visibility.Hidden;
                 encryptionKeyLabel.Visibility = Visibility.Hidden;
-                EncryptionKey.Visibility = Visibility.Hidden;
+                EncryptionKeyTxtBox.Visibility = Visibility.Hidden;
             }
         }
 
-        private void AddExtentionButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Called when the addButton component is pressed
+        /// </summary>
+        private void AddExtensionButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(InputTextBox.Text))
+            if (!string.IsNullOrWhiteSpace(InputTxtBox.Text))
             {
-                ItemsListBox.Items.Add("." + InputTextBox.Text);
-                encryptList.Add("." + InputTextBox.Text);
-                InputTextBox.Clear();
-                InputTextBox.Focus(); 
+                ItemsListTxtBox.Items.Add("." + InputTxtBox.Text);
+                encryptList.Add("." + InputTxtBox.Text);
+                InputTxtBox.Clear();
+                InputTxtBox.Focus(); 
             }
         }
 
+        /// <summary>
+        /// Called when the createSaveButton component is pressed
+        /// </summary>
         private void CreateSave_Click(object sender, RoutedEventArgs e)
         {
-            string name = Name.Text;
-            string sourcePath = SourcePath.Text;
-            string destinationPath = DestinationPath.Text;
+            string name = NameTxtBox.Text;
+            string sourcePath = SourcePathTxtBox.Text;
+            string destinationPath = DestinationPathTxtBox.Text;
             
-            string encryptKey = EncryptionKey.Text;
+            string encryptKey = EncryptionKeyTxtBox.Text;
             string type;
             if(totalRB.IsChecked == true) { type = "1"; }
             else { type = "2"; }
@@ -162,11 +202,17 @@ namespace EazySave_Master.View
 
         }
 
+        /// <summary>
+        /// Called when the backButton component is pressed
+        /// </summary>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             m.view(EnumEasySaves.ViewNames.Menu);
         }
 
+        /// <summary>
+        /// Reloads the language resources call and the components of the view
+        /// </summary>
         public void updateContent()
         {
 

@@ -94,13 +94,17 @@ namespace EazySave_Master.ModelView
             return saves.saves;
         }
 
+        /// <summary>
+        /// Update the current ResourceManager to use the current language
+        /// </summary>
+        /// <param name="language"></param>
         public void updateResourceLang(string language)
         {
             this.resourceManager = new ResourceManager("EazySave_Master.Languages." + language, Assembly.GetExecutingAssembly());
         }
 
         /// <summary>
-        /// update the extension used for the logs
+        /// Update the extension used for the logs
         /// </summary>
         /// <param name="i"></param>
         public void UpdateExtensionLog(int i)

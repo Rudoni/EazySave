@@ -23,6 +23,9 @@ namespace EazySave_Master.View
     {
         private MainWindow m;
 
+        /// <summary>
+        /// default constructor
+        /// </summary>
         public RunSave()
         {
             InitializeComponent();
@@ -35,16 +38,25 @@ namespace EazySave_Master.View
             DataContext = m.mv.GetListSaves();
         }
 
+        /// <summary>
+        /// Called when the BackButton component is pressed
+        /// </summary>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             m.view(EnumEasySaves.ViewNames.Menu);
         }
 
+        /// <summary>
+        /// Called when the languageComboBox component selected item has changed
+        /// </summary>
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Reloads the language resources call and the components of the view
+        /// </summary>
         public void updateContent()
         {
             ResourceManager rm = m.mv.resourceManager;
