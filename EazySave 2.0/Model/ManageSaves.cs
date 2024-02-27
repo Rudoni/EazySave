@@ -45,7 +45,10 @@ namespace EazySave_Master.Model
             saves.Add(save);
         }
 
-
+        /// <summary>
+        /// delete a save from his number
+        /// </summary>
+        /// <param name="number"></param>
         public void deleteSave(int number)
         {
             for (int i = saves.Count - 1; i >= 0; i--)

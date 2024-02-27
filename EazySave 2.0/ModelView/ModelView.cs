@@ -138,6 +138,11 @@ namespace EazySave_Master.ModelView
             }
         }
 
+        /// <summary>
+        /// create an instance of save from the type and data coming from file who contain the savas
+        /// </summary>
+        /// <param name="saveData"></param>
+        /// <returns></returns>
         private Save CreateSaveInstance(string[] saveData)
         {
             int number = int.Parse(saveData[0]);
@@ -157,7 +162,11 @@ namespace EazySave_Master.ModelView
         }
 
 
-
+        /// <summary>
+        /// get the complete path for saves file
+        /// create the directories if not already exist
+        /// </summary>
+        /// <returns>Path from the root to the file who contain the saves</returns>
         private string GetCompleteRootPathSaves()
         {
             //path to the folder of logs from appdata

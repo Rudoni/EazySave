@@ -80,6 +80,8 @@ namespace EazySave_Master.Model
         /// <summary>
         /// Launch the actual save after some verifications
         /// </summary>
+        /// <param name="encryptionTime"></param>
+        /// <returns></returns>
         public bool ExecuteSave(out long encryptionTime)
         {
 
@@ -112,6 +114,9 @@ namespace EazySave_Master.Model
         /// </summary>
         /// <param name="sourcePath"></param>
         /// <param name="targetPath"></param>
+        /// <param name="encryptionList"></param>
+        /// <param name="encryptKey"></param>
+        /// <param name="totalEncryptionTime">out</param>
         private void CopyDirectory(string sourcePath, string targetPath, List<string> encryptionList, string encryptKey, out long totalEncryptionTime)
         {
             Directory.CreateDirectory(targetPath);
