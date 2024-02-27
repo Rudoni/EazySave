@@ -23,6 +23,8 @@ namespace EazySave_Master.ModelView
 
         public string lang { get; set; } = "en";
 
+
+
         public ResourceManager resourceManager { get; set; }    
        
         public static ModelView Instance
@@ -58,6 +60,15 @@ namespace EazySave_Master.ModelView
 
         }
 
+        //// Nouvelle méthode pour ajouter une extension prioritaire
+        //public void AddPriorityExtension(string extension)
+        //{
+        //    if (!PriorityExtensions.Contains(extension))
+        //    {
+        //        PriorityExtensions.Add(extension);
+        //    }
+        //}
+
         /// <summary>
         /// create an instance of save from the good type and add it to the ManageSaves
         /// </summary>
@@ -67,15 +78,15 @@ namespace EazySave_Master.ModelView
         /// <param name="typeSave"></param>
         /// <param name="encryptList"></param>
         /// <param name="encryptKey"></param>
-        public void createSave(string name, string sourceRepo, string targetPath, string typeSave, List<String> encryptList, string encryptKey)
+        public void createSave(string name, string sourceRepo, string targetPath, string typeSave, List<String> encryptList, string encryptKey, List<string> priorityList)
         {
             switch (typeSave)
             {
                 case "1":
-                    saves.addSave(new SaveTotal(name, sourceRepo, targetPath, encryptList, encryptKey));
+                    saves.addSave(new SaveTotal(name, sourceRepo, targetPath, encryptList, encryptKey, priorityList));
                     break;
                 case "2":
-                    saves.addSave(new SaveDifferential(name, sourceRepo, targetPath, encryptList, encryptKey));
+                    saves.addSave(new SaveDifferential(name, sourceRepo, targetPath, encryptList, encryptKey, priorityList));
                     break;
             }
         }

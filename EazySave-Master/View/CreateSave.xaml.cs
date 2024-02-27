@@ -195,7 +195,7 @@ namespace EazySave_Master.View
             else { type = "2"; }
 
 
-            ModelView.ModelView.Instance.createSave(name, sourcePath, destinationPath, type, m.encryptList, encryptKey);
+            ModelView.ModelView.Instance.createSave(name, sourcePath, destinationPath, type, m.encryptList, encryptKey, m.priorityList);
 
             m.view(EnumEasySaves.ViewNames.Menu);
 
