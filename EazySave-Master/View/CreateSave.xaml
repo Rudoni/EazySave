@@ -38,8 +38,8 @@
             <RadioButton x:Name="noRB" Content="No" Margin="73,338,470,91" Checked="Crypting_Checked"/>
         </Grid>
 
-        <!-- Extention Crypting -->
-        <Label x:Name="fileExtensionLabel" Content="File Extention" Margin="482,45,174,377" Visibility="Hidden"/>
+        <!-- Extension Crypting -->
+        <Label x:Name="fileExtensionLabel" Content="File Extension" Margin="482,45,174,377" Visibility="Hidden"/>
         <TextBox x:Name="InputTxtBox" Margin="482,73,65,327"  Visibility="Hidden"/>
         <Button x:Name="addButton" Content="Add" Click="AddExtensionButton_Click" Margin="482,138,255,279" Visibility="Hidden"/>
         <ListBox x:Name="ItemsListTxtBox" Margin="482,190,65,159" Visibility="Hidden"/>

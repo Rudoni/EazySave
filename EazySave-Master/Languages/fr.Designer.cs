@@ -70,6 +70,15 @@ namespace EazySave_Master.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Application déjà en cours d&apos;exécution.
+        /// </summary>
+        internal static string AppAlreadyRunning {
+            get {
+                return ResourceManager.GetString("AppAlreadyRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Retour.
         /// </summary>
         internal static string Back {
@@ -124,6 +133,15 @@ namespace EazySave_Master.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ko.
+        /// </summary>
+        internal static string KiloBytes {
+            get {
+                return ResourceManager.GetString("KiloBytes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Langue.
         /// </summary>
         internal static string Language {
@@ -142,6 +160,15 @@ namespace EazySave_Master.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Taille Max Simultanée.
+        /// </summary>
+        internal static string MaxSimultaneousSize {
+            get {
+                return ResourceManager.GetString("MaxSimultaneousSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Nom.
         /// </summary>
         internal static string Name {
@@ -156,6 +183,15 @@ namespace EazySave_Master.Languages {
         internal static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Extension de Fichiers Prioritaires.
+        /// </summary>
+        internal static string PriorityFileExtension {
+            get {
+                return ResourceManager.GetString("PriorityFileExtension", resourceCulture);
             }
         }
         
