@@ -1,5 +1,6 @@
 ﻿using EazySave_Master.Model.Logs;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using static System.Net.WebRequestMethods;
@@ -12,24 +13,7 @@ namespace EazySave_Master.Model
     public abstract class Save
     {
 
-        /// <returns>Liste des extensions prioritaires</returns>
-        public List<string> GetPriorityExtensions()
-        {
-            List<string> priorityExtensions = new List<string>();
-
-            // Parcours de la liste des extensions prioritaires dans la classe Save
-            foreach (string extension in encryptList)
-            {
-                // Vérification si l'extension est prioritaire
-                if (ModelView.ModelView.Instance.PriorityExtensions.Contains(extension))
-                {
-                    priorityExtensions.Add(extension);
-                }
-            }
-
-            return priorityExtensions;
-        }
-
+        ObservableCollection<string> PriorityExtensions = ModelView.ModelView.Instance.PriorityExtensions;
 
 
         /// <summary>
@@ -119,7 +103,7 @@ namespace EazySave_Master.Model
         /// </summary>
         /// <param name="sourcePath"></param>
         /// <param name="targetPath"></param>
-        private void CopyDirectory(string sourcePath, string targetPath, List<string> encryptionList, string encryptKey, out long totalEncryptionTime)
+        private void CopyDirectory(string sourcePath, string targetPath, List<string> encryptionList, string encryptKey, out long totalEncryptionTime, List<string> PriorityExtensions)
         {
             Directory.CreateDirectory(targetPath);
 
