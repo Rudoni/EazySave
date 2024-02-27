@@ -37,7 +37,7 @@ namespace EazySave_Master.Model.Logs
         /// </summary>
         [XmlElement("FileEncryptionTime")]
         [JsonProperty("FileEncryptionTime")]
-        public int EncryptionTime { get; set; }
+        public long EncryptionTime { get; set; }
 
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace EazySave_Master.Model.Logs
         }
 
 
-        public DailyLog(Save save, int encryptionTime)
+        public DailyLog(Save save, long encryptionTime)
         {
             this.TimeStamp = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             this.BackupName = save.name;
