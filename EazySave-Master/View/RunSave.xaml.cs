@@ -24,6 +24,9 @@ namespace EazySave_Master.View
     {
         private MainWindow m;
 
+        /// <summary>
+        /// default constructor
+        /// </summary>
         public RunSave()
         {
             InitializeComponent();
@@ -36,16 +39,25 @@ namespace EazySave_Master.View
             DataContext = m.mv.GetListSaves();
         }
 
+        /// <summary>
+        /// Called when the BackButton component is pressed
+        /// </summary>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             m.view(EnumEasySaves.ViewNames.Menu);
         }
 
+        /// <summary>
+        /// Called when the languageComboBox component selected item has changed
+        /// </summary>
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Called when the ExecuteButton component is pressed
+        /// </summary>
         private void ExecuteButton_Click(object sender, RoutedEventArgs e)
         {
             // get number of save

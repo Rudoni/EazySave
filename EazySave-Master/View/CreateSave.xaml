@@ -12,18 +12,18 @@
 
         <!-- Name -->
         <Label x:Name="nameLabel" Content="Name" Margin="73,40,583,382" />
-          <TextBox x:Name="Name" TextWrapping="Wrap" Text="" Margin="73,73,470,354" TextChanged="Name_TextChanged"/>
+          <TextBox x:Name="NameTxtBox" TextWrapping="Wrap" Text="" Margin="73,73,470,354" TextChanged="Name_TextChanged"/>
 
         <!-- Source Path -->
         <Label x:Name="sourcePathLabel" Content="Source Path" Margin="73,101,583,321"/>
-        <Button x:Name="path" Content="..."  Click="path_Click" Margin="330,129,444,298" />
-        <TextBox x:Name="SourcePath" TextWrapping="Wrap" Text="" Margin="73,129,470,298" TextChanged="Source_TextChanged"/>
+        <Button x:Name="sourcePathButton" Content="..."  Click="path_Click" Margin="330,129,444,298" />
+        <TextBox x:Name="SourcePathTxtBox" TextWrapping="Wrap" Text="" Margin="73,129,470,298" TextChanged="Source_TextChanged"/>
         
 
         <!-- Destination Path -->
         <Label x:Name="targetPathLabel" Content="Target Path" Margin="73,157,583,265"/>
-        <Button x:Name="DestPath" Content="..."  Click="path2_Click" Margin="330,190,444,237" />
-        <TextBox x:Name="DestinationPath" TextWrapping="Wrap" Text="" Margin="73,190,470,237" TextChanged="Destination_TextChanged"/>
+        <Button x:Name="destPathButton" Content="..."  Click="path2_Click" Margin="330,190,444,237" />
+        <TextBox x:Name="DestinationPathTxtBox" TextWrapping="Wrap" Text="" Margin="73,190,470,237" TextChanged="Destination_TextChanged"/>
 
         <!-- Type -->
         <Label x:Name="saveTypeLabel" Content="Save Type" Margin="73,223,583,199"/>
@@ -40,11 +40,11 @@
 
         <!-- Extention Crypting -->
         <Label x:Name="fileExtensionLabel" Content="File Extention" Margin="482,45,174,377" Visibility="Hidden"/>
-        <TextBox x:Name="InputTextBox" Margin="482,73,65,327"  Visibility="Hidden"/>
-        <Button x:Name="addButton" Content="Add" Click="AddExtentionButton_Click" Margin="482,138,255,279" Visibility="Hidden"/>
-        <ListBox x:Name="ItemsListBox" Margin="482,190,65,159" Visibility="Hidden"/>
+        <TextBox x:Name="InputTxtBox" Margin="482,73,65,327"  Visibility="Hidden"/>
+        <Button x:Name="addButton" Content="Add" Click="AddExtensionButton_Click" Margin="482,138,255,279" Visibility="Hidden"/>
+        <ListBox x:Name="ItemsListTxtBox" Margin="482,190,65,159" Visibility="Hidden"/>
         <Label  x:Name="encryptionKeyLabel" Content="EncryptionKey" Margin="482,296,174,126" Visibility="Hidden" />
-        <TextBox x:Name="EncryptionKey" TextWrapping="Wrap" Text="" Margin="482,329,65,98" TextChanged="Key_TextChanged" Visibility="Hidden"/>
+        <TextBox x:Name="EncryptionKeyTxtBox" TextWrapping="Wrap" Text="" Margin="482,329,65,98" TextChanged="Key_TextChanged" Visibility="Hidden"/>
 
         <!-- Encryption Key -->
 

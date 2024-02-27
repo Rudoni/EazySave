@@ -20,6 +20,9 @@ namespace EazySave_Master.View
 
         private static Mutex mutex = null;
 
+        /// <summary>
+        /// default constructor
+        /// </summary>
         public MainWindow()
         {
 
@@ -60,6 +63,10 @@ namespace EazySave_Master.View
             mv.WriteSavesToFile();
         }
 
+        /// <summary>
+        /// Called to change the current view and to reload its components
+        /// </summary>
+        /// <param name="page"></param>
         public void view(EnumEasySaves.ViewNames page)
         {
             switch (page)
