@@ -23,8 +23,7 @@ namespace EazySave_Master.ModelView
 
         public string lang { get; set; } = "en";
 
-        // Nouvelle propriété pour stocker les extensions prioritaires
-        public ObservableCollection<string> PriorityExtensions { get; set; } = new ObservableCollection<string>();
+
 
         public ResourceManager resourceManager { get; set; }    
        
@@ -70,13 +69,6 @@ namespace EazySave_Master.ModelView
         //    }
         //}
 
-
-        // Nouvelle méthode pour vider la liste des extensions prioritaires
-        public void ClearPriorityExtensions()
-        {
-            PriorityExtensions.Clear();
-        }
-
         /// <summary>
         /// create an instance of save from the good type and add it to the ManageSaves
         /// </summary>
@@ -86,15 +78,15 @@ namespace EazySave_Master.ModelView
         /// <param name="typeSave"></param>
         /// <param name="encryptList"></param>
         /// <param name="encryptKey"></param>
-        public void createSave(string name, string sourceRepo, string targetPath, string typeSave, List<String> encryptList, string encryptKey)
+        public void createSave(string name, string sourceRepo, string targetPath, string typeSave, List<String> encryptList, string encryptKey, List<string> priorityList)
         {
             switch (typeSave)
             {
                 case "1":
-                    saves.addSave(new SaveTotal(name, sourceRepo, targetPath, encryptList, encryptKey));
+                    saves.addSave(new SaveTotal(name, sourceRepo, targetPath, encryptList, encryptKey, priorityList));
                     break;
                 case "2":
-                    saves.addSave(new SaveDifferential(name, sourceRepo, targetPath, encryptList, encryptKey));
+                    saves.addSave(new SaveDifferential(name, sourceRepo, targetPath, encryptList, encryptKey, priorityList));
                     break;
             }
         }

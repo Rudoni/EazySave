@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection.Metadata;
 using static System.Net.WebRequestMethods;
 
 namespace EazySave_Master.Model
@@ -12,9 +13,6 @@ namespace EazySave_Master.Model
     /// </summary>
     public abstract class Save
     {
-
-        ObservableCollection<string> PriorityExtensions = ModelView.ModelView.Instance.PriorityExtensions;
-
 
         /// <summary>
         /// number of the save (auto-incremented in ManageSaves)
@@ -44,18 +42,24 @@ namespace EazySave_Master.Model
         public string encryptKey { get; set; }
 
         /// <summary>
+        /// List of prioritary files extensions
+        /// </summary>
+        public List<string> priorityList { get; set; }
+
+        /// <summary>
         /// Default constructor, completed by user inputs
         /// number is assigned automatically in addSave of ManageSaves
         /// </summary>
         /// <param name="name"></param>
         /// <param name="sourceRepo"></param>
         /// <param name="targetPath"></param>
-        public Save(string name, string sourceRepo, string targetPath, List<string> encryptList, string encryptKey)
+        public Save(string name, string sourceRepo, string targetPath, List<string> encryptList, string encryptKey, List<string> priorityList)
         {
             this.number = 0;
             this.name = name;
             this.encryptList = encryptList;
-            this.encryptKey = encryptKey;  
+            this.encryptKey = encryptKey;
+            this.priorityList = priorityList;
             this.sourceRepo = new Folder(sourceRepo);
             this.targetPath = targetPath;
 
@@ -93,7 +97,7 @@ namespace EazySave_Master.Model
                 return false;
             }
             long totalEncryptionTime;
-            await Task.Run(() => CopyDirectory(sourcePath, targetPath, encryptList, encryptKey,out totalEncryptionTime, PriorityExtensions));
+            await Task.Run(() => CopyDirectory(sourcePath, targetPath, encryptList, encryptKey,out totalEncryptionTime, priorityList));
             Console.WriteLine($"Save n°{number}: Done.");
             return true;
         }
@@ -104,49 +108,64 @@ namespace EazySave_Master.Model
         /// </summary>
         /// <param name="sourcePath"></param>
         /// <param name="targetPath"></param>
-        private void CopyDirectory(string sourcePath, string targetPath, List<string> encryptionList, string encryptKey, out long totalEncryptionTime, ObservableCollection<string> PriorityExtensions)
+        private void CopyDirectory(string sourcePath, string targetPath, List<string> encryptionList, string encryptKey, out long totalEncryptionTime, List<string> PriorityExtensions)
         {
             Directory.CreateDirectory(targetPath);
 
             string[] filesSource = Directory.GetFiles(sourcePath);
             totalEncryptionTime = 0;
             long encryptionDuration;
+
             foreach (string filePath in filesSource)
             {
                 string fileName = Path.GetFileName(filePath);
                 string targetFilePath = Path.Combine(targetPath, fileName);
-                
 
                 if (canFileBeCopied(filePath, targetFilePath))
                 {
-                    Directory.CreateDirectory(targetPath);
-                    if (encryptionList.Contains(Path.GetExtension(filePath), StringComparer.OrdinalIgnoreCase))
+                    string fileExtension = Path.GetExtension(filePath);
+
+                    if (PriorityExtensions.Contains(fileExtension, StringComparer.OrdinalIgnoreCase))
                     {
+                        // Prioritized extension: handle with priority
                         int exitCode = ProcessCryptoSoft(filePath, targetPath, encryptKey, out encryptionDuration);
-                        if (exitCode >= 0) 
+                        if (exitCode >= 0)
                         {
                             totalEncryptionTime += encryptionDuration;
                         }
                         else
                         {
-                           //TODO
+                            // Handle failure
+                        }
+                    }
+                    else if (encryptionList.Contains(fileExtension, StringComparer.OrdinalIgnoreCase))
+                    {
+                        //Non-prioritized extension but must be encrypted.
+                        int exitCode = ProcessCryptoSoft(filePath, targetPath, encryptKey, out encryptionDuration);
+                        if (exitCode >= 0)
+                        {
+                            totalEncryptionTime += encryptionDuration;
+                        }
+                        else
+                        {
+                            // Handle failure
                         }
                     }
                     else
                     {
+                        // Non-prioritized and unencrypted extension
                         System.IO.File.Copy(filePath, targetFilePath, true);
                     }
-
                 }
             }
 
+            // Recursively process subdirectories
             string[] subDirectories = Directory.GetDirectories(sourcePath);
-
             foreach (string subDirectoryPath in subDirectories)
             {
                 string subDirectoryName = Path.GetFileName(subDirectoryPath);
                 string targetSubDirectoryPath = Path.Combine(targetPath, subDirectoryName);
-                CopyDirectory(subDirectoryPath, targetSubDirectoryPath, encryptList, encryptKey,out totalEncryptionTime, PriorityExtensions);
+                CopyDirectory(subDirectoryPath, targetSubDirectoryPath, encryptionList, encryptKey, out totalEncryptionTime, PriorityExtensions);
             }
         }
 
@@ -204,10 +223,10 @@ namespace EazySave_Master.Model
         /// <param name="sourcePath"></param>
         /// <param name="targetPath"></param>
         /// <returns>time in double</returns>
-        private double CalculateTransferTime(string sourcePath, string targetPath, List<string> encryptList, string encryptKey, out long totalEncryptionTime)
+        private double CalculateTransferTime(string sourcePath, string targetPath, List<string> encryptList, string encryptKey, out long totalEncryptionTime, List<string> priorityList)
         {
             DateTime startTime = DateTime.Now;
-            CopyDirectory(sourcePath, targetPath, encryptList, encryptKey, out totalEncryptionTime, PriorityExtensions);
+            CopyDirectory(sourcePath, targetPath, encryptList, encryptKey, out totalEncryptionTime, priorityList);
             DateTime endTime = DateTime.Now;
             TimeSpan transferDuration = endTime - startTime;
             double transferTimeMilliseconds = transferDuration.TotalMilliseconds;
