@@ -1,8 +1,13 @@
 ﻿
+using System.IO;
+
 namespace EazySave_Master
 {
     public class EnumEasySaves
     {
+
+        public const string FolderRoot = "EasySave";
+        public const string FolderLogs = FolderRoot+"\\Logs";
 
         public enum ViewNames
         {
@@ -11,6 +16,7 @@ namespace EazySave_Master
             CreateSaves=3,
             RunSaves=4
         }
+
 
     }
 }

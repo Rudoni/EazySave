@@ -1,4 +1,5 @@
 ﻿using EazySave_Master.Model.Logs;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace EazySave_Master.Model
@@ -16,7 +17,7 @@ namespace EazySave_Master.Model
         /// <summary>
         /// List of saves
         /// </summary>
-        public List<Save> saves { get; set; }
+        public ObservableCollection<Save> saves { get; set; }
         /// <summary>
         /// Daily logs
         /// </summary>
@@ -35,7 +36,7 @@ namespace EazySave_Master.Model
         /// </summary>
         public ManageSaves()
         {
-            this.saves = new List<Save>();
+            this.saves = new ObservableCollection<Save>();
             this.dailyLogs = new FileDailyLogs();
             this.rtLogs = new FileRTLogs();
             this.logExtension = 1;

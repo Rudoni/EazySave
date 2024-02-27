@@ -159,6 +159,13 @@ namespace EazySave_Master.View
 
             m.view(EnumEasySaves.ViewNames.Menu);
 
+            Name.Text = "";
+            SourcePath.Text = "";
+            DestinationPath.Text = "";
+            InputTextBox.Text = "";
+            EncryptionKey.Text = "";
+            ItemsListBox.Items.Clear();
+
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

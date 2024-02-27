@@ -13,10 +13,21 @@
         <ListView ItemsSource="{Binding}" x:Name="ListOfSaves" Margin="32,50,32,120" SelectionChanged="ListView_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="N°" DisplayMemberBinding="{Binding number}" Width="50"/>
+                    <GridViewColumn Header="N°" DisplayMemberBinding="{Binding number}" Width="40"/>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding name}" Width="150"/>
-                    <GridViewColumn Header="Source Path" DisplayMemberBinding="{Binding sourceRepo.path}" Width="240"/>
-                    <GridViewColumn Header="Target Path" DisplayMemberBinding="{Binding targetPath}" Width="240" />
+                    <GridViewColumn Header="Source Path" DisplayMemberBinding="{Binding sourceRepo.path}" Width="220"/>
+                    <GridViewColumn Header="Target Path" DisplayMemberBinding="{Binding targetPath}" Width="220" />
+
+                    <GridViewColumn Header="Action" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Execute" Click="ExecuteButton_Click" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
                 </GridView>
             </ListView.View>
         </ListView>

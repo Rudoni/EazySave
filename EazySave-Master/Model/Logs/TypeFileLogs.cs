@@ -16,16 +16,18 @@ namespace EazySave_Master.Model.Logs
         /// <returns>full path</returns>
         public string GetLogFilePath(FileLogs logs)
         {
+            //path to the folder of logs from appdata
+            string foldersLogs = EnumEasySaves.FolderLogs;
             //check existing directory in appdata
-            string checkEnv = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EazySaveLogs");
-            if (!Directory.Exists(checkEnv))
+            string pathFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), foldersLogs);
+            if (!Directory.Exists(pathFolder))
             {
-                Directory.CreateDirectory(checkEnv);
+                Directory.CreateDirectory(pathFolder);
             }
             //name of file with extension
             string completeNameFile = logs.GetFileName() + "." + this.GetExtensionFile();
             // concat Name + date 
-            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EazySaveLogs", completeNameFile);
+            return Path.Combine(pathFolder, completeNameFile);
 
         }
 
