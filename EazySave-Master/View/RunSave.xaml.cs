@@ -17,6 +17,9 @@ namespace EazySave_Master.View
     {
         private MainWindow m;
 
+        /// <summary>
+        /// default constructor
+        /// </summary>
         public RunSave()
         {
             InitializeComponent();
@@ -29,16 +32,25 @@ namespace EazySave_Master.View
             DataContext = m.mv.GetListSaves();
         }
 
+        /// <summary>
+        /// Called when the BackButton component is pressed
+        /// </summary>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             m.view(EnumEasySaves.ViewNames.Menu);
         }
 
+        /// <summary>
+        /// Called when the languageComboBox component selected item has changed
+        /// </summary>
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Called when the ExecuteButton component is pressed
+        /// </summary>
         private void ExecuteButton_Click(object sender, RoutedEventArgs e)
         {
             // get number of save
@@ -53,6 +65,16 @@ namespace EazySave_Master.View
             }
         }
 
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            // get number of save
+            if (sender is Button button && button.DataContext is Save selectedSave)
+            {
+                int selectedNumber = selectedSave.number;
+                m.mv.deleteSave(selectedNumber);
+            }
+        }
+
         public void updateContent()
         {
             ResourceManager rm = m.mv.resourceManager;
@@ -61,5 +83,6 @@ namespace EazySave_Master.View
             ((GridView)ListOfSaves.View).Columns[3].Header = rm.GetString("TargetPath");
         }
 
+        
     }
 }

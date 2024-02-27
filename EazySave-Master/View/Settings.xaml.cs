@@ -19,22 +19,24 @@ using System.Windows.Shapes;
 namespace EazySave_Master.View
 {
     /// <summary>
-    /// Logique d'interaction pour Settings.xaml
+    /// Interaction logic for Settings.xaml
     /// </summary>
     public partial class Settings : Page
     {
         MainWindow m;
-        string lang;
         ResourceManager rm;
+
+        /// <summary>
+        /// default constructor
+        /// </summary>
         public Settings(MainWindow m)
         {
             
             InitializeComponent();
             this.m = m;
-            this.lang = m.mv.lang;
             this.rm = m.mv.resourceManager;
 
-            languageComboBox.SelectedItem = (lang == "en" ? enItem : frItem);
+            languageComboBox.SelectedItem = (m.mv.lang == "en" ? enItem : frItem);
             logComboBox.SelectedItem = jsonItem;
 
             updateContent();
@@ -42,11 +44,18 @@ namespace EazySave_Master.View
 
         }
 
+        /// <summary>
+        /// Called when the BackButton component is pressed
+        /// </summary>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             m.view(EnumEasySaves.ViewNames.Menu);
         }
 
+
+        /// <summary>
+        /// Called when the languageComboBox component selected item has changed
+        /// </summary>
         private void languageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -56,8 +65,12 @@ namespace EazySave_Master.View
 
         }
 
+        /// <summary>
+        /// Reloads the language resources call and the components of the view
+        /// </summary>
         public void updateContent()
         {
+
             this.rm = m.mv.resourceManager;
             settingsTitle.Content = rm.GetString("Settings");
             backButton.Content = rm.GetString("Back");
@@ -66,13 +79,16 @@ namespace EazySave_Master.View
 
         }
 
+        /// <summary>
+        /// Called when the logComboBox component selected item has changed
+        /// </summary>
         private void logComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             ComboBoxItem selectedItem = (ComboBoxItem)logComboBox.SelectedItem;
 
             m.mv.UpdateExtensionLog(logComboBox.Items.IndexOf(selectedItem)+1);
             
-
         }
     }
 }
