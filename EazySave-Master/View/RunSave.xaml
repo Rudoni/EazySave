@@ -22,7 +22,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Content="Execute" Click="ExecuteButton_Click" />
+                                    <Button x:Name="ExecuteButton" Content="Execute" Click="ExecuteButton_Click" />
                                 </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>

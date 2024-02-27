@@ -55,6 +55,9 @@ namespace EazySave_Master.View
 
         }
 
+        /// <summary>
+        /// Called when the ExecuteButton component is pressed
+        /// </summary>
         private void ExecuteButton_Click(object sender, RoutedEventArgs e)
         {
             // get number of save
