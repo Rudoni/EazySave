@@ -11,6 +11,27 @@ namespace EazySave_Master.Model
     /// </summary>
     public abstract class Save
     {
+
+        /// <returns>Liste des extensions prioritaires</returns>
+        public List<string> GetPriorityExtensions()
+        {
+            List<string> priorityExtensions = new List<string>();
+
+            // Parcours de la liste des extensions prioritaires dans la classe Save
+            foreach (string extension in encryptList)
+            {
+                // Vérification si l'extension est prioritaire
+                if (ModelView.ModelView.Instance.PriorityExtensions.Contains(extension))
+                {
+                    priorityExtensions.Add(extension);
+                }
+            }
+
+            return priorityExtensions;
+        }
+
+
+
         /// <summary>
         /// number of the save (auto-incremented in ManageSaves)
         /// </summary>

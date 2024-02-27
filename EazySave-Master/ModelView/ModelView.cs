@@ -23,6 +23,9 @@ namespace EazySave_Master.ModelView
 
         public string lang { get; set; } = "en";
 
+        // Nouvelle propriété pour stocker les extensions prioritaires
+        public ObservableCollection<string> PriorityExtensions { get; set; } = new ObservableCollection<string>();
+
         public ResourceManager resourceManager { get; set; }    
        
         public static ModelView Instance
@@ -56,6 +59,27 @@ namespace EazySave_Master.ModelView
 
             this.resourceManager = new ResourceManager("EazySave_Master.Languages." + lang, Assembly.GetExecutingAssembly());
 
+        }
+
+        // Nouvelle méthode pour ajouter une extension prioritaire
+        public void AddPriorityExtension(string extension)
+        {
+            if (!PriorityExtensions.Contains(extension))
+            {
+                PriorityExtensions.Add(extension);
+            }
+        }
+
+        // Nouvelle méthode pour supprimer une extension prioritaire
+        public void RemovePriorityExtension(string extension)
+        {
+            PriorityExtensions.Remove(extension);
+        }
+
+        // Nouvelle méthode pour vider la liste des extensions prioritaires
+        public void ClearPriorityExtensions()
+        {
+            PriorityExtensions.Clear();
         }
 
         /// <summary>
