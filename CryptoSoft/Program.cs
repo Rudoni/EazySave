@@ -80,9 +80,6 @@ class Program
             // Save the encrypted file
             File.WriteAllBytes(encryptedFilePath, encryptedBytes);
 
-            // Simulate a delay using Thread.Sleep for 3 seconds (3000 milliseconds)
-            Thread.Sleep(10000);
-
             // Stop timer
             stopWatch.Stop();
 
