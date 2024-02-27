@@ -5,6 +5,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.Json;
+using System.Globalization;
+using System.Reflection;
+using System.Resources;
 
 namespace EazySave_Master.ModelView
 {
@@ -18,6 +21,9 @@ namespace EazySave_Master.ModelView
   
         private static ModelView _instance;
 
+        public string lang { get; set; } = "en";
+
+        public ResourceManager resourceManager { get; set; }    
        
         public static ModelView Instance
         {
@@ -36,6 +42,20 @@ namespace EazySave_Master.ModelView
         /// </summary>
         private ModelView() {
             saves = new ManageSaves();
+
+            CultureInfo culture = CultureInfo.CurrentCulture;
+
+            switch (culture.Name.ToLower())
+            {
+                case "fr-fr":
+                    lang = "fr";
+                    break;
+                default:
+                    break;
+            }
+
+            this.resourceManager = new ResourceManager("EazySave_Master.Languages." + lang, Assembly.GetExecutingAssembly());
+
         }
 
         /// <summary>
@@ -124,6 +144,21 @@ namespace EazySave_Master.ModelView
         {
             return saves.saves;
         }
+
+        public void updateResourceLang(string language)
+        {
+            this.resourceManager = new ResourceManager("EazySave_Master.Languages." + language, Assembly.GetExecutingAssembly());
+        }
+
+        /// <summary>
+        /// update the extension used for the logs
+        /// </summary>
+        /// <param name="i"></param>
+        public void UpdateExtensionLog(int i)
+        {
+            this.saves.logExtension = i;
+        }
+
 
     }
 }

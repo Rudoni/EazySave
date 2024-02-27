@@ -16,7 +16,11 @@ namespace EazySave_Master
             CreateSaves=3,
             RunSaves=4
         }
-
+        public enum LogFormat
+        {
+            Json=1,
+            Xml=2
+        }
 
     }
 }

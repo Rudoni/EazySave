@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -39,10 +40,10 @@ namespace EazySave_Master.View
             bool isAllFieldsFilled = !string.IsNullOrWhiteSpace(Name.Text) &&
                                      !string.IsNullOrWhiteSpace(SourcePath.Text) &&
                                      !string.IsNullOrWhiteSpace(DestinationPath.Text) &&
-                                     (Total.IsChecked == true || Differential.IsChecked == true);
+                                     (totalRB.IsChecked == true || differentialRB.IsChecked == true);
 
             
-            CreateSaveButton.IsEnabled = isAllFieldsFilled;
+            createSaveButton.IsEnabled = isAllFieldsFilled;
         }
 
         private void Name_TextChanged(object sender, TextChangedEventArgs e)
@@ -57,13 +58,13 @@ namespace EazySave_Master.View
 
         private void Type_Checked(object sender, RoutedEventArgs e)
         {
-            if (sender == Total)
+            if (sender == totalRB)
             {
-                Differential.IsChecked = false;
+                differentialRB.IsChecked = false;
             }
-            else if (sender == Differential)
+            else if (sender == differentialRB)
             {
-                Total.IsChecked = false;
+                totalRB.IsChecked = false;
             }
             ValidateInputs();
         }
@@ -110,24 +111,24 @@ namespace EazySave_Master.View
 
         private void Crypting_Checked(object sender, RoutedEventArgs e)
         {
-            if (sender == Yes)
+            if (sender == yesRB)
             {
-                No.IsChecked = false;
-                FileExtentionName.Visibility = Visibility.Visible;
+                noRB.IsChecked = false;
+                fileExtensionLabel.Visibility = Visibility.Visible;
                 InputTextBox.Visibility = Visibility.Visible;
-                Add.Visibility = Visibility.Visible;
+                addButton.Visibility = Visibility.Visible;
                 ItemsListBox.Visibility = Visibility.Visible;
-                EncryptionKeyName.Visibility = Visibility.Visible;
+                encryptionKeyLabel.Visibility = Visibility.Visible;
                 EncryptionKey.Visibility = Visibility.Visible;
             }
-            else if (sender == No)
+            else if (sender == noRB)
             {
-                Yes.IsChecked = false;
-                FileExtentionName.Visibility = Visibility.Hidden;
+                yesRB.IsChecked = false;
+                fileExtensionLabel.Visibility = Visibility.Hidden;
                 InputTextBox.Visibility = Visibility.Hidden;
-                Add.Visibility = Visibility.Hidden;
+                addButton.Visibility = Visibility.Hidden;
                 ItemsListBox.Visibility = Visibility.Hidden;
-                EncryptionKeyName.Visibility = Visibility.Hidden;
+                encryptionKeyLabel.Visibility = Visibility.Hidden;
                 EncryptionKey.Visibility = Visibility.Hidden;
             }
         }
@@ -151,7 +152,7 @@ namespace EazySave_Master.View
             
             string encryptKey = EncryptionKey.Text;
             string type;
-            if(Total.IsChecked == true) { type = "1"; }
+            if(totalRB.IsChecked == true) { type = "1"; }
             else { type = "2"; }
 
 
@@ -165,6 +166,8 @@ namespace EazySave_Master.View
             InputTextBox.Text = "";
             EncryptionKey.Text = "";
             ItemsListBox.Items.Clear();
+            totalRB.IsChecked = true;
+            noRB.IsChecked = true;
 
         }
 
@@ -172,5 +175,29 @@ namespace EazySave_Master.View
         {
             m.view(EnumEasySaves.ViewNames.Menu);
         }
+
+        public void updateContent()
+        {
+
+            ResourceManager rm = m.mv.resourceManager;
+
+
+            backButton.Content = rm.GetString("Back");
+            nameLabel.Content = rm.GetString("Name");
+            sourcePathLabel.Content = rm.GetString("SourcePath");
+            targetPathLabel.Content = rm.GetString("TargetPath");
+            saveTypeLabel.Content = rm.GetString("SaveType");
+            totalRB.Content = rm.GetString("TotalSave");
+            differentialRB.Content = rm.GetString("DifferentialSave");
+            cryptingFileLabel.Content = rm.GetString("CryptingFile");
+            yesRB.Content = rm.GetString("Yes");
+            noRB.Content = rm.GetString("No");
+            fileExtensionLabel.Content = rm.GetString("FileExtension");
+            addButton.Content = rm.GetString("Add");
+            encryptionKeyLabel.Content = rm.GetString("EncryptionKey");
+            createSaveButton.Content = rm.GetString("CreateSave");
+
+        }
+
     }
 }

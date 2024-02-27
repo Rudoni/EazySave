@@ -3,15 +3,28 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:EnumEasySaves="clr-namespace:EazySave_Master"
+
+      xmlns:EazySave_Master="clr-namespace:EazySave_Master"
       xmlns:local="clr-namespace:EazySave_Master.View"
       mc:Ignorable="d" 
      Height="450" Width="800"
       Title="Settings">
 
-    <Grid>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24">
-            Hello World
-        </TextBlock>
-        <Button x:Name="Back" Content="Back"  Click="Back_Click" Margin="10,10,746,421" />
+    <Grid Background="White">
+        <Button x:Name="backButton" Content="Back"  Click="Back_Click" Margin="10,10,746,421" />
+        <ComboBox x:Name="languageComboBox" HorizontalAlignment="Center" Margin="0,195,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="-0.1,0.076" SelectionChanged="languageComboBox_SelectionChanged">
+            <ComboBoxItem x:Name="enItem" Content="English"/>
+            <ComboBoxItem x:Name="frItem" Content="Français"/>
+        </ComboBox>
+
+        <Label x:Name="languageLabel" Content="Language" HorizontalAlignment="Left" Margin="222,193,0,0" VerticalAlignment="Top" FontWeight="Bold" FlowDirection="RightToLeft" Width="85"/>
+        <ComboBox x:Name="logComboBox" HorizontalAlignment="Center" Margin="0,282,0,0" VerticalAlignment="Top" Width="150" RenderTransformOrigin="-0.1,0.076" SelectionChanged="logComboBox_SelectionChanged">
+            <ComboBoxItem x:Name="jsonItem" Content="JSON"/>
+            <ComboBoxItem x:Name="xmlItem" Content="XML"/>
+        </ComboBox>
+        <Label x:Name="logFormatLabel" Content="Log Format
+               " HorizontalAlignment="Left" Margin="189,280,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="118" FlowDirection="RightToLeft"/>
+        <Label x:Name="settingsTitle" Content="Settings" HorizontalAlignment="Center" Margin="0,57,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="36"/>
     </Grid>
 </Page>

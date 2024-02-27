@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -55,6 +56,14 @@ namespace EazySave_Master.View
                 // run save
                 m.mv.runSavesFromNumbers(selectedNumber);
             }
+        }
+
+        public void updateContent()
+        {
+            ResourceManager rm = m.mv.resourceManager;
+            ((GridView)ListOfSaves.View).Columns[1].Header = rm.GetString("Name");
+            ((GridView)ListOfSaves.View).Columns[2].Header = rm.GetString("SourcePath");
+            ((GridView)ListOfSaves.View).Columns[3].Header = rm.GetString("TargetPath");
         }
 
     }

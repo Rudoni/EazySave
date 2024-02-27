@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EazySave_1._1.Languages {
+namespace EazySave_Master.Languages {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace EazySave_1._1.Languages {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EazySave_1._1.Languages.fr", typeof(fr).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EazySave_Master.Languages.fr", typeof(fr).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,88 +61,25 @@ namespace EazySave_1._1.Languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à 3. Retour.
+        ///   Recherche une chaîne localisée semblable à Ajouter.
         /// </summary>
-        internal static string BackTwo {
+        internal static string Add {
             get {
-                return ResourceManager.GetString("BackTwo", resourceCulture);
+                return ResourceManager.GetString("Add", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à 1. Changer la langue.
+        ///   Recherche une chaîne localisée semblable à Retour.
         /// </summary>
-        internal static string ChangeLanguage {
+        internal static string Back {
             get {
-                return ResourceManager.GetString("ChangeLanguage", resourceCulture);
+                return ResourceManager.GetString("Back", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à 2. Changer l&apos;extension des logs.
-        /// </summary>
-        internal static string ChangeLogExtension {
-            get {
-                return ResourceManager.GetString("ChangeLogExtension", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Entrer un nombre valide .
-        /// </summary>
-        internal static string Check {
-            get {
-                return ResourceManager.GetString("Check", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Nom.
-        /// </summary>
-        internal static string CheckSave {
-            get {
-                return ResourceManager.GetString("CheckSave", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Voulez-vous créer une sauvegarde ou lancer une/des sauvegardes ?.
-        /// </summary>
-        internal static string Choices {
-            get {
-                return ResourceManager.GetString("Choices", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Choisir la langue :.
-        /// </summary>
-        internal static string ChooseLanguage {
-            get {
-                return ResourceManager.GetString("ChooseLanguage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Code de la langue : .
-        /// </summary>
-        internal static string CodeLanguage {
-            get {
-                return ResourceManager.GetString("CodeLanguage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à 1. Sauvegarde Complete.
-        /// </summary>
-        internal static string Complete {
-            get {
-                return ResourceManager.GetString("Complete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à 1. Créer une sauvegarde.
+        ///   Recherche une chaîne localisée semblable à Créer une sauvegarde.
         /// </summary>
         internal static string CreateSave {
             get {
@@ -151,79 +88,88 @@ namespace EazySave_1._1.Languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Langue par défaut : .
+        ///   Recherche une chaîne localisée semblable à Chiffrement des fichiers.
         /// </summary>
-        internal static string DefaultLanguage {
+        internal static string CryptingFile {
             get {
-                return ResourceManager.GetString("DefaultLanguage", resourceCulture);
+                return ResourceManager.GetString("CryptingFile", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Entrer le chemin de la destination de la sauvegarde :.
+        ///   Recherche une chaîne localisée semblable à Différentielle.
         /// </summary>
-        internal static string DestPath {
+        internal static string DifferentialSave {
             get {
-                return ResourceManager.GetString("DestPath", resourceCulture);
+                return ResourceManager.GetString("DifferentialSave", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à 2. Sauvegarde Differentielle.
+        ///   Recherche une chaîne localisée semblable à Clé de chiffrement.
         /// </summary>
-        internal static string Differential {
+        internal static string EncryptionKey {
             get {
-                return ResourceManager.GetString("Differential", resourceCulture);
+                return ResourceManager.GetString("EncryptionKey", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Sauvegarde réalisé avec succés .
+        ///   Recherche une chaîne localisée semblable à Extension de fichier.
         /// </summary>
-        internal static string Done {
+        internal static string FileExtension {
             get {
-                return ResourceManager.GetString("Done", resourceCulture);
+                return ResourceManager.GetString("FileExtension", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Entrer un nom de sauvegarde.
+        ///   Recherche une chaîne localisée semblable à Langue.
         /// </summary>
-        internal static string EnterName {
+        internal static string Language {
             get {
-                return ResourceManager.GetString("EnterName", resourceCulture);
+                return ResourceManager.GetString("Language", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à 2. Charger une sauvegarde  .
+        ///   Recherche une chaîne localisée semblable à Format des logs.
         /// </summary>
-        internal static string GoSave {
+        internal static string LogFormat {
             get {
-                return ResourceManager.GetString("GoSave", resourceCulture);
+                return ResourceManager.GetString("LogFormat", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à 4. Quitter .
+        ///   Recherche une chaîne localisée semblable à Nom.
         /// </summary>
-        internal static string Leave {
+        internal static string Name {
             get {
-                return ResourceManager.GetString("Leave", resourceCulture);
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Appuie sur entrer pour revenir au menu principal.
+        ///   Recherche une chaîne localisée semblable à Non.
         /// </summary>
-        internal static string MainMenu {
+        internal static string No {
             get {
-                return ResourceManager.GetString("MainMenu", resourceCulture);
+                return ResourceManager.GetString("No", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Type de Sauvegarde : .
+        ///   Recherche une chaîne localisée semblable à Lancer une sauvegarde.
+        /// </summary>
+        internal static string RunSave {
+            get {
+                return ResourceManager.GetString("RunSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Type de sauvegarde.
         /// </summary>
         internal static string SaveType {
             get {
@@ -232,7 +178,7 @@ namespace EazySave_1._1.Languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à 3. Paramètres.
+        ///   Recherche une chaîne localisée semblable à Paramètres.
         /// </summary>
         internal static string Settings {
             get {
@@ -241,7 +187,7 @@ namespace EazySave_1._1.Languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Entrer le chemin de la source de la sauvegarde :.
+        ///   Recherche une chaîne localisée semblable à Chemin source.
         /// </summary>
         internal static string SourcePath {
             get {
@@ -250,20 +196,29 @@ namespace EazySave_1._1.Languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Lancer une ou des sauvegardes (1-3 = 1 à 3) (1;3 = 1 et 3).
+        ///   Recherche une chaîne localisée semblable à Chemin de destination.
         /// </summary>
-        internal static string Test {
+        internal static string TargetPath {
             get {
-                return ResourceManager.GetString("Test", resourceCulture);
+                return ResourceManager.GetString("TargetPath", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Bienvenue sur .
+        ///   Recherche une chaîne localisée semblable à Totale.
         /// </summary>
-        internal static string Welcome {
+        internal static string TotalSave {
             get {
-                return ResourceManager.GetString("Welcome", resourceCulture);
+                return ResourceManager.GetString("TotalSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Oui.
+        /// </summary>
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }
