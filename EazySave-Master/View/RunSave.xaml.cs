@@ -78,9 +78,9 @@ namespace EazySave_Master.View
         public void updateContent()
         {
             ResourceManager rm = m.mv.resourceManager;
-            ((GridView)ListOfSaves.View).Columns[1].Header = rm.GetString("Name");
-            ((GridView)ListOfSaves.View).Columns[2].Header = rm.GetString("SourcePath");
-            ((GridView)ListOfSaves.View).Columns[3].Header = rm.GetString("TargetPath");
+            ((GridView)ListOfSaves.View).Columns[0].Header = rm.GetString("Name");
+            ((GridView)ListOfSaves.View).Columns[1].Header = rm.GetString("SourcePath");
+            ((GridView)ListOfSaves.View).Columns[2].Header = rm.GetString("TargetPath");
         }
 
         
