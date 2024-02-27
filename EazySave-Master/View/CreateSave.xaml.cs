@@ -26,7 +26,6 @@ namespace EazySave_Master.View
     {
 
         MainWindow m;
-        List<string> encryptList = new List<string>();
 
         /// <summary>
         /// default constructor
@@ -175,7 +174,7 @@ namespace EazySave_Master.View
             if (!string.IsNullOrWhiteSpace(InputTxtBox.Text))
             {
                 ItemsListTxtBox.Items.Add("." + InputTxtBox.Text);
-                encryptList.Add("." + InputTxtBox.Text);
+                m.encryptList.Add("." + InputTxtBox.Text);
                 InputTxtBox.Clear();
                 InputTxtBox.Focus(); 
             }
@@ -196,7 +195,7 @@ namespace EazySave_Master.View
             else { type = "2"; }
 
 
-            ModelView.ModelView.Instance.createSave(name, sourcePath, destinationPath, type, encryptList, encryptKey);
+            ModelView.ModelView.Instance.createSave(name, sourcePath, destinationPath, type, m.encryptList, encryptKey);
 
             m.view(EnumEasySaves.ViewNames.Menu);
 
@@ -226,7 +225,6 @@ namespace EazySave_Master.View
         {
 
             ResourceManager rm = m.mv.resourceManager;
-
 
             backButton.Content = rm.GetString("Back");
             nameLabel.Content = rm.GetString("Name");

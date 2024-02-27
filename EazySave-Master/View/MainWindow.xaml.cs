@@ -18,6 +18,9 @@ namespace EazySave_Master.View
         public ModelView.ModelView mv { set; get; } = ModelView.ModelView.Instance;
         ViewMainWindow viewMainWindow;
 
+        public List<string> encryptList { set; get; } = new List<string>();
+        public List<string> priorityList { set; get; } = new List<string>();
+
         private static Mutex mutex = null;
 
         /// <summary>
@@ -34,7 +37,7 @@ namespace EazySave_Master.View
 
             if (!createdNew)
             {
-                MessageBox.Show("App already running");
+                MessageBox.Show(mv.resourceManager.GetString("AppAlreadyRunning"));
                 Application.Current.Shutdown();
                 return;
             }
