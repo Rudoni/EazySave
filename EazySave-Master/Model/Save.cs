@@ -162,7 +162,7 @@ namespace EazySave_Master.Model
         /// abstract method to get the name of the SaveType
         /// </summary>
         /// <returns>string name TypeSave</returns>
-        protected abstract string GetTypeName();
+        public abstract string GetTypeName();
 
 
         /// <summary>

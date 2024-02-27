@@ -34,7 +34,7 @@ namespace EazySave_Master.Model
         /// Total 
         /// </summary>
         /// <returns>Total</returns>
-        protected override string GetTypeName()
+        public override string GetTypeName()
         {
             return "Total";
         }

@@ -40,7 +40,7 @@ namespace EazySave_Master.Model
         /// Differential 
         /// </summary>
         /// <returns>Differential</returns>
-        protected override string GetTypeName()
+        public override string GetTypeName()
         {
             return "Differential";
         }
