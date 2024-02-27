@@ -79,17 +79,30 @@ namespace EazySave_Master.Model
         /// <summary>
         /// Launch the actual save after some verifications
         /// </summary>
-        public async Task<bool> ExecuteSave()
+        public bool ExecuteSave(out long encryptionTime)
         {
+
             string sourcePath = sourceRepo.path;
-            if (!Directory.Exists(sourcePath) || !Directory.Exists(targetPath))
+
+            encryptionTime = 0;
+            if (!Directory.Exists(sourcePath))
             {
-                Console.WriteLine($"Save n°{number}: Source or Target path don't exist.");
+                Console.WriteLine($"Save n°{number}: Source path don't exist.");
                 return false;
             }
-            long totalEncryptionTime;
-            await Task.Run(() => CopyDirectory(sourcePath, targetPath, encryptList, encryptKey,out totalEncryptionTime));
+
+            if (!Directory.Exists(targetPath))
+            {
+                Console.WriteLine($"Save n°{number}: Target path don't exist.");
+                return false;
+            }
+
+
+            CopyDirectory(sourcePath, targetPath, encryptList, encryptKey, out encryptionTime);
             Console.WriteLine($"Save n°{number}: Done.");
+
+            // Add Log for each Save
+
             return true;
         }
 
@@ -123,7 +136,7 @@ namespace EazySave_Master.Model
                         }
                         else
                         {
-                            // 
+                           //TODO
                         }
                     }
                     else

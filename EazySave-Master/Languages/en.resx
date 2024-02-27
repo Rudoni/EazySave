@@ -120,6 +120,9 @@
   <data name="Add" xml:space="preserve">
     <value>Add</value>
   </data>
+  <data name="AppAlreadyRunning" xml:space="preserve">
+    <value>Application already running</value>
+  </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
@@ -138,17 +141,26 @@
   <data name="FileExtension" xml:space="preserve">
     <value>File Extension</value>
   </data>
+  <data name="KiloBytes" xml:space="preserve">
+    <value>KB</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
   <data name="LogFormat" xml:space="preserve">
     <value>Log Format</value>
   </data>
+  <data name="MaxSimultaneousSize" xml:space="preserve">
+    <value>Max Simultaneous Size</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
+  </data>
+  <data name="PriorityFileExtension" xml:space="preserve">
+    <value>Priority File Extension</value>
   </data>
   <data name="RunSave" xml:space="preserve">
     <value>Run save</value>
