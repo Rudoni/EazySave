@@ -10,15 +10,14 @@
 
     <Grid Background="White">
         <Button x:Name="Back" Content="Back"  Click="Back_Click" Margin="10,10,746,421" />
-        <ListView ItemsSource="{Binding}" x:Name="ListOfSaves" Margin="32,50,32,120" SelectionChanged="ListView_SelectionChanged">
+        <ListView ItemsSource="{Binding}" x:Name="ListOfSaves" Margin="10,50,10,120" SelectionChanged="ListView_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="N°" DisplayMemberBinding="{Binding number}" Width="40"/>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding name}" Width="150"/>
-                    <GridViewColumn Header="Source Path" DisplayMemberBinding="{Binding sourceRepo.path}" Width="220"/>
-                    <GridViewColumn Header="Target Path" DisplayMemberBinding="{Binding targetPath}" Width="220" />
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding name}" Width="80"/>
+                    <GridViewColumn Header="Source Path" DisplayMemberBinding="{Binding sourceRepo.path}" Width="150"/>
+                    <GridViewColumn Header="Target Path" DisplayMemberBinding="{Binding targetPath}" Width="150" />
 
-                    <GridViewColumn Header="Action" Width="80">
+                    <GridViewColumn Header="Action" Width="300">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
