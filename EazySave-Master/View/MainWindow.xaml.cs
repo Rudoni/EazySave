@@ -45,6 +45,22 @@ namespace EazySave_Master.View
             runsaves = new RunSave(this);
             viewMainWindow = new ViewMainWindow(this);
             this.Content = viewMainWindow;
+
+            //manage load of saves already existing
+            mv.LoadSavesFromFile();
+
+            //manage closing of the app
+            Closing += MainWindow_Closing;
+        }
+
+        /// <summary>
+        /// when the app close, saves are written in file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            mv.WriteSavesToFile();
         }
 
         /// <summary>

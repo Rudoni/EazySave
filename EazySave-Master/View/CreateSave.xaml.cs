@@ -200,6 +200,15 @@ namespace EazySave_Master.View
 
             m.view(EnumEasySaves.ViewNames.Menu);
 
+            Name.Text = "";
+            SourcePath.Text = "";
+            DestinationPath.Text = "";
+            InputTextBox.Text = "";
+            EncryptionKey.Text = "";
+            ItemsListBox.Items.Clear();
+            totalRB.IsChecked = true;
+            noRB.IsChecked = true;
+
         }
 
         /// <summary>

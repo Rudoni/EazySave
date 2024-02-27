@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EazySave_Master.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Resources;
@@ -52,6 +53,18 @@ namespace EazySave_Master.View
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void ExecuteButton_Click(object sender, RoutedEventArgs e)
+        {
+            // get number of save
+            if (sender is Button button && button.DataContext is Save selectedSave)
+            {
+                string selectedNumber = selectedSave.number.ToString();
+
+                // run save
+                m.mv.runSavesFromNumbers(selectedNumber);
+            }
         }
 
         /// <summary>
