@@ -23,6 +23,7 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <Button Content="Execute" Click="ExecuteButton_Click" />
+                                    <Button Content="Delete" Click="DeleteButton_Click" />
                                 </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>

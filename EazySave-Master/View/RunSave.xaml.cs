@@ -58,6 +58,16 @@ namespace EazySave_Master.View
             }
         }
 
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            // get number of save
+            if (sender is Button button && button.DataContext is Save selectedSave)
+            {
+                int selectedNumber = selectedSave.number;
+                m.mv.deleteSave(selectedNumber);
+            }
+        }
+
         public void updateContent()
         {
             ResourceManager rm = m.mv.resourceManager;
@@ -66,5 +76,6 @@ namespace EazySave_Master.View
             ((GridView)ListOfSaves.View).Columns[3].Header = rm.GetString("TargetPath");
         }
 
+        
     }
 }

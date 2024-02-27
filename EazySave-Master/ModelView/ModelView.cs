@@ -90,6 +90,11 @@ namespace EazySave_Master.ModelView
        
         }
 
+        public void deleteSave (int number)
+        {
+            saves.deleteSave(number);
+        }
+
         /// <summary>
         /// write the saves into file
         /// </summary>

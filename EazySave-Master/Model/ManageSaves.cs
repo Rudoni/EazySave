@@ -53,6 +53,19 @@ namespace EazySave_Master.Model
             saves.Add(save);
         }
 
+
+        public void deleteSave(int number)
+        {
+            for (int i = saves.Count - 1; i >= 0; i--)
+            {
+                if (saves[i].number == number)
+                {
+                    saves.RemoveAt(i);
+                    break; 
+                }
+            }
+        }
+
         /// <summary>
         /// launch all the saves from the list by his numbers (if string numbers OK)
         /// </summary>
