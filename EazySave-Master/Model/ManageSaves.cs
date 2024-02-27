@@ -6,14 +6,6 @@ namespace EazySave_Master.Model
 {
     public class ManageSaves
     {
-
-        // Enum extension logs
-        enum LogExtensions
-        {
-            JSON = 1,
-            XML = 2
-        }
-
         /// <summary>
         /// List of saves
         /// </summary>
@@ -39,7 +31,7 @@ namespace EazySave_Master.Model
             this.saves = new ObservableCollection<Save>();
             this.dailyLogs = new FileDailyLogs();
             this.rtLogs = new FileRTLogs();
-            this.logExtension = 1;
+            this.logExtension = (int)EnumEasySaves.LogFormat.Json;
         }
 
         /// <summary>
@@ -51,6 +43,19 @@ namespace EazySave_Master.Model
             int n = IncrementNumberMaxSave();
             save.setNumber(n);
             saves.Add(save);
+        }
+
+
+        public void deleteSave(int number)
+        {
+            for (int i = saves.Count - 1; i >= 0; i--)
+            {
+                if (saves[i].number == number)
+                {
+                    saves.RemoveAt(i);
+                    break; 
+                }
+            }
         }
 
         /// <summary>

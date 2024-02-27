@@ -7,13 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace EazySave_Master.View
 {
@@ -67,12 +60,21 @@ namespace EazySave_Master.View
 
                 // run save
                 m.mv.runSavesFromNumbers(selectedNumber);
+
+                button.Click -= ExecuteButton_Click;
             }
         }
 
-        /// <summary>
-        /// Reloads the language resources call and the components of the view
-        /// </summary>
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            // get number of save
+            if (sender is Button button && button.DataContext is Save selectedSave)
+            {
+                int selectedNumber = selectedSave.number;
+                m.mv.deleteSave(selectedNumber);
+            }
+        }
+
         public void updateContent()
         {
             ResourceManager rm = m.mv.resourceManager;
@@ -81,5 +83,6 @@ namespace EazySave_Master.View
             ((GridView)ListOfSaves.View).Columns[3].Header = rm.GetString("TargetPath");
         }
 
+        
     }
 }
