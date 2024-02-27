@@ -61,20 +61,15 @@ namespace EazySave_Master.ModelView
 
         }
 
-        // Nouvelle méthode pour ajouter une extension prioritaire
-        public void AddPriorityExtension(string extension)
-        {
-            if (!PriorityExtensions.Contains(extension))
-            {
-                PriorityExtensions.Add(extension);
-            }
-        }
+        //// Nouvelle méthode pour ajouter une extension prioritaire
+        //public void AddPriorityExtension(string extension)
+        //{
+        //    if (!PriorityExtensions.Contains(extension))
+        //    {
+        //        PriorityExtensions.Add(extension);
+        //    }
+        //}
 
-        // Nouvelle méthode pour supprimer une extension prioritaire
-        public void RemovePriorityExtension(string extension)
-        {
-            PriorityExtensions.Remove(extension);
-        }
 
         // Nouvelle méthode pour vider la liste des extensions prioritaires
         public void ClearPriorityExtensions()

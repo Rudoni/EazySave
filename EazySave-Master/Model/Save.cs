@@ -93,17 +93,18 @@ namespace EazySave_Master.Model
                 return false;
             }
             long totalEncryptionTime;
-            await Task.Run(() => CopyDirectory(sourcePath, targetPath, encryptList, encryptKey,out totalEncryptionTime));
+            await Task.Run(() => CopyDirectory(sourcePath, targetPath, encryptList, encryptKey,out totalEncryptionTime, PriorityExtensions));
             Console.WriteLine($"Save n°{number}: Done.");
             return true;
         }
+
 
         /// <summary>
         /// Copy the directory and all the subdirectory from sourcePath to targetPath recursively
         /// </summary>
         /// <param name="sourcePath"></param>
         /// <param name="targetPath"></param>
-        private void CopyDirectory(string sourcePath, string targetPath, List<string> encryptionList, string encryptKey, out long totalEncryptionTime, List<string> PriorityExtensions)
+        private void CopyDirectory(string sourcePath, string targetPath, List<string> encryptionList, string encryptKey, out long totalEncryptionTime, ObservableCollection<string> PriorityExtensions)
         {
             Directory.CreateDirectory(targetPath);
 
@@ -145,7 +146,7 @@ namespace EazySave_Master.Model
             {
                 string subDirectoryName = Path.GetFileName(subDirectoryPath);
                 string targetSubDirectoryPath = Path.Combine(targetPath, subDirectoryName);
-                CopyDirectory(subDirectoryPath, targetSubDirectoryPath, encryptList, encryptKey,out totalEncryptionTime);
+                CopyDirectory(subDirectoryPath, targetSubDirectoryPath, encryptList, encryptKey,out totalEncryptionTime, PriorityExtensions);
             }
         }
 
@@ -206,7 +207,7 @@ namespace EazySave_Master.Model
         private double CalculateTransferTime(string sourcePath, string targetPath, List<string> encryptList, string encryptKey, out long totalEncryptionTime)
         {
             DateTime startTime = DateTime.Now;
-            CopyDirectory(sourcePath, targetPath, encryptList, encryptKey, out totalEncryptionTime);
+            CopyDirectory(sourcePath, targetPath, encryptList, encryptKey, out totalEncryptionTime, PriorityExtensions);
             DateTime endTime = DateTime.Now;
             TimeSpan transferDuration = endTime - startTime;
             double transferTimeMilliseconds = transferDuration.TotalMilliseconds;
