@@ -22,5 +22,11 @@ namespace EazySave_Master
             Xml=2
         }
 
+        public enum TypeSave
+        {
+            Total,
+            Differential
+        }
+
     }
 }

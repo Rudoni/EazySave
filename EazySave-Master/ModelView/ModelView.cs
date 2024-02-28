@@ -78,14 +78,14 @@ namespace EazySave_Master.ModelView
         /// <param name="typeSave"></param>
         /// <param name="encryptList"></param>
         /// <param name="encryptKey"></param>
-        public void createSave(string name, string sourceRepo, string targetPath, string typeSave, List<String> encryptList, string encryptKey, List<string> priorityList)
+        public void createSave(string name, string sourceRepo, string targetPath, EnumEasySaves.TypeSave typeSave, List<String> encryptList, string encryptKey, List<string> priorityList)
         {
             switch (typeSave)
             {
-                case "1":
+                case EnumEasySaves.TypeSave.Total:
                     saves.addSave(new SaveTotal(name, sourceRepo, targetPath, encryptList, encryptKey, priorityList));
                     break;
-                case "2":
+                case EnumEasySaves.TypeSave.Differential:
                     saves.addSave(new SaveDifferential(name, sourceRepo, targetPath, encryptList, encryptKey, priorityList));
                     break;
             }

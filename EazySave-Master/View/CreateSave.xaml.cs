@@ -190,9 +190,9 @@ namespace EazySave_Master.View
             string destinationPath = DestinationPathTxtBox.Text;
             
             string encryptKey = EncryptionKeyTxtBox.Text;
-            string type;
-            if(totalRB.IsChecked == true) { type = "1"; }
-            else { type = "2"; }
+            EnumEasySaves.TypeSave type;
+            if(totalRB.IsChecked == true) { type = EnumEasySaves.TypeSave.Total; }
+            else { type = EnumEasySaves.TypeSave.Differential; }
 
 
             ModelView.ModelView.Instance.createSave(name, sourcePath, destinationPath, type, m.encryptList, encryptKey, m.priorityList);
