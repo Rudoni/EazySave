@@ -105,18 +105,15 @@ namespace EazySave_Master.Model
                 Console.WriteLine($"Save n°{number}: Target path don't exist.");
                 return false;
             }
-            long totalEncryptionTime;
-            await Task.Run(() => CopyDirectory(sourcePath, targetPath, encryptList, encryptKey,out totalEncryptionTime, priorityList));
 
 
-            CopyDirectory(sourcePath, targetPath, encryptList, encryptKey, out encryptionTime);
+            CopyDirectory(sourcePath, targetPath, encryptList, encryptKey, out encryptionTime, priorityList);
             Console.WriteLine($"Save n°{number}: Done.");
 
             // Add Log for each Save
 
             return true;
         }
-
 
         /// <summary>
         /// Copy the directory and all the subdirectory from sourcePath to targetPath recursively
