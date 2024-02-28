@@ -63,6 +63,7 @@ namespace EazySave_Master.View
 
                 button.Click -= ExecuteButton_Click;
             }
+            //MessageBox.Show(m.priorityList.ToString();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
