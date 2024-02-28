@@ -58,32 +58,48 @@ namespace EazySave_Master.Model
             }
         }
 
+
         /// <summary>
         /// launch all the saves from the list by his numbers (if string numbers OK)
         /// </summary>
         /// <param name="numbers"></param>
-        public void RunSaves(string numbers)
+        public async Task RunSavesAsync(string numbers)
         {
             List<int> listN = GetNumbersToExecute(numbers);
+            var tasks = new List<Task>();
+
             foreach (var save in saves)
             {
-                if (listN.Contains(save.number) && !IsSpecSoftwareRunning("devenv.exe"))
+                var currentSave = save;
+                if (listN.Contains(currentSave.number) && !IsSpecSoftwareRunning("msedge.exe"))
                 {
-                    RealTimeLog realTimeLog = new RealTimeLog();
-                    long encryptionTime = 0;
-                    bool res = save.ExecuteSave(out encryptionTime);
-                    //create log from save data
-                    if (res)
+                    var task = Task.Run(() =>
                     {
-                        realTimeLog.MaJFromSave(save);
-                        dailyLogs.AddLog(new DailyLog(save, encryptionTime));
-                        rtLogs.AddLog(realTimeLog);
-                        realTimeLog.saveFinished();
-                    }
+                        RealTimeLog realTimeLog = new RealTimeLog();
+                        long encryptionTime = 0;
+                        bool res = currentSave.ExecuteSave(out encryptionTime);
+                        if (res)
+                        {
+                            // lock log to avoid conflict
+                            lock (dailyLogs) 
+                            {
+                                realTimeLog.MaJFromSave(currentSave);
+                                dailyLogs.AddLog(new DailyLog(currentSave, encryptionTime));
+                                rtLogs.AddLog(realTimeLog);
+                                realTimeLog.saveFinished();
+                            }
+                        }
+                    });
+
+                    tasks.Add(task);
                 }
             }
+
+            await Task.WhenAll(tasks); 
+
             RunLogs();
         }
+
         /// <summary>
         /// run the logs from the type (ex:XML,JSON)
         /// </summary>

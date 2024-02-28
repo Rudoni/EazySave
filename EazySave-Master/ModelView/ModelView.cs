@@ -97,7 +97,7 @@ namespace EazySave_Master.ModelView
         /// <param name="numbersUser">string numbers entered by user</param>
         public void runSavesFromNumbers(string numbersUser)
         {
-             saves.RunSaves(numbersUser);
+             saves.RunSavesAsync(numbersUser);
        
         }
 

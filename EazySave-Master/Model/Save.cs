@@ -196,7 +196,9 @@ namespace EazySave_Master.Model
             }
             else
             {
+
                 System.IO.File.Copy(filePath, targetFilePath, true);
+                Thread.Sleep(5000);
             }
         }
 
