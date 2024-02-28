@@ -173,8 +173,11 @@ namespace EazySave_Master.View
         {
             if (!string.IsNullOrWhiteSpace(InputTxtBox.Text))
             {
-                ItemsListTxtBox.Items.Add("." + InputTxtBox.Text);
-                m.encryptList.Add("." + InputTxtBox.Text);
+                if (!m.encryptList.Contains("." + InputTxtBox.Text))
+                {
+                    ItemsListTxtBox.Items.Add("." + InputTxtBox.Text);
+                    m.encryptList.Add("." + InputTxtBox.Text);
+                }
                 InputTxtBox.Clear();
                 InputTxtBox.Focus(); 
             }

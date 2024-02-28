@@ -61,14 +61,6 @@ namespace EazySave_Master.ModelView
 
         }
 
-        //// Nouvelle méthode pour ajouter une extension prioritaire
-        //public void AddPriorityExtension(string extension)
-        //{
-        //    if (!PriorityExtensions.Contains(extension))
-        //    {
-        //        PriorityExtensions.Add(extension);
-        //    }
-        //}
 
         /// <summary>
         /// create an instance of save from the good type and add it to the ManageSaves
@@ -98,6 +90,7 @@ namespace EazySave_Master.ModelView
         /// <param name="numbersUser">string numbers entered by user</param>
         public void runSavesFromNumbers(string numbersUser)
         {
+             saves.priorityList = priorityList;
              saves.RunSavesAsync(numbersUser);
        
         }

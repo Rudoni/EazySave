@@ -32,7 +32,6 @@ namespace EazySave_Master.View
             const string appName = "EazySave_Master";
             bool createdNew;
 
-            
             mutex = new Mutex(true, appName, out createdNew);
 
             if (!createdNew)
@@ -55,7 +54,8 @@ namespace EazySave_Master.View
             //manage closing of the app
             Closing += MainWindow_Closing;
 
-            mv.priorityList = priorityList;
+            updatePriorityList();
+
         }
 
         /// <summary>
@@ -95,9 +95,11 @@ namespace EazySave_Master.View
                     break;
             }
         }
-
         
-
+        public void updatePriorityList()
+        {
+            mv.priorityList = priorityList;
+        }
 
     }
 }

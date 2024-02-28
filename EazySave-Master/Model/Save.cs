@@ -1,4 +1,5 @@
 ﻿using EazySave_Master.Model.Logs;
+using EazySave_Master.View;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -40,11 +41,6 @@ namespace EazySave_Master.Model
         /// XOR Encryption key chosen by the user
         /// </summary>
         public string encryptKey { get; set; }
-
-        /// <summary>
-        /// List of prioritary files extensions
-        /// </summary>
-        public List<string> priorityList { get; set; }
 
         /// <summary>
         /// Default constructor, completed by user inputs
@@ -194,7 +190,6 @@ namespace EazySave_Master.Model
             {
                 GetSizeFile(filePath);
                 System.IO.File.Copy(filePath, targetFilePath, true);
-                Thread.Sleep(5000);
             }
         }
 
