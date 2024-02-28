@@ -79,7 +79,7 @@ namespace EazySave_Master.Model
                     {
                         RealTimeLog realTimeLog = new RealTimeLog();
                         long encryptionTime = 0;
-                        bool res = currentSave.ExecuteSave(out encryptionTime);
+                        bool res = currentSave.ExecuteSave(priorityList, out encryptionTime);
                         if (res)
                         {
                             // lock log to avoid conflict
