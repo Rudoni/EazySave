@@ -50,6 +50,7 @@ namespace EazySave_Master.View
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             m.view(EnumEasySaves.ViewNames.Menu);
+            m.updatePriorityList();
         }
 
 
@@ -84,8 +85,12 @@ namespace EazySave_Master.View
         {
             if (!string.IsNullOrWhiteSpace(PriorityFileTxtBox.Text))
             {
-                PriorityFileListTxtBox.Items.Add("." + PriorityFileTxtBox.Text);
-                m.priorityList.Add("." + PriorityFileTxtBox.Text);
+               if(!m.priorityList.Contains("." + PriorityFileTxtBox.Text))
+                {
+                   PriorityFileListTxtBox.Items.Add("." + PriorityFileTxtBox.Text);
+                  m.priorityList.Add("." + PriorityFileTxtBox.Text);
+                }
+                
                 PriorityFileTxtBox.Clear();
                 PriorityFileListTxtBox.Focus();
             }
@@ -106,9 +111,7 @@ namespace EazySave_Master.View
             logFormatLabel.Content = rm.GetString("LogFormat");
             priorityFileExtensionLabel.Content = rm.GetString("PriorityFileExtension");
             maximumSizeLabel.Content = rm.GetString("MaxSimultaneousSize");
-            KiloBytesLabel.Content = rm.GetString("KiloBytes");
-            
-
+            KiloBytesLabel.Content = rm.GetString("KiloBytes");            
 
         }
 
