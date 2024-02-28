@@ -118,66 +118,85 @@ namespace EazySave_Master.Model
         /// <summary>
         /// Copy the directory and all the subdirectory from sourcePath to targetPath recursively
         /// </summary>
-        /// <param name="sourcePath"></param>
-        /// <param name="targetPath"></param>
-        private void CopyDirectory(string sourcePath, string targetPath, List<string> encryptionList, string encryptKey, out long totalEncryptionTime, List<string> PriorityExtensions)
+        private void CopyDirectory(string sourcePath, string targetPath, List<string> encryptionList, string encryptKey, out long totalEncryptionTime, List<string> priorityList)
         {
             Directory.CreateDirectory(targetPath);
 
             string[] filesSource = Directory.GetFiles(sourcePath);
             totalEncryptionTime = 0;
-            long encryptionDuration;
 
-            foreach (string filePath in filesSource)
+            if (priorityList.Count > 0)
             {
-                string fileName = Path.GetFileName(filePath);
-                string targetFilePath = Path.Combine(targetPath, fileName);
 
-                if (canFileBeCopied(filePath, targetFilePath))
+                foreach (string filePath in filesSource)
                 {
-                    string fileExtension = Path.GetExtension(filePath);
+                    string fileName = Path.GetFileName(filePath);
+                    string targetFilePath = Path.Combine(targetPath, fileName);
 
-                    if (PriorityExtensions.Contains(fileExtension, StringComparer.OrdinalIgnoreCase))
+
+                    if (canFileBeCopied(filePath, targetFilePath) && priorityList.Contains(Path.GetExtension(filePath), StringComparer.OrdinalIgnoreCase))
                     {
-                        // Prioritized extension: handle with priority
-                        int exitCode = ProcessCryptoSoft(filePath, targetPath, encryptKey, out encryptionDuration);
-                        if (exitCode >= 0)
-                        {
-                            totalEncryptionTime += encryptionDuration;
-                        }
-                        else
-                        {
-                            // Handle failure
-                        }
+                        ProcessFile(filePath, targetPath, encryptionList, encryptKey, ref totalEncryptionTime);
                     }
-                    else if (encryptionList.Contains(fileExtension, StringComparer.OrdinalIgnoreCase))
+                    
+
+                }
+                foreach (string filePath in filesSource)
+                {
+                    string fileName = Path.GetFileName(filePath);
+                    string targetFilePath = Path.Combine(targetPath, fileName);
+
+                    if (canFileBeCopied(filePath, targetFilePath) && !priorityList.Contains(Path.GetExtension(filePath), StringComparer.OrdinalIgnoreCase))
                     {
-                        //Non-prioritized extension but must be encrypted.
-                        int exitCode = ProcessCryptoSoft(filePath, targetPath, encryptKey, out encryptionDuration);
-                        if (exitCode >= 0)
-                        {
-                            totalEncryptionTime += encryptionDuration;
-                        }
-                        else
-                        {
-                            // Handle failure
-                        }
-                    }
-                    else
-                    {
-                        // Non-prioritized and unencrypted extension
-                        System.IO.File.Copy(filePath, targetFilePath, true);
+                        ProcessFile(filePath, targetPath, encryptionList, encryptKey, ref totalEncryptionTime);
                     }
                 }
-            }
 
-            // Recursively process subdirectories
-            string[] subDirectories = Directory.GetDirectories(sourcePath);
-            foreach (string subDirectoryPath in subDirectories)
+
+            }
+            else
             {
-                string subDirectoryName = Path.GetFileName(subDirectoryPath);
-                string targetSubDirectoryPath = Path.Combine(targetPath, subDirectoryName);
-                CopyDirectory(subDirectoryPath, targetSubDirectoryPath, encryptionList, encryptKey, out totalEncryptionTime, PriorityExtensions);
+
+                foreach (string filePath in filesSource)
+                {
+                    string fileName = Path.GetFileName(filePath);
+                    string targetFilePath = Path.Combine(targetPath, fileName);
+
+
+                    if (canFileBeCopied(filePath, targetFilePath))
+                    {
+                        ProcessFile(filePath, targetPath, encryptionList, encryptKey, ref totalEncryptionTime);
+
+                    }
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Copy the files depending on if they need to be encrypted or not
+        /// </summary>
+        private void ProcessFile(string filePath, string targetPath, List<string> encryptionList, string encryptKey, ref long totalEncryptionTime)
+        {
+            Directory.CreateDirectory(targetPath);
+
+            string targetFilePath = Path.Combine(targetPath, Path.GetFileName(filePath));
+
+            if (encryptionList.Contains(Path.GetExtension(filePath), StringComparer.OrdinalIgnoreCase))
+            {
+                int exitCode = ProcessCryptoSoft(filePath, targetPath, encryptKey, out long encryptionDuration);
+                if (exitCode >= 0)
+                {
+                    totalEncryptionTime += encryptionDuration;
+                }
+                else
+                {
+                    //
+                }
+            }
+            else
+            {
+                System.IO.File.Copy(filePath, targetFilePath, true);
             }
         }
 
