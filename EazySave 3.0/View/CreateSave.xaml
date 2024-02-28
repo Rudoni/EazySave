@@ -1,0 +1,59 @@
+﻿<Page x:Class="EazySave_Master.View.CreateSave"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EazySave_Master.View"
+      mc:Ignorable="d"
+      x:Name="CreateSaveView" Title="CreateSave" Height="450" Width="800">
+
+    <Grid Background="White">
+        <Frame x:Name="CreatSave" NavigationUIVisibility="Hidden" />
+
+        <!-- Name -->
+        <Label x:Name="nameLabel" Content="Name" Margin="73,40,583,382" />
+          <TextBox x:Name="NameTxtBox" TextWrapping="Wrap" Text="" Margin="73,73,470,354" TextChanged="Name_TextChanged"/>
+
+        <!-- Source Path -->
+        <Label x:Name="sourcePathLabel" Content="Source Path" Margin="73,101,583,321"/>
+        <Button x:Name="sourcePathButton" Content="..."  Click="path_Click" Margin="330,129,444,298" />
+        <TextBox x:Name="SourcePathTxtBox" TextWrapping="Wrap" Text="" Margin="73,129,470,298" TextChanged="Source_TextChanged"/>
+        
+
+        <!-- Destination Path -->
+        <Label x:Name="targetPathLabel" Content="Target Path" Margin="73,157,583,265"/>
+        <Button x:Name="destPathButton" Content="..."  Click="path2_Click" Margin="330,190,444,237" />
+        <TextBox x:Name="DestinationPathTxtBox" TextWrapping="Wrap" Text="" Margin="73,190,470,237" TextChanged="Destination_TextChanged"/>
+
+        <!-- Type -->
+        <Label x:Name="saveTypeLabel" Content="Save Type" Margin="73,223,583,199"/>
+            <RadioButton x:Name="totalRB" Content="Total" Margin="73,251,470,180" Checked="Type_Checked"/>
+            <RadioButton x:Name="differentialRB" Content="Differential" Margin="73,270,470,159" Checked="Type_Checked"/>
+
+
+        <!-- Crypting (option) -->
+        <Grid>
+            <Label x:Name="cryptingFileLabel" Content="Crypting File" Margin="73,291,583,131"/>
+            <RadioButton x:Name="yesRB" Content="Yes" Margin="73,319,470,112" Checked="Crypting_Checked"/>
+            <RadioButton x:Name="noRB" Content="No" Margin="73,338,470,91" Checked="Crypting_Checked"/>
+        </Grid>
+
+        <!-- Extension Crypting -->
+        <Label x:Name="fileExtensionLabel" Content="File Extension" Margin="482,45,174,377" Visibility="Hidden"/>
+        <TextBox x:Name="InputTxtBox" Margin="482,73,65,327"  Visibility="Hidden"/>
+        <Button x:Name="addButton" Content="Add" Click="AddExtensionButton_Click" Margin="482,138,255,279" Visibility="Hidden"/>
+        <ListBox x:Name="ItemsListTxtBox" Margin="482,190,65,159" Visibility="Hidden"/>
+        <Label  x:Name="encryptionKeyLabel" Content="EncryptionKey" Margin="482,296,174,126" Visibility="Hidden" />
+        <TextBox x:Name="EncryptionKeyTxtBox" TextWrapping="Wrap" Text="" Margin="482,329,65,98" TextChanged="Key_TextChanged" Visibility="Hidden"/>
+
+        <!-- Encryption Key -->
+
+        <!-- End -->
+
+        <Button x:Name="createSaveButton" Content="Create Save"  Click="CreateSave_Click" Margin="330,366,330,44" />
+
+        <Button x:Name="backButton" Content="Back"  Click="Back_Click" Margin="10,10,746,421" />
+
+
+    </Grid>
+</Page>
