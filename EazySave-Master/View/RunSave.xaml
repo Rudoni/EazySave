@@ -17,13 +17,19 @@
                     <GridViewColumn Header="Source Path" DisplayMemberBinding="{Binding sourceRepo.path}" Width="150"/>
                     <GridViewColumn Header="Target Path" DisplayMemberBinding="{Binding targetPath}" Width="150" />
 
-                    <GridViewColumn Header="Action" Width="300">
+                    <GridViewColumn Header="Action" Width="350">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Content="Execute" Click="ExecuteButton_Click" />
-                                    <Button Content="Delete" Click="DeleteButton_Click" />
+                                    <Button Content="Execute" Margin="5" Click="ExecuteButton_Click" />
+                                    <Button x:Name="btnStart" Content="Play" Margin="5" Click="BtnStart_Click"/>
+                                    <Button x:Name="btnPause" Content="Pause" Margin="5" Click="BtnPause_Click"/>
+                                    <Button x:Name="btnStop" Content="Stop" Margin="5" Click="BtnStop_Click"/>
+                                    <ProgressBar x:Name="progressBar" Height="20" Margin="10" Width="100" ValueChanged="progressBar_ValueChanged"/>
+                                    <Button Content="Delete" Margin="5" Click="DeleteButton_Click" />
+
                                 </StackPanel>
+                                
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

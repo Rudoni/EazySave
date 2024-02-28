@@ -192,10 +192,23 @@ namespace EazySave_Master.Model
             }
             else
             {
-
+                GetSizeFile(filePath);
                 System.IO.File.Copy(filePath, targetFilePath, true);
                 Thread.Sleep(5000);
             }
+        }
+
+        public long GetSizeFile(string filePath)
+        {
+            FileInfo fileInfo = new FileInfo(filePath);
+            return fileInfo.Length;
+        }
+
+        public long CalculProgressBar()
+        {
+            long total = Folder.GetTotalFileSize(sourceRepo.path);
+           // long res = 
+            return 0;
         }
 
         public override string ToString()

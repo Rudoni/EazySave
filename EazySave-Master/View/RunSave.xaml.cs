@@ -83,6 +83,24 @@ namespace EazySave_Master.View
             ((GridView)ListOfSaves.View).Columns[2].Header = rm.GetString("TargetPath");
         }
 
-        
+        private void BtnStart_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnPause_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnStop_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void progressBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
     }
 }
