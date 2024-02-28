@@ -54,6 +54,8 @@ namespace EazySave_Master.View
 
             //manage closing of the app
             Closing += MainWindow_Closing;
+
+            mv.priorityList = priorityList;
         }
 
         /// <summary>

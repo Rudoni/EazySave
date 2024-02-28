@@ -23,6 +23,8 @@ namespace EazySave_Master.Model
         /// </summary>
         public int logExtension { get; set; }
 
+        public List<string> priorityList { get; set; }
+
         /// <summary>
         /// default constructor
         /// </summary>
@@ -71,7 +73,7 @@ namespace EazySave_Master.Model
                 {
                     RealTimeLog realTimeLog = new RealTimeLog();
                     long encryptionTime = 0;
-                    bool res = save.ExecuteSave(out encryptionTime);
+                    bool res = save.ExecuteSave(priorityList, out encryptionTime);
                     //create log from save data
                     if (res)
                     {

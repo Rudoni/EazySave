@@ -53,16 +53,14 @@ namespace EazySave_Master.Model
         /// <param name="name"></param>
         /// <param name="sourceRepo"></param>
         /// <param name="targetPath"></param>
-        public Save(string name, string sourceRepo, string targetPath, List<string> encryptList, string encryptKey, List<string> priorityList)
+        public Save(string name, string sourceRepo, string targetPath, List<string> encryptList, string encryptKey)
         {
             this.number = 0;
             this.name = name;
             this.encryptList = encryptList;
             this.encryptKey = encryptKey;
-            this.priorityList = priorityList;
             this.sourceRepo = new Folder(sourceRepo);
             this.targetPath = targetPath;
-
         }
 
         /// <summary>
@@ -88,7 +86,7 @@ namespace EazySave_Master.Model
         /// <summary>
         /// Launch the actual save after some verifications
         /// </summary>
-        public bool ExecuteSave(out long encryptionTime)
+        public bool ExecuteSave(List<string> priorityList, out long encryptionTime)
         {
 
             string sourcePath = sourceRepo.path;
@@ -139,7 +137,6 @@ namespace EazySave_Master.Model
                         ProcessFile(filePath, targetPath, encryptionList, encryptKey, ref totalEncryptionTime);
                     }
                     
-
                 }
                 foreach (string filePath in filesSource)
                 {
@@ -166,7 +163,6 @@ namespace EazySave_Master.Model
                     if (canFileBeCopied(filePath, targetFilePath))
                     {
                         ProcessFile(filePath, targetPath, encryptionList, encryptKey, ref totalEncryptionTime);
-
                     }
                 }
 

@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
+using EazySave_Master.View;
 
 namespace EazySave_Master.ModelView
 {
@@ -23,7 +24,7 @@ namespace EazySave_Master.ModelView
 
         public string lang { get; set; } = "en";
 
-
+        public List<string> priorityList { get; set; }
 
         public ResourceManager resourceManager { get; set; }    
        
@@ -83,10 +84,10 @@ namespace EazySave_Master.ModelView
             switch (typeSave)
             {
                 case EnumEasySaves.TypeSave.Total:
-                    saves.addSave(new SaveTotal(name, sourceRepo, targetPath, encryptList, encryptKey, priorityList));
+                    saves.addSave(new SaveTotal(name, sourceRepo, targetPath, encryptList, encryptKey));
                     break;
                 case EnumEasySaves.TypeSave.Differential:
-                    saves.addSave(new SaveDifferential(name, sourceRepo, targetPath, encryptList, encryptKey, priorityList));
+                    saves.addSave(new SaveDifferential(name, sourceRepo, targetPath, encryptList, encryptKey));
                     break;
             }
         }
@@ -97,6 +98,7 @@ namespace EazySave_Master.ModelView
         /// <param name="numbersUser">string numbers entered by user</param>
         public void runSavesFromNumbers(string numbersUser)
         {
+             saves.priorityList = priorityList;
              saves.RunSaves(numbersUser);
        
         }
@@ -115,7 +117,7 @@ namespace EazySave_Master.ModelView
             {
                 foreach (Save save in saves.saves)
                 {
-                    string line = $"{save.number},{save.name},{save.sourceRepo.path},{save.targetPath},{string.Join(";", save.encryptList)},{save.encryptKey},{save.GetType().FullName},{string.Join(";", save.priorityList)}";
+                    string line = $"{save.number},{save.name},{save.sourceRepo.path},{save.targetPath},{string.Join(";", save.encryptList)},{save.encryptKey},{save.GetType().FullName}";
                     writer.WriteLine(line);
                 }
             }
@@ -158,11 +160,10 @@ namespace EazySave_Master.ModelView
             List<string> encryptList = saveData[4].Split(';').ToList();
             string encryptKey = saveData[5];
             string saveType = saveData[6];
-            List<string> priorityList = saveData[7].Split(';').ToList();
 
             // Utilisez le type de la save pour créer une instance concrète
             Type type = Type.GetType(saveType);
-            Save save = (Save)Activator.CreateInstance(type, name, sourceRepoPath, targetPath, encryptList, encryptKey, priorityList);
+            Save save = (Save)Activator.CreateInstance(type, name, sourceRepoPath, targetPath, encryptList, encryptKey);
             save.setNumber(number);
 
             return save;
@@ -212,7 +213,6 @@ namespace EazySave_Master.ModelView
         {
             this.saves.logExtension = i;
         }
-
 
     }
 }
