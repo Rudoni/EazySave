@@ -131,7 +131,7 @@ namespace EazySave_Master.ModelView
                         // tab from line
                         string[]? saveData = reader.ReadLine()?.Split(',');
 
-                        if (saveData != null && saveData.Length == 8)
+                        if (saveData != null)
                         {
                             // create a save from the values
                             Save save = CreateSaveInstance(saveData);
