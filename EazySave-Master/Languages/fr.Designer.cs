@@ -187,7 +187,7 @@ namespace EazySave_Master.Languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Confirmer le lancement de la save ?.
+        ///   Recherche une chaîne localisée semblable à Confirmer le lancement de la sauvegarde ?.
         /// </summary>
         internal static string PopupConfirm {
             get {
@@ -196,7 +196,16 @@ namespace EazySave_Master.Languages {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Save terminée..
+        ///   Recherche une chaîne localisée semblable à Voulez-vous vraiment supprimer cette sauvegarde ?.
+        /// </summary>
+        internal static string PopupConfirmDelete {
+            get {
+                return ResourceManager.GetString("PopupConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sauvegarde terminée..
         /// </summary>
         internal static string PopupFinished {
             get {

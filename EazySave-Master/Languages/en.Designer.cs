@@ -196,6 +196,15 @@ namespace EazySave_Master.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Confirm delete ?.
+        /// </summary>
+        internal static string PopupConfirmDelete {
+            get {
+                return ResourceManager.GetString("PopupConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Save finished..
         /// </summary>
         internal static string PopupFinished {

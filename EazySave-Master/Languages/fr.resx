@@ -160,10 +160,13 @@
     <value>Non</value>
   </data>
   <data name="PopupConfirm" xml:space="preserve">
-    <value>Confirmer le lancement de la save ?</value>
+    <value>Confirmer le lancement de la sauvegarde ?</value>
+  </data>
+  <data name="PopupConfirmDelete" xml:space="preserve">
+    <value>Voulez-vous vraiment supprimer cette sauvegarde ?</value>
   </data>
   <data name="PopupFinished" xml:space="preserve">
-    <value>Save terminée.</value>
+    <value>Sauvegarde terminée.</value>
   </data>
   <data name="PriorityFileExtension" xml:space="preserve">
     <value>Extension de Fichiers Prioritaires</value>
