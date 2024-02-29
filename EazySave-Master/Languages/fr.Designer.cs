@@ -187,6 +187,24 @@ namespace EazySave_Master.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Confirmer le lancement de la save ?.
+        /// </summary>
+        internal static string PopupConfirm {
+            get {
+                return ResourceManager.GetString("PopupConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Save terminée..
+        /// </summary>
+        internal static string PopupFinished {
+            get {
+                return ResourceManager.GetString("PopupFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Extension de Fichiers Prioritaires.
         /// </summary>
         internal static string PriorityFileExtension {

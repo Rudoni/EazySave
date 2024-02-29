@@ -159,6 +159,12 @@
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="PopupConfirm" xml:space="preserve">
+    <value>Confirm execution ?</value>
+  </data>
+  <data name="PopupFinished" xml:space="preserve">
+    <value>Save finished.</value>
+  </data>
   <data name="PriorityFileExtension" xml:space="preserve">
     <value>Priority File Extension</value>
   </data>
