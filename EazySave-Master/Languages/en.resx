@@ -165,6 +165,15 @@
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="PopupConfirm" xml:space="preserve">
+    <value>Confirm execution ?</value>
+  </data>
+  <data name="PopupConfirmDelete" xml:space="preserve">
+    <value>Confirm delete ?</value>
+  </data>
+  <data name="PopupFinished" xml:space="preserve">
+    <value>Save finished.</value>
+  </data>
   <data name="Pause" xml:space="preserve">
     <value>Pause</value>
   </data>

@@ -165,6 +165,15 @@
   <data name="No" xml:space="preserve">
     <value>Non</value>
   </data>
+  <data name="PopupConfirm" xml:space="preserve">
+    <value>Confirmer le lancement de la sauvegarde ?</value>
+  </data>
+  <data name="PopupConfirmDelete" xml:space="preserve">
+    <value>Voulez-vous vraiment supprimer cette sauvegarde ?</value>
+  </data>
+  <data name="PopupFinished" xml:space="preserve">
+    <value>Sauvegarde terminée.</value>
+  </data>
   <data name="Pause" xml:space="preserve">
     <value>Pause</value>
   </data>

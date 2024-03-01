@@ -53,15 +53,25 @@ namespace EazySave_Master.View
         /// </summary>
         private void ExecuteButton_Click(object sender, RoutedEventArgs e)
         {
+            ResourceManager rm = m.mv.resourceManager;
+
             // get number of save
             if (sender is Button button && button.DataContext is Save selectedSave)
             {
                 string selectedNumber = selectedSave.number.ToString();
 
-                // run save
-                m.mv.runSavesFromNumbers(selectedNumber);
+                MessageBoxResult result = MessageBox.Show(rm.GetString("PopupConfirm"), "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                button.Click -= ExecuteButton_Click;
+                if (result == MessageBoxResult.Yes)
+                {
+
+                    // run save
+                    m.mv.runSavesFromNumbers(selectedNumber);
+
+                    button.Click -= ExecuteButton_Click;
+
+                    MessageBox.Show(rm.GetString("PopupFinished"), "Done", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
         }
 
@@ -70,8 +80,20 @@ namespace EazySave_Master.View
             // get number of save
             if (sender is Button button && button.DataContext is Save selectedSave)
             {
-                int selectedNumber = selectedSave.number;
-                m.mv.deleteSave(selectedNumber);
+
+                ResourceManager rm = m.mv.resourceManager;
+
+                MessageBoxResult result = MessageBox.Show(rm.GetString("PopupConfirmDelete"), "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+
+                    int selectedNumber = selectedSave.number;
+                    m.mv.deleteSave(selectedNumber);
+
+                    button.Click -= DeleteButton_Click;
+
+                }
             }
         }
 
