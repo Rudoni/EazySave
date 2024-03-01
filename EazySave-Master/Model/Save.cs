@@ -82,7 +82,7 @@ namespace EazySave_Master.Model
         /// <summary>
         /// Launch the actual save after some verifications
         /// </summary>
-        public bool ExecuteSave(List<string> priorityList, out long encryptionTime)
+        public bool ExecuteSave(List<string> priorityList, long maxSimultSize, out long encryptionTime)
         {
 
             string sourcePath = sourceRepo.path;

@@ -21,6 +21,8 @@ namespace EazySave_Master.View
         public List<string> encryptList { set; get; } = new List<string>();
         public List<string> priorityList { set; get; } = new List<string>();
 
+        public long maxSimultSize;
+
         private static Mutex mutex = null;
 
         /// <summary>
@@ -99,6 +101,11 @@ namespace EazySave_Master.View
         public void updatePriorityList()
         {
             mv.priorityList = priorityList;
+        }
+
+        public void updateMaxSimultSize()
+        {
+            mv.maxSimultSize = Convert.ToInt64(settings.fileSizeNumericUpDown.Value);
         }
 
     }

@@ -81,6 +81,8 @@ namespace EazySave_Master.View
             ((GridView)ListOfSaves.View).Columns[0].Header = rm.GetString("Name");
             ((GridView)ListOfSaves.View).Columns[1].Header = rm.GetString("SourcePath");
             ((GridView)ListOfSaves.View).Columns[2].Header = rm.GetString("TargetPath");
+
+            
         }
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)

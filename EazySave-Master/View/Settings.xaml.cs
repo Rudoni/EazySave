@@ -49,8 +49,10 @@ namespace EazySave_Master.View
         /// </summary>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            m.view(EnumEasySaves.ViewNames.Menu);
             m.updatePriorityList();
+            m.updateMaxSimultSize();
+
+            m.view(EnumEasySaves.ViewNames.Menu);         
         }
 
 
@@ -88,7 +90,7 @@ namespace EazySave_Master.View
                if(!m.priorityList.Contains("." + PriorityFileTxtBox.Text))
                 {
                    PriorityFileListTxtBox.Items.Add("." + PriorityFileTxtBox.Text);
-                  m.priorityList.Add("." + PriorityFileTxtBox.Text);
+                   m.priorityList.Add("." + PriorityFileTxtBox.Text);
                 }
                 
                 PriorityFileTxtBox.Clear();

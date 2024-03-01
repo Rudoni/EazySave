@@ -25,6 +25,10 @@ namespace EazySave_Master.Model
 
         public List<string> priorityList { get; set; }
 
+        public long maxSimultSize { get; set; }
+
+
+
         /// <summary>
         /// default constructor
         /// </summary>
@@ -79,7 +83,7 @@ namespace EazySave_Master.Model
                     {
                         RealTimeLog realTimeLog = new RealTimeLog();
                         long encryptionTime = 0;
-                        bool res = currentSave.ExecuteSave(priorityList, out encryptionTime);
+                        bool res = currentSave.ExecuteSave(priorityList, maxSimultSize, out encryptionTime);
                         if (res)
                         {
                             // lock log to avoid conflict

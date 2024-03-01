@@ -106,6 +106,15 @@ namespace EazySave_Master.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Delete.
+        /// </summary>
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Differential.
         /// </summary>
         internal static string DifferentialSave {
@@ -120,6 +129,15 @@ namespace EazySave_Master.Languages {
         internal static string EncryptionKey {
             get {
                 return ResourceManager.GetString("EncryptionKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Execute.
+        /// </summary>
+        internal static string Execute {
+            get {
+                return ResourceManager.GetString("Execute", resourceCulture);
             }
         }
         
@@ -187,6 +205,15 @@ namespace EazySave_Master.Languages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Pause.
+        /// </summary>
+        internal static string Pause {
+            get {
+                return ResourceManager.GetString("Pause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Priority File Extension.
         /// </summary>
         internal static string PriorityFileExtension {
@@ -228,6 +255,24 @@ namespace EazySave_Master.Languages {
         internal static string SourcePath {
             get {
                 return ResourceManager.GetString("SourcePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Start.
+        /// </summary>
+        internal static string Start {
+            get {
+                return ResourceManager.GetString("Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Stop.
+        /// </summary>
+        internal static string Stop {
+            get {
+                return ResourceManager.GetString("Stop", resourceCulture);
             }
         }
         

@@ -26,9 +26,11 @@ namespace EazySave_Master.ModelView
 
         public List<string> priorityList { get; set; }
 
+        public long maxSimultSize { get; set; }
+
         public ResourceManager resourceManager { get; set; }    
        
-        public static ModelView Instance
+        public static ModelView Instance 
         {
             get
             {

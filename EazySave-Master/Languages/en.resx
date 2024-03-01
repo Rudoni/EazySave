@@ -132,11 +132,17 @@
   <data name="CryptingFile" xml:space="preserve">
     <value>Crypting file</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="DifferentialSave" xml:space="preserve">
     <value>Differential</value>
   </data>
   <data name="EncryptionKey" xml:space="preserve">
     <value>Encryption Key</value>
+  </data>
+  <data name="Execute" xml:space="preserve">
+    <value>Execute</value>
   </data>
   <data name="FileExtension" xml:space="preserve">
     <value>File Extension</value>
@@ -159,6 +165,9 @@
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="Pause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
   <data name="PriorityFileExtension" xml:space="preserve">
     <value>Priority File Extension</value>
   </data>
@@ -173,6 +182,12 @@
   </data>
   <data name="SourcePath" xml:space="preserve">
     <value>Source Path</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Stop</value>
   </data>
   <data name="TargetPath" xml:space="preserve">
     <value>Target Path</value>
